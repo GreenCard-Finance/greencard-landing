@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "tailwindcss";
+
+@theme {
+  --font-heading: var(--font-heading);
+  --font-source: var(--font-source);
+  --font-lato: var(--font-lato);
+}
