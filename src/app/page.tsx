@@ -1,12 +1,12 @@
-import Footer from "@/components/layout/footer";
-import Nav from "@/components/layout/nav";
-import Hero from "@/components/sections/Hero";
+import Hero from "@/components/sections/hero";
+import SectionTwo from "@/components/sections/section-two";
 
 function Home() {
   return (
-    <div className="">
+    <>
       <Hero />
-    </div>
+      <SectionTwo />
+    </>
   );
 }
 

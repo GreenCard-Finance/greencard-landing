@@ -12,11 +12,11 @@ const typographyVariants = cva("", {
     size: {
       // Lalezar display sizes
       "display-xl":
-        "text-[55px] leading-[45px] md:text-[100px] md:leading-[100px] lg:text-[100px] lg:leading-[90px]",
+        "text-[55px] leading-[45px] md:text-[100px] md:leading-[100px] lg:text-[100px] lg:leading-[85px]",
       "display-lg":
-        "text-[52px] leading-[50px] md:text-[80px] md:leading-[70px] lg:text-[115px] lg:leading-[100px]",
+        "text-[52px] leading-[50px] md:text-[80px] md:leading-[70px] lg:text-[100px] lg:leading-[80px]",
       "display-md":
-        "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px]",
+        "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[80px]",
       "display-sm": "text-[24px] leading-[20px]",
 
       // Source Sans 3 body sizes
