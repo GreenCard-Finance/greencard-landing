@@ -41,7 +41,7 @@ export default function Nav() {
         )}
       >
         <nav className="w-full">
-          <div className="max-w-360 w-full mx-auto flex items-center justify-between xl:justify-start gap-x-14 h-20 px-4 md:h-24 xl:h-32 md:px-8 lg:px-20">
+          <div className="max-w-360 w-full mx-auto flex items-center justify-between xl:justify-start gap-x-10 h-20 px-4 md:h-24 xl:h-32 md:px-8 lg:px-20">
             <Link href="/" className="flex items-center gap-2 shrink-0 z-30">
               <Image
                 src={logo_green}
@@ -49,9 +49,10 @@ export default function Nav() {
                 width={140}
                 height={36}
                 priority
+                // className="w-fit h-fit"
               />
             </Link>
-            <ul className="hidden xl:flex items-center gap-x-14">
+            <ul className="hidden xl:flex items-center gap-x-10">
               {regularLinks.map((item) => (
                 <li key={item.label}>
                   <Link href={item.href}>

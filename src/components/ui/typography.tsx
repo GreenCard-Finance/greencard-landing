@@ -17,7 +17,7 @@ const typographyVariants = cva("", {
         "text-[52px] leading-[50px] md:text-[80px] md:leading-[70px] lg:text-[100px] lg:leading-[80px]",
       "display-md":
         "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[80px]",
-      "display-sm": "text-[24px] leading-[20px]",
+      "display-sm": "text-[16px] md:text-[24px] leading-auto",
 
       // Source Sans 3 body sizes
       "body-xl":
