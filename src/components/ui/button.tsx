@@ -9,7 +9,7 @@ const buttonVariants = cva(
         lime: [
           "bg-[#9FE870] text-[#000000] border border-black hover:bg-[#8fd960]",
           "px-4 py-1",
-          "md:px-4",
+          "md:px-3",
         ].join(" "),
 
         forest:
@@ -18,8 +18,7 @@ const buttonVariants = cva(
         dark: [
           "bg-[#07331A] text-white hover:bg-[#052810]",
           "px-4 py-1",
-          "md:px-10 md:py-3",
-        ].join(" "),
+        ].join(),
       },
     },
     defaultVariants: {

@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { HTMLMotionProps, motion, type Variants } from "framer-motion";
 
-interface MotionProps {
+interface MotionProps extends HTMLMotionProps<"div"> {
   children: React.ReactNode;
   variants: Variants;
   className?: string;
