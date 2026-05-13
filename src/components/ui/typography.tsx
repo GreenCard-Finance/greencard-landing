@@ -16,14 +16,13 @@ const typographyVariants = cva("", {
       "display-lg":
         "text-[52px] leading-[50px] md:text-[80px] md:leading-[70px] lg:text-[100px] lg:leading-[80px]",
       "display-md":
-        "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[80px]",
+        "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[70px]",
       "display-sm": "text-[16px] md:text-[24px] leading-auto",
 
       // Source Sans 3 body sizes
-      "body-xl":
-        "text-[24px] leading-[1.4] md:text-[36px] md:leading-[1.3] lg:text-[36px] lg:leading-[1.3]",
+      "body-xl": "text-[24px] lg:text-[24px] leading-tight",
       "body-lg":
-        "text-[16px] leading-[1.5] md:text-[24px] md:leading-[40px] lg:text-[20px] lg:leading-[40px]",
+        "text-[16px] leading-[1.5] md:text-[24px] md:leading-[40px] lg:text-[20px] lg:leading-[40px] ",
       "body-md": "text-[14px] leading-[1.5] md:text-[16px] md:leading-[1.5]",
       "body-sm": "text-[12px] leading-[1.4] md:text-[14px] md:leading-[1.4]",
 

@@ -1,7 +1,124 @@
-import React from "react";
+import { logo } from "@/assets/images";
+import Image from "next/image";
+import {
+  footerAddresses,
+  footerLinks,
+  footerPolicies,
+  footerSocialLinks,
+} from "@/lib/constants";
+import Link from "next/link";
+import { Typography } from "../ui/typography";
 
 function Footer() {
-  return <div className="bg-red-400">Footer</div>;
+  const year = new Date().getFullYear();
+
+  return (
+    <footer className="bg-[#1F2933] py-5 px-5 xl:px-20">
+      <div className="flex items-start justify-between">
+        <div className="flex flex-col gap-y-3">
+          <Image src={logo} alt="footer-logo" width={140} height={36} />
+
+          <ul className="space-y-1 pl-12">
+            {footerLinks.map((item) => (
+              <li key={item.label} className="group cursor-pointer">
+                <Link href={item.href}>
+                  <Typography
+                    as="p"
+                    font="lato"
+                    size="body-sm"
+                    weight="regular"
+                    color="white"
+                    className="uppercase transition-opacity duration-200 group-hover:opacity-50"
+                  >
+                    {item.label}
+                  </Typography>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <Typography
+          font="source"
+          weight="regular"
+          color="white"
+          align="center"
+          className="hidden xl:flex text-4xl! bg-red-5 uppercase transition-opacity duration-200 hover:opacity-50 cursor-default"
+        >
+          Contact us
+        </Typography>
+
+        <div className="flex flex-col gap-y-3">
+          <ul className="flex items-center justify-end gap-x-3">
+            {footerSocialLinks.map((item) => (
+              <li key={item.label} className="cursor-pointer">
+                <Link
+                  href={item.href}
+                  className="inline-flex transition-transform duration-200 hover:scale-90"
+                >
+                  <Image src={item.icon} alt={`${item.label}-icon`} />
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <ul className="space-y-1">
+            {footerAddresses.map((item) => (
+              <li key={item.label} className="group cursor-pointer">
+                <a href={item.href}>
+                  <Typography
+                    as="p"
+                    font="lato"
+                    size="body-sm"
+                    weight="regular"
+                    color="white"
+                    align="right"
+                    className="transition-opacity duration-200 group-hover:opacity-50"
+                  >
+                    {item.label}
+                  </Typography>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-6 xl:-mt-5">
+        <Typography
+          as="p"
+          font="lato"
+          size="body-sm"
+          weight="regular"
+          color="white"
+          align="center"
+          className="transition-opacity duration-200 hover:opacity-50"
+        >
+          © {year} GreenCard Finance. All rights reserved.
+        </Typography>
+      </div>
+
+      <ul className="flex items-center justify-center gap-x-5 sm:gap-x-30 xl:gap-x-3 mt-2">
+        {footerPolicies.map((item) => (
+          <li key={item.label} className="group cursor-pointer">
+            <Link href={item.href} className="inline-flex">
+              <Typography
+                as="p"
+                font="lato"
+                size="body-sm"
+                weight="regular"
+                color="white"
+                align="center"
+                className="uppercase transition-opacity duration-200 group-hover:opacity-50"
+              >
+                {item.label}
+              </Typography>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </footer>
+  );
 }
 
 export default Footer;
