@@ -1,164 +1,67 @@
 import Image from "next/image";
-import {
-  s2_left_hand,
-  s2_right_hand,
-  s2_mobile,
-  greencheck_s2,
-  s2_left_hand_desk,
-} from "@/assets/images";
-import { slideInLeft, slideInRight, springUp } from "@/lib/animations";
-import { MotionWrapper } from "../ui/motion-wrapper";
+import { s2__bg, s2__img_desktop, s2__img_mobile } from "@/assets/images";
 import { Typography } from "../ui/typography";
+import { MotionWrapper } from "../ui/motion-wrapper";
+import { springUp } from "@/lib/animations";
 
 function SectionTwo() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#286744] xl:mt-27">
-      <div className="max-w-full mx-auto">
+    <section className="w-full bg-[#9FE870] py-20 xl:py32 overflow-hidden relative min-h-165 flex items-center">
+      <div className="absolute inset-0 z-0 sm:top-32 xl:top-0">
         <Image
-          src={greencheck_s2}
-          alt="check"
-          className="absolute -top-15 right-40 sm:right-10 sm:top-0 object-cover object-top scale-[1.5] sm:scale-[1] sm:w-full xl:w-fit z-0"
+          src={s2__bg}
+          alt="background pattern"
+          fill
+          className="object-cover opacity-50"
           priority
         />
-        <div className="xl:hidden relative w-full">
-          <div className="mt-22 mr-4">
-            <MotionWrapper variants={slideInRight} delay={0.2}>
-              <Typography
-                as="h1"
-                font="heading"
-                size="display-lg"
-                color="lime"
-                align="right"
-                className="mb-1"
-              >
-                Everything
-                <br />
-                you earn,
-                <br />
-                <span className="text-white">
-                  instantly <br /> accessible
-                </span>
-              </Typography>
-            </MotionWrapper>
-            <MotionWrapper variants={slideInRight} delay={0.5}>
-              <Typography
-                font="lato"
-                size="display-sm"
-                color={"off-white"}
-                align="right"
-                weight={"regular"}
-              >
-                Your global wealth <br className="hidden sm:flex" /> in your
-                pocket
-              </Typography>
-            </MotionWrapper>
-          </div>
-
-          <div className="w-full flex items-center justify-between -mt-25 sm:-mt-58">
-            <MotionWrapper
-              variants={slideInLeft}
-              delay={0.7}
-              className="w-[70%] h-full overflow-hidden sm:w-[60%] z-30"
-            >
-              <Image
-                src={s2_left_hand}
-                alt=""
-                className="w-full h-full object-cover scale-110 sm:scale-100"
-              />
-            </MotionWrapper>
-
-            <MotionWrapper
-              variants={slideInRight}
-              delay={0.9}
-              className="w-[30%]"
-            >
-              <Image
-                src={s2_right_hand}
-                alt=""
-                className="w-full h-auto object-cover"
-              />
-            </MotionWrapper>
-          </div>
-
-          <MotionWrapper
-            variants={springUp}
-            delay={0.4}
-            className="absolute bottom-0 right-0 sm:-bottom-20 sm:left-1/2 sm:-translate-x-1/2 w-[40%] h-auto sm:w-[50%] z-40"
-          >
-            <Image
-              src={s2_mobile}
-              alt=""
-              className="w-full h-auto object-cover"
-            />
-          </MotionWrapper>
+      </div>
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
+        <div className="relative w-[90%] h-[80%] xl:hidden">
+          <Image
+            src={s2__img_mobile}
+            alt="mobile background"
+            fill
+            className="object-contain"
+            priority
+          />
         </div>
+        <div className="relative hidden xl:block w-[70%] h-[70%]">
+          <Image
+            src={s2__img_desktop}
+            alt="desktop background"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </div>
 
-        {/* desktop */}
-        <div className="hidden xl:flex relative w-full h-180 overflow-hidden">
-          <div className="mt-15 w-full z-20 pr-8">
-            <MotionWrapper variants={slideInRight} delay={0.2}>
-              <Typography
-                as="h1"
-                font="heading"
-                size="display-lg"
-                color="lime"
-                align="right"
-              >
-                Everything
-                <br />
-                you earn,
-                <br />
-                <span className="text-white">instantly accessible</span>
-              </Typography>
-            </MotionWrapper>
-
-            <MotionWrapper variants={slideInRight} delay={0.5}>
-              <Typography
-                font="lato"
-                size="display-sm"
-                color="off-white"
-                align="right"
-                weight="regular"
-              >
-                Your global wealth in your pocket
-              </Typography>
-            </MotionWrapper>
-          </div>
-
-          <MotionWrapper
-            variants={slideInLeft}
-            delay={0.7}
-            className="absolute -bottom-5 left-0 w-[38%] z-30"
-          >
-            <Image
-              src={s2_left_hand_desk}
-              alt=""
-              className="w-full h-auto object-contain object-top"
-            />
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full min-h-full">
+        <div className="flex flex-col items-start sm:items-end! absolute left-4 -top-56 sm:top-24 sm:right-4">
+          <MotionWrapper variants={springUp}>
+            <Typography
+              as="h2"
+              font="heading"
+              size="display-lg"
+              color="forest"
+              //   align={"right"}
+              className="text-left sm:text-right"
+            >
+              Smart fx, <br /> better value
+            </Typography>
           </MotionWrapper>
 
-          <MotionWrapper
-            variants={springUp}
-            delay={0.4}
-            className="absolute -bottom-37 left-1/2 -translate-x-1/2 w-[36%] z-40"
-          >
-            <Image
-              src={s2_mobile}
-              alt=""
-              className="w-full h-auto object-contain object-bottom"
-            />
-          </MotionWrapper>
-
-          <MotionWrapper
-            variants={slideInRight}
-            delay={0.9}
-            className="absolute -bottom-5 right-0 w-[15%] z-30"
-          >
-            <Image
-              src={s2_right_hand}
-              alt=""
-              className="w-full h-auto object-contain object-bottom"
-            />
+          <MotionWrapper variants={springUp} delay={0.2}>
+            <Typography
+              as="p"
+              font="source"
+              size="body-xl"
+              color="charcoal"
+              weight="regular"
+            >
+              Stop losing money to hidden charges
+            </Typography>
           </MotionWrapper>
         </div>
       </div>

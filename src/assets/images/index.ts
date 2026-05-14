@@ -10,6 +10,13 @@ export { default as s2_right_hand } from "../../../public/images/section-thumbs-
 export { default as s2_mobile } from "../../../public/images/section-app-mockup.svg";
 export { default as greencheck_s2 } from "../../../public/images/greencheck_s2.svg";
 
+export { default as s2__bg } from "../../../public/images/s2_bg.svg";
+export { default as s2__img_mobile } from "../../../public/images/s2_group_mobile.svg";
+export { default as s2__img_desktop } from "../../../public/images/s2group_desk.svg";
+export { default as s3_svg } from "../../../public/images/s3_bg.svg";
+
+export { default as s4_img } from "../../../public/images/section-bank-cards.svg";
+
 export { default as s5_firstimg } from "../../../public/images/section-board-first.svg";
 export { default as s5_secondimg } from "../../../public/images/section-board-second.svg";
 export { default as s5_thirdimg } from "../../../public/images/section-board-third.svg";
