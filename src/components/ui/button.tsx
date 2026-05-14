@@ -13,7 +13,7 @@ const buttonVariants = cva(
         ].join(" "),
 
         forest:
-          "bg-[#46654F] text-white hover:bg-[#3a5542] rounded-[15px] w-full px-6 py-3",
+          "bg-[#46654F] text-white hover:bg-[#3a5542] rounded-[15px] w-full px-6 py-2",
 
         dark: [
           "bg-[#07331A] text-white hover:bg-[#052810]",

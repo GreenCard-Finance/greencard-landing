@@ -14,17 +14,18 @@ const typographyVariants = cva("", {
       "display-xl":
         "text-[55px] leading-[45px] md:text-[100px] md:leading-[100px] lg:text-[100px] lg:leading-[85px]",
       "display-lg":
-        "text-[52px] leading-[50px] md:text-[80px] md:leading-[70px] lg:text-[100px] lg:leading-[80px]",
+        "text-[40px] leading-[35px] md:text-[80px] md:leading-[70px] lg:text-[110px] lg:leading-[90px] xl:leading-[85px]",
       "display-md":
         "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[70px]",
       "display-sm": "text-[16px] md:text-[24px] leading-auto",
 
       // Source Sans 3 body sizes
-      "body-xl": "text-[24px] lg:text-[24px] leading-tight",
+      "body-xl": "text-[16px] sm:text-[26px] leading-tight",
       "body-lg":
         "text-[16px] leading-[1.5] md:text-[24px] md:leading-[40px] lg:text-[20px] lg:leading-[40px] ",
       "body-md": "text-[14px] leading-[1.5] md:text-[16px] md:leading-[1.5]",
       "body-sm": "text-[12px] leading-[1.4] md:text-[14px] md:leading-[1.4]",
+      "body-xs": "text-[10px] leading-[1] md:text-[12px]",
 
       // Lato footer sizes
       "footer-lg": "text-[18px] leading-[1.5]",

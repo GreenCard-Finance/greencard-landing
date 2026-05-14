@@ -159,3 +159,67 @@ export const sectionFive = [
       "Now you card receive any currency <br /> and spend with your GREENCARD",
   },
 ];
+
+export const currencies = [
+  {
+    code: "USD",
+    name: "United States Dollar",
+    country: "United States",
+    flag: "🇺🇸",
+  },
+  {
+    code: "NGN",
+    name: "Nigerian Naira",
+    country: "Nigeria",
+    flag: "🇳🇬",
+  },
+  {
+    code: "GBP",
+    name: "British Pound Sterling",
+    country: "United Kingdom",
+    flag: "🇬🇧",
+  },
+  {
+    code: "EUR",
+    name: "Euro",
+    country: "European Union",
+    flag: "🇪🇺",
+  },
+  {
+    code: "CAD",
+    name: "Canadian Dollar",
+    country: "Canada",
+    flag: "🇨🇦",
+  },
+];
+
+export const exchangeRates = [
+  {
+    pair: "USD/NGN",
+    rate: "1500.00",
+    change: "+2.5%",
+    trend: "up",
+    flag: "🇳🇬",
+  },
+  {
+    pair: "USD/CAD",
+    rate: "1.352",
+    change: "+0.3%",
+    trend: "up",
+    flag: "🇨🇦",
+  },
+  {
+    pair: "USD/GBP",
+    rate: "0.785",
+    change: "-0.1%",
+    trend: "down",
+    flag: "🇬🇧",
+  },
+  {
+    pair: "USD/USD",
+    rate: "1.000",
+    change: "0.0%",
+    trend: "neutral",
+    flag: "🇺🇸",
+  },
+];
