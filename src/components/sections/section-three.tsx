@@ -10,7 +10,7 @@ function SectionThree() {
   return (
     <section
       id="product"
-      className="relative overflow-hidden py-9 xl:py-6 px-6 "
+      className="relative overflow-hidden py-9 xl:py-6 px-6"
     >
       <Image
         src={s3_svg}
@@ -20,7 +20,7 @@ function SectionThree() {
         className="hidden xl:block absolute right-0 top-0 h-full w-auto -z-5"
         priority
       />
-      <div className="max-w-7xl w-full mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center">
+      <div className=" max-w-360 w-full mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center">
         <MotionWrapper
           variants={slideInUp}
           className="w-full xl:w-2/3 items-center"

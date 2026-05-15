@@ -38,7 +38,7 @@ export function ConverterCard({
   };
 
   return (
-    <div className="rounded-[40px] p-2 bg-linear-to-b from-[#7A9A84] to-[#46654F] w-full max-w-125">
+    <div className="rounded-[40px] p-2 bg-linear-to-b from-[#7A9A84] to-[#46654F] w-full">
       <div className="bg-white rounded-4xl p-6 flex flex-col gap-3 shadow-xl">
         <div className="space-y-2">
           <Typography
@@ -61,7 +61,7 @@ export function ConverterCard({
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row items-center xl:gap-4 relative">
+        <div className="flex flex-col xl:flex-row items-center xl:gap-4 relative">
           <CurrencySelect
             label="From"
             selected={fromCurrency}
@@ -71,7 +71,7 @@ export function ConverterCard({
 
           <button
             onClick={handleSwap}
-            className="bg-[#1F2933] text-white p-3 rounded-full z-10 hover:scale-110 transition-transform sm:mt-6 -mb-4 xl:mb-0"
+            className="bg-[#1F2933] text-white p-3 rounded-full z-10 hover:scale-110 transition-transform lg:mt-6 -mb-4 xl:mb-0"
           >
             <ArrowLeftRight size={20} />
           </button>

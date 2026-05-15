@@ -11,6 +11,7 @@ function SectionFour() {
         <div className="flex flex-col-reverse md:flex-col xl:flex-row items-center xl:justify-between">
           <MotionWrapper
             variants={springUp}
+            delay={0.5}
             className="w-full xl:w-1/2 flex justify-center"
           >
             <div className="relative w-full aspect-4/4">
@@ -25,6 +26,7 @@ function SectionFour() {
           </MotionWrapper>
 
           <MotionWrapper
+            delay={0.2}
             variants={slideInRight}
             className="w-full xl:w-1/2 flex flex-col items-end"
           >

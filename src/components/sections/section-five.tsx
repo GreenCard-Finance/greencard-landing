@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Typography } from "@/components/ui/typography";
 import { MotionWrapper } from "../ui/motion-wrapper";
-import { springUp } from "@/lib/animations";
+import { fadeIn, slideInUp } from "@/lib/animations";
 import { sectionFive } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
@@ -11,8 +11,8 @@ function SectionFive() {
       id="how-it-works"
       className="bg-[#6A4076] w-full py-10 md:py-20 px-6 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto text-center">
-        <MotionWrapper variants={springUp}>
+      <div className="max-w-360 mx-auto text-center">
+        <MotionWrapper variants={fadeIn}>
           <Typography
             as="h2"
             font="heading"
@@ -28,7 +28,7 @@ function SectionFive() {
           {sectionFive.map((item, index) => (
             <MotionWrapper
               key={index}
-              variants={springUp}
+              variants={slideInUp}
               delay={index * 0.2}
               className={cn(
                 "bg-[#D9D9D9] flex flex-col items-center text-center h-fit transition-all p-4",
