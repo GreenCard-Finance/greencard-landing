@@ -17,7 +17,7 @@ function SectionTwo() {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto ">
+      <div className="max-w-360 mx-auto">
         {/* mobile */}
         <div className="flex flex-col sm:flex-col-reverse sm:gap-y-16 xl:hidden">
           <div className="text-left pl-4 w-full sm:hidden">
@@ -87,11 +87,14 @@ function SectionTwo() {
 
         {/* desktop */}
         <div className="hidden xl:flex relative pb-15">
-          <MotionWrapper variants={slideInLeft} className="relative w-[85%]">
+          <MotionWrapper
+            variants={slideInLeft}
+            className="relative w-[80%] 2xl:w-full h-full"
+          >
             <Image
               src={s2__img_desktop}
               alt="Smart FX illustration"
-              className="w-full object-contain"
+              className="w-full h-full object-cover"
               priority
             />
           </MotionWrapper>

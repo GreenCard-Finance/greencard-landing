@@ -13,7 +13,7 @@ interface RateCardProps {
 
 export function RateCard({ item }: RateCardProps) {
   return (
-    <div className="bg-[#46654F] rounded-2xl py-2 px-3 flex flex-col items-center min-w-17">
+    <div className="bg-[#46654F] rounded-2xl py-2 px-3 flex flex-col items-center w-[23%]">
       <div className="flex items-center gap-1">
         <span className="text-sm">{item.flag}</span>
         <Typography size="body-xs" color="off-white" weight="regular">

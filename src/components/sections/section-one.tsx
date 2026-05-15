@@ -12,8 +12,8 @@ import { Typography } from "../ui/typography";
 
 function SectionOne() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#286744] xl:mt-27">
-      <div className="max-w-full mx-auto">
+    <section className="relative w-full overflow-hidden bg-[#286744] ">
+      <div className="max-w-360 mx-auto">
         <Image
           src={greencheck_s2}
           alt="check"
@@ -140,7 +140,7 @@ function SectionOne() {
           <MotionWrapper
             variants={springUp}
             delay={0.4}
-            className="absolute -bottom-37 left-1/2 -translate-x-1/2 w-[36%] z-40"
+            className="absolute -bottom-28 left-1/2 -translate-x-1/2 w-[33%] z-40"
           >
             <Image
               src={s2_mobile}

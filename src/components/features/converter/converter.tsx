@@ -10,7 +10,7 @@ function Converter() {
   const [toCurrency, setToCurrency] = useState(currencies[1]);
 
   return (
-    <div className="flex-1 w-full flex flex-col items-center z-10">
+    <div className="flex-1 w-full flex flex-col items-center z-10 sm:max-w-[60%] sm:mx-auto xl:max-w-full">
       <ConverterCard
         currencies={currencies}
         fromCurrency={fromCurrency}
@@ -19,7 +19,7 @@ function Converter() {
         onToChange={setToCurrency}
       />
 
-      <div className="flex justify-between mt-5 w-full gap-4">
+      <div className="flex justify-between mt-5 w-full ">
         {exchangeRates.map((item: any, index: number) => (
           <RateCard key={index} item={item} />
         ))}

@@ -54,13 +54,6 @@ export const springUp: Variants = {
   }),
 };
 
-export const staggerContainer: Variants = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.2 },
-  },
-};
-
 export const drawArrow: Variants = {
   hidden: { pathLength: 0, opacity: 0, fill: "rgba(20, 89, 50, 0)" },
   visible: {

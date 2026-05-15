@@ -24,10 +24,10 @@ function SectionSix() {
   return (
     <section
       id="faqs"
-      className="bg-[#1F2933] w-full py-20 px-6 overflow-hidden"
+      className="bg-[#1F2933] w-full py-15 px-6 overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto flex flex-col xl:flex-row xl:items-center gap-y-12">
-        <div className="flex-1 xl:mb-17">
+      <div className="max-w-360 mx-auto flex flex-col xl:flex-row xl:items-center gap-y-12">
+        <div className="w-full sm:w-[80%] xl:w-full mx-auto flex-1 xl:mb-17 ">
           <MotionWrapper variants={slideInLeft}>
             <Typography as="p" font="source" size="body-lg" color="white">
               FAQs
@@ -54,7 +54,7 @@ function SectionSix() {
           </MotionWrapper>
         </div>
 
-        <div className="flex-1 flex flex-col gap-4 sm:gap-8">
+        <div className="flex-1 flex flex-col gap-4 sm:gap-8 sm:w-[80%] xl:w-full mx-auto">
           <AnimatePresence mode="popLayout">
             {faqData.slice(0, visibleCount).map((item, index) => (
               <MotionWrapper

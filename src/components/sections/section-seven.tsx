@@ -62,7 +62,7 @@ function SectionSeven() {
   return (
     <section
       id="waitlist"
-      className="w-full overflow-hidden min-h-140 sm:min-h-175 xl:min-h-150 flex flex-col"
+      className="max-w-360 mx-auto w-full overflow-hidden min-h-140 sm:min-h-175 xl:min-h-150 flex flex-col"
     >
       <AnimatePresence mode="wait">
         {!submitted ? (
