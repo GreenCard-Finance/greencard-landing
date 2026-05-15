@@ -11,10 +11,10 @@ const typographyVariants = cva("", {
 
     size: {
       // Lalezar display sizes
-      "display-xl":
-        "text-[55px] leading-[45px] md:text-[100px] md:leading-[100px] lg:text-[100px] lg:leading-[85px]",
+
       "display-lg":
-        "text-[40px] leading-[35px] md:text-[80px] md:leading-[70px] lg:text-[110px] lg:leading-[90px] xl:leading-[85px]",
+        "text-[36px] leading-[40px] sm:text-[48px] md:text-[62px] md:leading-[68px] lg:text-[74px] lg:leading-[80px] xl:text-[72px] xl:leading-[65px]",
+
       "display-md":
         "text-[36px] leading-[45px] md:text-[40px] md:leading-[45px] lg:text-[90px] lg:leading-[70px]",
       "display-sm": "text-[16px] md:text-[24px] leading-auto",

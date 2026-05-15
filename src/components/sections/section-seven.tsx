@@ -60,7 +60,10 @@ function SectionSeven() {
   };
 
   return (
-    <section className="w-full overflow-hidden min-h-140 sm:min-h-175 xl:min-h-150 flex flex-col">
+    <section
+      id="waitlist"
+      className="w-full overflow-hidden min-h-140 sm:min-h-175 xl:min-h-150 flex flex-col"
+    >
       <AnimatePresence mode="wait">
         {!submitted ? (
           <motion.div

@@ -8,7 +8,10 @@ import Converter from "../features/converter/converter";
 
 function SectionThree() {
   return (
-    <section className="relative overflow-hidden py-9 xl:py-6 px-6 ">
+    <section
+      id="product"
+      className="relative overflow-hidden py-9 xl:py-6 px-6 "
+    >
       <Image
         src={s3_svg}
         alt="svg image"

@@ -7,7 +7,10 @@ import { cn } from "@/lib/utils";
 
 function SectionFive() {
   return (
-    <section className="bg-[#6A4076] w-full py-10 md:py-20 px-6 overflow-hidden">
+    <section
+      id="how-it-works"
+      className="bg-[#6A4076] w-full py-10 md:py-20 px-6 overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto text-center">
         <MotionWrapper variants={springUp}>
           <Typography

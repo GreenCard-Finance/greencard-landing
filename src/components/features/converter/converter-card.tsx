@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { ArrowLeftRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Currency {
   code: string;
@@ -101,7 +102,9 @@ export function ConverterCard({
           </div>
         </div>
 
-        <Button variant={"forest"}>Transfer</Button>
+        <Link href="#waitlist" className="full">
+          <Button variant={"forest"}>Transfer</Button>
+        </Link>
       </div>
     </div>
   );
