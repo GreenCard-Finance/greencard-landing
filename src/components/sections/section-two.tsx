@@ -2,67 +2,126 @@ import Image from "next/image";
 import { s2__bg, s2__img_desktop, s2__img_mobile } from "@/assets/images";
 import { Typography } from "../ui/typography";
 import { MotionWrapper } from "../ui/motion-wrapper";
-import { springUp } from "@/lib/animations";
+import { slideInLeft, springUp } from "@/lib/animations";
 
 function SectionTwo() {
   return (
-    <section className="w-full bg-[#9FE870] py-20 xl:py32 overflow-hidden relative min-h-165 flex items-center">
-      <div className="absolute inset-0 z-0 sm:top-32 xl:top-0">
+    <section className="relative w-full overflow-hidden bg-[#9FE870] py-10">
+      <div className="absolute inset-0 z-0">
         <Image
           src={s2__bg}
-          alt="background pattern"
+          alt=""
           fill
-          className="object-cover opacity-50"
+          className="object-cover object-center"
           priority
         />
       </div>
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <div className="relative w-[90%] h-[80%] xl:hidden">
-          <Image
-            src={s2__img_mobile}
-            alt="mobile background"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
-        <div className="relative hidden xl:block w-[70%] h-[70%]">
-          <Image
-            src={s2__img_desktop}
-            alt="desktop background"
-            fill
-            className="object-contain"
-            priority
-          />
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full min-h-full">
-        <div className="flex flex-col items-start sm:items-end! absolute left-4 -top-56 sm:top-24 sm:right-4">
-          <MotionWrapper variants={springUp}>
-            <Typography
-              as="h2"
-              font="heading"
-              size="display-lg"
-              color="forest"
-              //   align={"right"}
-              className="text-left sm:text-right"
-            >
-              Smart fx, <br /> better value
-            </Typography>
+      <div className="max-w-7xl mx-auto ">
+        {/* mobile */}
+        <div className="flex flex-col sm:flex-col-reverse sm:gap-y-16 xl:hidden">
+          <div className="text-left pl-4 w-full sm:hidden">
+            <MotionWrapper variants={springUp}>
+              <Typography
+                as="h2"
+                font="heading"
+                size="display-lg"
+                color="charcoal"
+              >
+                Smart fx, <br /> better value
+              </Typography>
+            </MotionWrapper>
+
+            <MotionWrapper variants={springUp} delay={0.2}>
+              <Typography
+                as="p"
+                font="source"
+                size="body-xl"
+                color="charcoal"
+                weight="regular"
+              >
+                Stop losing money to hidden charges
+              </Typography>
+            </MotionWrapper>
+          </div>
+
+          <div className="text-right pr-8 w-full hidden sm:block">
+            <MotionWrapper variants={springUp}>
+              <Typography
+                as="h2"
+                font="heading"
+                size="display-lg"
+                color="charcoal"
+                align={"right"}
+              >
+                Smart fx, <br /> better value
+              </Typography>
+            </MotionWrapper>
+
+            <MotionWrapper variants={springUp} delay={0.2}>
+              <Typography
+                as="p"
+                font="source"
+                size="body-xl"
+                color="charcoal"
+                weight="regular"
+                align={"right"}
+              >
+                Stop losing money to hidden charges
+              </Typography>
+            </MotionWrapper>
+          </div>
+
+          <MotionWrapper
+            variants={springUp}
+            className="relative w-9/10 sm:w-[60%] mx-auto"
+          >
+            <Image
+              src={s2__img_mobile}
+              alt="Smart FX illustration"
+              className="w-full object-contain"
+              priority
+            />
+          </MotionWrapper>
+        </div>
+
+        {/* desktop */}
+        <div className="hidden xl:flex relative pb-15">
+          <MotionWrapper variants={slideInLeft} className="relative w-[85%]">
+            <Image
+              src={s2__img_desktop}
+              alt="Smart FX illustration"
+              className="w-full object-contain"
+              priority
+            />
           </MotionWrapper>
 
-          <MotionWrapper variants={springUp} delay={0.2}>
-            <Typography
-              as="p"
-              font="source"
-              size="body-xl"
-              color="charcoal"
-              weight="regular"
-            >
-              Stop losing money to hidden charges
-            </Typography>
-          </MotionWrapper>
+          <div className="w-fit absolute right-28 2xl:right-0 bottom-0">
+            <MotionWrapper variants={springUp}>
+              <Typography
+                as="h2"
+                font="heading"
+                size="display-lg"
+                color="charcoal"
+                align={"right"}
+              >
+                Smart fx, <br /> better value
+              </Typography>
+            </MotionWrapper>
+
+            <MotionWrapper variants={springUp} delay={0.2}>
+              <Typography
+                as="p"
+                font="source"
+                size="body-xl"
+                color="charcoal"
+                weight="regular"
+                align={"right"}
+              >
+                Stop losing money to hidden charges
+              </Typography>
+            </MotionWrapper>
+          </div>
         </div>
       </div>
     </section>

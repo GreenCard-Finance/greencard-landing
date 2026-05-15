@@ -36,7 +36,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "h-full antialiased",
+        "h-full antialiased scroll-smooth",
         lato.variable,
         lalezar.variable,
         sourceSans.variable,

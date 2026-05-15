@@ -11,13 +11,13 @@ function Home() {
   return (
     <>
       <Hero />
-      <SectionOne />
+      {/* <SectionOne />
       <SectionTwo />
       <SectionThree />
       <SectionFour />
       <SectionFive />
       <SessionSix />
-      <SectionSeven />
+      <SectionSeven /> */}
     </>
   );
 }

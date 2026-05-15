@@ -2,7 +2,7 @@ import Image from "next/image";
 import { s4_img } from "@/assets/images";
 import { Typography } from "../ui/typography";
 import { MotionWrapper } from "../ui/motion-wrapper";
-import { slideInLeft, slideInRight } from "@/lib/animations";
+import { fadeIn, slideInLeft, slideInRight, springUp } from "@/lib/animations";
 
 function SectionFour() {
   return (
@@ -10,7 +10,7 @@ function SectionFour() {
       <div className="max-w-7xl mx-auto ">
         <div className="flex flex-col-reverse md:flex-col xl:flex-row items-center xl:justify-between">
           <MotionWrapper
-            variants={slideInLeft}
+            variants={springUp}
             className="w-full xl:w-1/2 flex justify-center"
           >
             <div className="relative w-full aspect-4/4">
