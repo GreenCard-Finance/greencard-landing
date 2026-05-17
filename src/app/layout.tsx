@@ -25,6 +25,9 @@ const sourceSans = Source_Sans_3({
 export const metadata: Metadata = {
   title: "Greencard Finance",
   description: "Created by next.js",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
