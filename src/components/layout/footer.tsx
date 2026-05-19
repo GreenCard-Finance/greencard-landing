@@ -55,6 +55,8 @@ function Footer() {
                 <li key={item.label} className="cursor-pointer">
                   <Link
                     href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex transition-transform duration-200 hover:scale-90"
                   >
                     <Image src={item.icon} alt={`${item.label}-icon`} />
