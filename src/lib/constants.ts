@@ -143,20 +143,20 @@ export const sectionFive = [
     img: s5_firstimg,
     title: "Create your GreenCard <br /> account",
     description:
-      "Just sign up with your email <br /> and get a free GreenCard account",
+      "Sign up with your email address and <br /> and get a free GreenCard account",
   },
   {
     step: "2",
     img: s5_secondimg,
     title: "Complete <br /> KYC",
-    description: "Verify your identity using <br /> Government issued ID",
+    description: "Verify your identity using <br /> your Government issued ID",
   },
   {
     step: "DONE",
     img: s5_thirdimg,
     title: "Get your GREENCARD <br /> account",
     description:
-      "Now you card receive any currency <br /> and spend with your GREENCARD",
+      "Now you can receive any currency <br /> and spend with your GREENCARD",
   },
 ];
 

@@ -11,6 +11,7 @@ import {
   heropay,
   heropay_mobile,
   herowoman_mobile,
+  herowoman_desktop,
 } from "@/assets/images";
 import Image from "next/image";
 import { HeroArrow } from "../ui/hero-arrow";
@@ -72,56 +73,62 @@ function Hero() {
         </MotionWrapper>
       </div>
       {/* desktop */}
-      <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between">
-        <MotionWrapper variants={slideInLeft} className="mt-24 pl-20">
-          <Typography
-            as="h1"
-            font="heading"
-            size="display-lg"
-            color="charcoal"
-            align="left"
-            tracking="tight"
-          >
-            Pay globally <br />
-            with your <br />
-            <span className="text-green-700">GreenCard</span>
-          </Typography>
-        </MotionWrapper>
 
-        <MotionWrapper
-          variants={springUp}
-          delay={0.5}
-          className="w-full h-105 flex items-end"
-        >
-          <Image
-            src={heropay}
-            alt="app showing Payment Received"
-            width={420}
-            height={450}
-            className="object-cover w-full h-full"
-            priority
-          />
-        </MotionWrapper>
-      </div>
-      <div className="hidden w-[50%] min-h-full xl:flex flex-col justify-between relative">
+      <div className="flex">
+        <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between">
+          <MotionWrapper variants={slideInLeft} className="mt-24 pl-20">
+            <Typography
+              as="h1"
+              font="heading"
+              size="display-lg"
+              color="charcoal"
+              align="left"
+              tracking="tight"
+            >
+              Pay globally <br />
+              with your <br />
+              <span className="text-green-700">GreenCard</span>
+            </Typography>
+          </MotionWrapper>
+
+          <MotionWrapper
+            variants={springUp}
+            delay={0.5}
+            className="w-full h-105 flex items-end"
+          >
+            <Image
+              src={heropay}
+              alt="app showing Payment Received"
+              width={420}
+              height={450}
+              className="object-cover w-full h-full"
+              priority
+            />
+          </MotionWrapper>
+        </div>
         <MotionWrapper
           delay={0.4}
           variants={slideInRight}
-          className="w-full h-[75%]"
+          className="w-[50%] ml-auto h-[80%]"
         >
           <Image
-            src={herowoman}
+            src={herowoman_desktop}
             alt="Woman at computer"
             width={800}
             height={800}
             priority
-            className="w-full h-full object-cover"
+            className="w-full object-contain"
           />
         </MotionWrapper>
-        <div className="absolute bottom-18 left-30 z-20">
+
+        {/* <div className="abslute bottom-18 left-30 z-20">
           <HeroArrow />
-        </div>
+        </div> */}
       </div>
+
+      {/* <div className="hidden w-[50%] min-h-full xl:flex flex-col justify-between relative"> */}
+
+      {/* </div> */}
     </section>
   );
 }

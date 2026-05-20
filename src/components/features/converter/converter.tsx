@@ -19,11 +19,11 @@ function Converter() {
         onToChange={setToCurrency}
       />
 
-      <div className="flex justify-between mt-5 w-full ">
+      {/* <div className="flex justify-between mt-5 w-full ">
         {exchangeRates.map((item: any, index: number) => (
           <RateCard key={index} item={item} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
