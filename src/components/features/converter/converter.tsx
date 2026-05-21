@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ConverterCard } from "./converter-card";
+import { ConverterCard, Currency } from "./converter-card";
 import { currencies, supportedPairs } from "@/lib/constants";
 import { debounce } from "lodash";
 
@@ -31,21 +31,18 @@ function Converter({ data }: ConverterProps) {
   const [isConverting, setIsConverting] = useState(false);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Clears any existing expiry timer
   const clearExpiryTimer = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
   };
 
-  // Schedules a re-fetch when the rate expires
-  const scheduleExpiry = (expiresAt: string, callback: () => void) => {
-    clearExpiryTimer();
-    const msUntilExpiry = new Date(expiresAt).getTime() - Date.now();
-    if (msUntilExpiry > 0) {
-      timerRef.current = setTimeout(callback, msUntilExpiry);
-    }
-  };
+  // const scheduleExpiry = (expiresAt: string, callback: () => void) => {
+  //   clearExpiryTimer();
+  //   const msUntilExpiry = new Date(expiresAt).getTime() - Date.now();
+  //   if (msUntilExpiry > 0) {
+  //     timerRef.current = setTimeout(callback, msUntilExpiry);
+  //   }
+  // };
 
-  // Fetches rate for current currency pair
   const fetchRate = useCallback(async () => {
     const res = await fetch(
       `${BASE_URL}/public/fx-rates?from_currency=${fromCurrency.code}&to_currency=${toCurrency.code}`,
@@ -53,10 +50,8 @@ function Converter({ data }: ConverterProps) {
     const json = await res.json();
     const newRate: number = json?.customer_rate ?? 0;
     setRate(newRate);
-    // scheduleExpiry(json?.expires_at, fetchRate);
   }, [fromCurrency, toCurrency]);
 
-  // POST — calculates converted amount
   const handleConvert = useCallback(
     async (currentAmount: number) => {
       if (!currentAmount) return;
@@ -77,7 +72,6 @@ function Converter({ data }: ConverterProps) {
         setRate(json?.customer_rate ?? rate);
       } catch {
         setConvertedAmount(0);
-        // setConvertedAmount(currentAmount * rate);
       } finally {
         setIsConverting(false);
       }
@@ -85,13 +79,11 @@ function Converter({ data }: ConverterProps) {
     [fromCurrency, toCurrency, rate],
   );
 
-  // Ref to always hold latest handleConvert — fixes stale closure after swap
   const handleConvertRef = useRef(handleConvert);
   useEffect(() => {
     handleConvertRef.current = handleConvert;
   }, [handleConvert]);
 
-  // Debounced convert using ref so it never goes stale
   const debouncedConvert = useCallback(
     debounce((currentAmount: number) => {
       handleConvertRef.current(currentAmount);
@@ -104,12 +96,10 @@ function Converter({ data }: ConverterProps) {
     debouncedConvert(value);
   };
 
-  // Fires on mount with default amount
   useEffect(() => {
     handleConvert(100);
   }, []);
 
-  // Fires when currencies change
   useEffect(() => {
     fetchRate();
     handleConvertRef.current(amount);
@@ -126,6 +116,40 @@ function Converter({ data }: ConverterProps) {
     ),
   );
 
+  const handleFromChange = (currency: Currency) => {
+    setFromCurrency(currency);
+
+    const isCurrentToValid = supportedPairs.some(
+      (p) => p.from === currency.code && p.to === toCurrency.code,
+    );
+
+    if (!isCurrentToValid) {
+      const firstValid = currencies.find((curr) =>
+        supportedPairs.some(
+          (p) => p.from === currency.code && p.to === curr.code,
+        ),
+      );
+      if (firstValid) setToCurrency(firstValid);
+    }
+  };
+
+  const handleToChange = (currency: Currency) => {
+    setToCurrency(currency);
+
+    const isCurrentFromValid = supportedPairs.some(
+      (p) => p.from === fromCurrency.code && p.to === currency.code,
+    );
+
+    if (!isCurrentFromValid) {
+      const firstValid = currencies.find((curr) =>
+        supportedPairs.some(
+          (p) => p.from === curr.code && p.to === currency.code,
+        ),
+      );
+      if (firstValid) setFromCurrency(firstValid);
+    }
+  };
+
   return (
     <div className="flex-1 w-full flex flex-col items-center z-10 sm:max-w-[60%] sm:mx-auto xl:max-w-full">
       <ConverterCard
@@ -133,13 +157,12 @@ function Converter({ data }: ConverterProps) {
         toCurrencies={allowedToCurrencies}
         fromCurrency={fromCurrency}
         toCurrency={toCurrency}
-        onFromChange={setFromCurrency}
-        onToChange={setToCurrency}
+        onFromChange={handleFromChange}
+        onToChange={handleToChange}
         rate={rate}
         amount={amount}
         onAmountChange={onAmountChange}
         convertedAmount={convertedAmount}
-        isConverting={isConverting}
         transferFees={data?.transfer_fee}
         estimatedTime={data?.estimated_arrival}
       />

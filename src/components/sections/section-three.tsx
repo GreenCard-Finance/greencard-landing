@@ -9,25 +9,24 @@ import { fetchInitialRate } from "@/lib/service/fx";
 
 async function SectionThree() {
   const data = await fetchInitialRate();
-  // console.log({ data }, "from main");
 
   return (
     <section
       id="product"
       className="relative overflow-hidden py-9 xl:py-6 px-6"
     >
-      <Image
+      {/* <Image
         src={s3_svg}
         alt="svg image"
         width={500}
         height={500}
         className="hidden xl:block absolute right-0 top-0 h-full w-auto -z-5"
         priority
-      />
-      <div className=" max-w-360 w-full mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center">
+      /> */}
+      <div className="max-w-360 w-full mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center">
         <MotionWrapper
           variants={slideInUp}
-          className="w-full xl:w-2/3 items-center"
+          className="w-full xl:flex-1 items-center"
         >
           <Typography
             as="h1"
@@ -57,7 +56,7 @@ async function SectionThree() {
             when the market is in your favour
           </Typography>
         </MotionWrapper>
-        <MotionWrapper variants={springUp} delay={0.5}>
+        <MotionWrapper variants={springUp} delay={0.5} className="xl:w-[40%]">
           <Converter data={data} />
         </MotionWrapper>
       </div>

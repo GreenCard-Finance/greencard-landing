@@ -165,19 +165,22 @@ export const currencies = [
     code: "NGN",
     name: "Nigerian Naira",
     country: "Nigeria",
-    flag: "🇳🇬",
+    countryCode: "NG",
+    symbol: "₦",
   },
   {
     code: "GBP",
     name: "British Pound Sterling",
     country: "United Kingdom",
-    flag: "🇬🇧",
+    countryCode: "GB",
+    symbol: "£",
   },
   {
     code: "USD",
     name: "United States Dollar",
     country: "United States",
-    flag: "🇺🇸",
+    countryCode: "US",
+    symbol: "$",
   },
 ];
 
