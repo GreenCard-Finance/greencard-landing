@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { Typography } from "@/components/ui/typography";
-import { logo_green } from "@/assets/images";
+import { logo } from "@/assets/images";
 import { navItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
@@ -65,7 +65,7 @@ export default function Nav() {
               className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"
             >
               <Image
-                src={logo_green}
+                src={logo}
                 alt="Greencard Finance"
                 width={160}
                 height={36}

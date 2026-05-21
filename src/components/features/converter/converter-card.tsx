@@ -72,7 +72,7 @@ export function ConverterCard({
           </div>
         </div>
 
-        <div className="flex flex-col xl:flex-row items-center xl:gap-4 relative xl:my-4">
+        <div className="flex flex-col xl:flex-row items-center xl:gap-4 relative my-4">
           <CurrencySelect
             label="From"
             selected={fromCurrency}
@@ -82,7 +82,7 @@ export function ConverterCard({
 
           <button
             onClick={handleSwap}
-            className="bg-[#1F2933] text-white p-3 rounded-full z-10 hover:scale-110 transition-transform lg:mt-6 -mb-4 xl:mb-0"
+            className="bg-[#1F2933] text-white p-2 rounded-full z-10 hover:scale-110 transition-transform mt-3.5 xl:mb-0"
           >
             <ArrowLeftRight size={20} />
           </button>
@@ -95,7 +95,7 @@ export function ConverterCard({
           />
         </div>
 
-        <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3">
+        <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3 mt-5 xl:mt-0">
           <TrendingUp size={16} strokeWidth={2} />
           <Typography size="body-sm" color="charcoal" className="font-medium">
             1 {fromCurrency.code}

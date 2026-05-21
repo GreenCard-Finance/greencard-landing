@@ -29,11 +29,11 @@ function Converter({ data }: ConverterProps) {
   const [amount, setAmount] = useState<number>(100);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
   // const [isConverting, setIsConverting] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const clearExpiryTimer = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
+  // const clearExpiryTimer = () => {
+  //   if (timerRef.current) clearTimeout(timerRef.current);
+  // };
 
   // const scheduleExpiry = (expiresAt: string, callback: () => void) => {
   //   clearExpiryTimer();
@@ -103,7 +103,7 @@ function Converter({ data }: ConverterProps) {
   useEffect(() => {
     fetchRate();
     handleConvertRef.current(amount);
-    return () => clearExpiryTimer();
+    // return () => clearExpiryTimer();
   }, [fromCurrency, toCurrency]);
 
   const allowedFromCurrencies = currencies.filter((curr) =>
