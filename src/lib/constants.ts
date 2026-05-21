@@ -162,12 +162,6 @@ export const sectionFive = [
 
 export const currencies = [
   {
-    code: "USD",
-    name: "United States Dollar",
-    country: "United States",
-    flag: "🇺🇸",
-  },
-  {
     code: "NGN",
     name: "Nigerian Naira",
     country: "Nigeria",
@@ -180,17 +174,18 @@ export const currencies = [
     flag: "🇬🇧",
   },
   {
-    code: "EUR",
-    name: "Euro",
-    country: "European Union",
-    flag: "🇪🇺",
+    code: "USD",
+    name: "United States Dollar",
+    country: "United States",
+    flag: "🇺🇸",
   },
-  {
-    code: "CAD",
-    name: "Canadian Dollar",
-    country: "Canada",
-    flag: "🇨🇦",
-  },
+];
+
+export const supportedPairs = [
+  { from: "USD", to: "NGN" },
+  { from: "NGN", to: "USD" },
+  { from: "GBP", to: "NGN" },
+  { from: "NGN", to: "GBP" },
 ];
 
 export const exchangeRates = [

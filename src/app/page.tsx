@@ -6,14 +6,17 @@ import SectionFour from "@/components/sections/section-four";
 import SectionFive from "@/components/sections/section-five";
 import SectionSix from "@/components/sections/section-six";
 import SectionSeven from "@/components/sections/section-seven";
+import SectionEight from "@/components/sections/section-eight";
 
 function Home() {
   return (
     <>
       <Hero />
+      <SectionEight />
+      <SectionThree />
       <SectionOne />
       <SectionTwo />
-      <SectionThree />
+
       <SectionFour />
       <SectionFive />
       <SectionSix />

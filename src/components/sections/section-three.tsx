@@ -5,8 +5,12 @@ import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
 
 import Converter from "../features/converter/converter";
+import { fetchInitialRate } from "@/lib/service/fx";
 
-function SectionThree() {
+async function SectionThree() {
+  const data = await fetchInitialRate();
+  // console.log({ data }, "from main");
+
   return (
     <section
       id="product"
@@ -54,7 +58,7 @@ function SectionThree() {
           </Typography>
         </MotionWrapper>
         <MotionWrapper variants={springUp} delay={0.5}>
-          <Converter />
+          <Converter data={data} />
         </MotionWrapper>
       </div>
     </section>
