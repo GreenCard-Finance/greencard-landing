@@ -23,6 +23,9 @@ importers:
       framer-motion:
         specifier: ^12.38.0
         version: 12.38.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      lodash:
+        specifier: ^4.18.1
+        version: 4.18.1
       lucide-react:
         specifier: ^1.14.0
         version: 1.14.0(react@19.2.4)
@@ -35,6 +38,12 @@ importers:
       react:
         specifier: 19.2.4
         version: 19.2.4
+      react-click-away-listener:
+        specifier: ^2.4.1
+        version: 2.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      react-country-flag:
+        specifier: ^3.1.0
+        version: 3.1.0(react@19.2.4)
       react-dom:
         specifier: 19.2.4
         version: 19.2.4(react@19.2.4)
@@ -51,6 +60,9 @@ importers:
       '@tailwindcss/postcss':
         specifier: ^4
         version: 4.2.4
+      '@types/lodash':
+        specifier: ^4.17.24
+        version: 4.17.24
       '@types/node':
         specifier: ^20
         version: 20.19.39
@@ -1442,6 +1454,9 @@ packages:
 
   '@types/json5@0.0.29':
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+
+  '@types/lodash@4.17.24':
+    resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
 
   '@types/node@20.19.39':
     resolution: {integrity: sha512-orrrD74MBUyK8jOAD/r0+lfa1I2MO6I+vAkmAWzMYbCcgrN4lCrmK52gRFQq/JRxfYPfonkr4b0jcY7Olqdqbw==}
@@ -2854,6 +2869,9 @@ packages:
   lodash.merge@4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
 
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
   log-symbols@6.0.0:
     resolution: {integrity: sha512-i24m8rpwhmPIS4zscNzK6MSEhk0DUWa/8iYQWxhffV8jkI4Phvs3F+quL5xvS0gdQR0FyTCMMH33Y78dDTzzIw==}
     engines: {node: '>=18'}
@@ -3210,6 +3228,19 @@ packages:
   raw-body@3.0.2:
     resolution: {integrity: sha512-K5zQjDllxWkf7Z5xJdV0/B0WTNqx6vxG70zJE4N0kBs4LovmEYWJzQGxC9bS9RAKu3bgM40lrd5zoLJ12MQ5BA==}
     engines: {node: '>= 0.10'}
+
+  react-click-away-listener@2.4.1:
+    resolution: {integrity: sha512-tBquElBHme1xuE6VWTsBpdxu73QpLBshdpl0nCjYWDz7E5sokyy6yF0iSp/Y8ECLRtIy9TP8fDsEpZQEg0fZmw==}
+    engines: {node: '>=18'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  react-country-flag@3.1.0:
+    resolution: {integrity: sha512-JWQFw1efdv9sTC+TGQvTKXQg1NKbDU2mBiAiRWcKM9F1sK+/zjhP2yGmm8YDddWyZdXVkR8Md47rPMJmo4YO5g==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16'
 
   react-dom@19.2.4:
     resolution: {integrity: sha512-AXJdLo8kgMbimY95O2aKQqsz2iWi9jMgKJhRBAxECE4IFxfcazB2LmzloIoibJI3C12IlY20+KFaLv+71bUJeQ==}
@@ -5168,6 +5199,8 @@ snapshots:
 
   '@types/json5@0.0.29': {}
 
+  '@types/lodash@4.17.24': {}
+
   '@types/node@20.19.39':
     dependencies:
       undici-types: 6.21.0
@@ -6666,6 +6699,8 @@ snapshots:
 
   lodash.merge@4.6.2: {}
 
+  lodash@4.18.1: {}
+
   log-symbols@6.0.0:
     dependencies:
       chalk: 5.6.2
@@ -7080,6 +7115,15 @@ snapshots:
       http-errors: 2.0.1
       iconv-lite: 0.7.2
       unpipe: 1.0.0
+
+  react-click-away-listener@2.4.1(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      react: 19.2.4
+      react-dom: 19.2.4(react@19.2.4)
+
+  react-country-flag@3.1.0(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   react-dom@19.2.4(react@19.2.4):
     dependencies:
