@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Footer from "@/components/layout/footer";
 import Nav from "@/components/layout/nav";
+import { Analytics } from "@vercel/analytics/next";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Nav />
         <main className="flex-1 w-full">{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

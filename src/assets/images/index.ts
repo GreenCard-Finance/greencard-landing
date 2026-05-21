@@ -1,4 +1,4 @@
-export { default as logo_green } from "../../../public/images/logo-green.svg";
+export { default as logo } from "../../../public/images/logo-green.svg";
 
 export { default as hero_hands } from "../../../public/images/hero-hands.svg";
 
@@ -28,7 +28,6 @@ export { default as s7_hello } from "../../../public/images/section-waitlist-bfo
 export { default as s7_bye } from "../../../public/images/section-waitlist-after.svg";
 
 // footer icons
-export { default as logo } from "../../../public/images/logo-dark.svg";
 export { default as linkedin } from "../../../public/images/linkedin.svg";
 export { default as x } from "../../../public/images/x.svg";
 export { default as ig } from "../../../public/images/instagram.svg";

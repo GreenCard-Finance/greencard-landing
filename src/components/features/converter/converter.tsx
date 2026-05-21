@@ -28,12 +28,12 @@ function Converter({ data }: ConverterProps) {
   const [rate, setRate] = useState<number>(data?.customer_rate ?? 0);
   const [amount, setAmount] = useState<number>(100);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
-  const [isConverting, setIsConverting] = useState(false);
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // const [isConverting, setIsConverting] = useState(false);
+  // const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const clearExpiryTimer = () => {
-    if (timerRef.current) clearTimeout(timerRef.current);
-  };
+  // const clearExpiryTimer = () => {
+  //   if (timerRef.current) clearTimeout(timerRef.current);
+  // };
 
   // const scheduleExpiry = (expiresAt: string, callback: () => void) => {
   //   clearExpiryTimer();
@@ -55,7 +55,7 @@ function Converter({ data }: ConverterProps) {
   const handleConvert = useCallback(
     async (currentAmount: number) => {
       if (!currentAmount) return;
-      setIsConverting(true);
+      // setIsConverting(true);
       try {
         const res = await fetch(`${BASE_URL}/public/customer-quotes`, {
           method: "POST",
@@ -73,7 +73,7 @@ function Converter({ data }: ConverterProps) {
       } catch {
         setConvertedAmount(0);
       } finally {
-        setIsConverting(false);
+        // setIsConverting(false);
       }
     },
     [fromCurrency, toCurrency, rate],
@@ -103,7 +103,7 @@ function Converter({ data }: ConverterProps) {
   useEffect(() => {
     fetchRate();
     handleConvertRef.current(amount);
-    return () => clearExpiryTimer();
+    // return () => clearExpiryTimer();
   }, [fromCurrency, toCurrency]);
 
   const allowedFromCurrencies = currencies.filter((curr) =>
