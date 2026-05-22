@@ -1,7 +1,5 @@
 import Image from "next/image";
 import {
-  s1_left_hand,
-  s1_right_hand,
   s1_phone_img,
   greencheck_s2,
   s1_left_hand_desk,
@@ -13,7 +11,8 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full overflow-hidden bg-[#286744] ">
-      <div className="max-w-360 mx-auto">
+      <div className="w-full mx-auto">
+        {/* <div className="max-w-360 xl:max-w-450 mx-auto"> */}
         <Image
           src={greencheck_s2}
           alt="check"
