@@ -1,13 +1,15 @@
 import { paga, afriex, kadavra, didit } from "@/assets/images";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
+import { springUp } from "@/lib/animations";
+import { MotionWrapper } from "../ui/motion-wrapper";
 
 function SectionEight() {
   const partners = [paga, afriex, kadavra, didit];
 
   return (
-    <section className="bg-green-50 xl:py-10">
-      <div className="max-w-360 w-full mx-auto flex flex-col md:flex-row items-center gap-12">
+    <section className="bg-green-50 py-10 xl:pl-6">
+      <div className="max-w-360 w-[90%] mx-auto flex flex-col md:flex-row items-center xl:gap-12">
         <div className="md:w-1/3">
           <Typography
             as="p"
@@ -15,7 +17,7 @@ function SectionEight() {
             size="body-md"
             color={"green"}
             weight={"semibold"}
-            align={"left"}
+            align={"center"}
             className="uppercase tracking-widest"
           >
             {" "}
@@ -27,7 +29,7 @@ function SectionEight() {
             size="body-md"
             color={"green"}
             weight={"semibold"}
-            align={"left"}
+            align={"center"}
             className="text-3xl font-bold text-gray-900 leading-tight mb-4"
           >
             {" "}
@@ -40,8 +42,8 @@ function SectionEight() {
             size="body-sm"
             color={"charcoal"}
             weight={"regular"}
-            align={"left"}
-            className="leading-relaxed"
+            align={"center"}
+            className="leading-relaxed hidden xl:block"
           >
             We collaborate with leading platforms across Africa to deliver
             seamless, reliable financial experiences for everyone.{" "}
@@ -50,11 +52,13 @@ function SectionEight() {
 
         <div className="hidden md:block w-px h-20 bg-green-200" />
 
-        <div className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-8 items-center justify-items-center">
+        <div className="flex-1 flex gap-8 items-center justify-items-center">
           {partners.map((icon, i) => (
-            <div
+            <MotionWrapper
+              variants={springUp}
+              delay={i * 0.05}
               key={i}
-              className="grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+              className="w-[25%] grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
             >
               <Image
                 alt={`Partner ${i + 1}`}
@@ -62,7 +66,7 @@ function SectionEight() {
                 height={40}
                 objectFit="contain"
               />
-            </div>
+            </MotionWrapper>
           ))}
         </div>
       </div>

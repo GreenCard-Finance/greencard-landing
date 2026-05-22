@@ -58,7 +58,7 @@ export default function Nav() {
             : "bg-transparent",
         )}
       >
-        <div className="max-w-305 w-9/10 xl:w-full mx-auto flex items-center justify-between h-20 sm:h-30 xl:h-20">
+        <div className="max-w-360 w-9/10 xl:w-[90%] mx-auto flex items-center justify-between h-20 sm:h-30 xl:h-20">
           <Link
             href="/"
             className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"

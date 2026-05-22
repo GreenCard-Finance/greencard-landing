@@ -169,7 +169,7 @@
 // export default SectionOne;
 
 import Image from "next/image";
-import { s2_mobile, greencheck_s2, s2_left_hand_desk } from "@/assets/images";
+import { s1_mobile, greencheck_s2, s1_left_hand_desk } from "@/assets/images";
 import { slideInLeft, slideInRight, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
@@ -177,8 +177,7 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full overflow-hidden bg-[#286744] ">
-      <div className="w-full mx-auto">
-        {/* <div className="max-w-360 xl:max-w-450 mx-auto"> */}
+      <div className="mx-auto max-w-360 xl:w-[90%]">
         <Image
           src={greencheck_s2}
           alt="check"
@@ -256,7 +255,7 @@ function SectionOne() {
               className="absolute w-[35%] -top-30"
             >
               <Image
-                src={s2_left_hand_desk}
+                src={s1_left_hand_desk}
                 alt=""
                 className="w-full h-full object-cover scale-110 sm:scale-100"
               />
@@ -267,7 +266,7 @@ function SectionOne() {
               className="w-[75%] ml-auto"
             >
               <Image
-                src={s2_mobile}
+                src={s1_mobile}
                 alt=""
                 className="w-full h-auto object-cover"
               />
@@ -281,7 +280,7 @@ function SectionOne() {
               className="w-[45%] -mt-6"
             >
               <Image
-                src={s2_left_hand_desk}
+                src={s1_left_hand_desk}
                 alt=""
                 className="w-full h-full object-cover scale-110 sm:scale-100"
               />
@@ -292,7 +291,7 @@ function SectionOne() {
               className="flex-1 -mr-12 overflow-hidden"
             >
               <Image
-                src={s2_mobile}
+                src={s1_mobile}
                 alt=""
                 className="w-full h-auto object-cover"
               />
@@ -302,7 +301,7 @@ function SectionOne() {
 
         {/* desktop */}
         <div className="hidden xl:flex relative w-full h-fit overflow-hidden">
-          <div className="w-[60%] z-20 pl-8 mt-10">
+          <div className="w-[60%] z-20 mt-10">
             <MotionWrapper variants={slideInRight} delay={0.2}>
               <Typography
                 as="h1"
@@ -325,7 +324,7 @@ function SectionOne() {
               className="w-[20%] h-fit absolute left-0"
             >
               <Image
-                src={s2_left_hand_desk}
+                src={s1_left_hand_desk}
                 alt=""
                 className="w-full h-auto object-contain object-top"
               />
@@ -334,7 +333,7 @@ function SectionOne() {
 
           <MotionWrapper variants={springUp} delay={0.5} className="flex-1">
             <Image
-              src={s2_mobile}
+              src={s1_mobile}
               alt=""
               className="w-full h-fit object-contain object-bottom"
             />

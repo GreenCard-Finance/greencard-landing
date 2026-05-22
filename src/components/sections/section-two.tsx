@@ -99,7 +99,7 @@ function SectionTwo() {
             />
           </MotionWrapper>
 
-          <div className="w-fit absolute right-28 2xl:right-0 bottom-0">
+          <div className="w-fit absolute right-15 2xl:right-0 bottom-0">
             <MotionWrapper variants={springUp}>
               <Typography
                 as="h2"

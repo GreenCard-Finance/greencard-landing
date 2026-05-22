@@ -73,7 +73,7 @@ function Hero() {
       </div>
       {/* desktop */}
       <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between">
-        <MotionWrapper variants={slideInLeft} className="mt-24 pl-20">
+        <MotionWrapper variants={slideInLeft} className="mt-28 xl:mt-32 pl-20">
           <Typography
             as="h1"
             font="heading"
