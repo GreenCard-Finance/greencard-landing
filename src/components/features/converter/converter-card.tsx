@@ -67,9 +67,10 @@ export function ConverterCard({
               type="text"
               inputMode="numeric"
               value={amount.toLocaleString()}
-              onChange={(e) =>
-                onAmountChange(Number(e.target.value.replace(/,/g, "")))
-              }
+              onChange={(e) => {
+                const val = Number(e.target.value.replace(/,/g, ""));
+                if (!isNaN(val)) onAmountChange(val);
+              }}
               className="bg-transparent border-none outline-none text-3xl font-bold w-full"
             />
           </div>
