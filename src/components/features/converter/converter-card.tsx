@@ -19,6 +19,7 @@ export interface Currency {
 
 interface ConverterCardProps {
   rate: number;
+  rateDescription?: string;
   fromCurrency: Currency;
   toCurrency: Currency;
   fromCurrencies: Currency[];
@@ -50,6 +51,7 @@ export function ConverterCard({
   transferFees,
   isConverting = false,
   errorMessage = "",
+  rateDescription = "",
 }: ConverterCardProps) {
   const handleSwap = () => {
     onFromChange(toCurrency);
@@ -112,11 +114,8 @@ export function ConverterCard({
         <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3 mt-5 xl:mt-0">
           <TrendingUp size={16} strokeWidth={2} />
           <Typography size="body-sm" color="charcoal" className="font-medium">
-            1 {fromCurrency.code}
-          </Typography>
-          =
-          <Typography size="body-sm" color="charcoal" className="font-medium">
-            {rate.toLocaleString()} {toCurrency.code}
+            {rateDescription ||
+              `1 ${fromCurrency.code} = ${rate.toLocaleString()} ${toCurrency.code}`}
           </Typography>
         </div>
         {errorMessage && (
@@ -130,7 +129,7 @@ export function ConverterCard({
         )}
         <div className="my-4">
           <Typography as="span" size="body-sm" color="charcoal" weight="medium">
-            They recieve
+            They receive
           </Typography>
           <div className="bg-white border border-[#E5E7EB] rounded-2xl flex flex-col items-start justify-start text-center py-3 px-3">
             <div className="flex items-start gap-1 flex-wrap justify-start">

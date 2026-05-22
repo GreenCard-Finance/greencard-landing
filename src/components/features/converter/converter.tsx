@@ -17,6 +17,7 @@ type ConverterProps = {
 type CustomerQuoteResponse = {
   customer_rate?: number;
   recipient_gets?: number;
+  rate_description?: string;
   transfer_fee?: number;
   estimated_arrival?: string;
   expires_at?: string;
@@ -106,6 +107,7 @@ function Converter({ bootstrap }: ConverterProps) {
   const [selectedDirection, setSelectedDirection] =
     useState<SupportedDirection | null>(initialDirection);
   const [rate, setRate] = useState<number>(0);
+  const [rateDescription, setRateDescription] = useState("");
   const [amount, setAmount] = useState<number>(100);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
   const [transferFee, setTransferFee] = useState<number | string>("--");
@@ -140,6 +142,7 @@ function Converter({ bootstrap }: ConverterProps) {
       setSelectedDirection(nextDirection);
       setConvertedAmount(0);
       setRate(0);
+      setRateDescription("");
       setTransferFee("--");
       setEstimatedArrival("--");
       setErrorMessage("");
@@ -184,6 +187,7 @@ function Converter({ bootstrap }: ConverterProps) {
     async (currentAmount: number) => {
       if (!BASE_URL || !selectedDirection || currentAmount <= 0) {
         setConvertedAmount(0);
+        setRateDescription("");
         return;
       }
 
@@ -212,11 +216,13 @@ function Converter({ bootstrap }: ConverterProps) {
 
         setConvertedAmount(json.recipient_gets);
         setRate(json.customer_rate ?? 0);
+        setRateDescription(json.rate_description ?? "");
         setTransferFee(json.transfer_fee ?? "--");
         setEstimatedArrival(json.estimated_arrival ?? "--");
       } catch (error) {
         setConvertedAmount(0);
         setRate(0);
+        setRateDescription("");
         setErrorMessage(
           error instanceof Error
             ? error.message
@@ -292,6 +298,7 @@ function Converter({ bootstrap }: ConverterProps) {
         onFromChange={handleFromChange}
         onToChange={handleToChange}
         rate={rate}
+        rateDescription={rateDescription}
         amount={amount}
         onAmountChange={onAmountChange}
         convertedAmount={convertedAmount}
