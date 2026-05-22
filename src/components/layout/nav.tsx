@@ -9,6 +9,7 @@ import { logo_green } from "@/assets/images";
 import { navItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { CountrySelector } from "../features/converter/country-selector";
 
 export default function Nav() {
   const [showNav, setShowNav] = useState(true);
@@ -59,19 +60,22 @@ export default function Nav() {
         )}
       >
         <div className="max-w-360 w-9/10 xl:w-[90%] mx-auto flex items-center justify-between h-20 sm:h-30 xl:h-20">
-          <Link
-            href="/"
-            className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"
-          >
-            <Image
-              src={logo_green}
-              alt="Greencard Finance"
-              width={160}
-              height={36}
-              priority
-              className="object-cover w-full h-full"
-            />
-          </Link>
+          <div className=" flex items-center gap-x-5">
+            <Link
+              href="/"
+              className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"
+            >
+              <Image
+                src={logo_green}
+                alt="Greencard Finance"
+                width={160}
+                height={36}
+                priority
+                className="object-cover w-full h-full"
+              />
+            </Link>
+            <CountrySelector />
+          </div>
           <ul className="hidden xl:flex items-center gap-x-10">
             {regularLinks.map((item) => (
               <li key={item.label}>
