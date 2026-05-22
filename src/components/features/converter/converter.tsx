@@ -15,6 +15,7 @@ type ConverterProps = {
 };
 
 type CustomerQuoteResponse = {
+  code?: string;
   customer_rate?: number;
   recipient_gets?: number;
   rate_description?: string;
@@ -187,7 +188,10 @@ function Converter({ bootstrap }: ConverterProps) {
     async (currentAmount: number) => {
       if (!BASE_URL || !selectedDirection || currentAmount <= 0) {
         setConvertedAmount(0);
+        setRate(0);
         setRateDescription("");
+        setTransferFee("--");
+        setEstimatedArrival("--");
         return;
       }
 
@@ -207,7 +211,11 @@ function Converter({ bootstrap }: ConverterProps) {
         const json = (await res.json()) as CustomerQuoteResponse;
 
         if (!res.ok) {
-          throw new Error(json.message ?? "Unable to create quote");
+          throw new Error(
+            json.code === "RATE_UNAVAILABLE"
+              ? "Rate unavailable for this direction right now."
+              : json.message ?? "Unable to create quote",
+          );
         }
 
         if (typeof json.recipient_gets !== "number") {
@@ -223,6 +231,8 @@ function Converter({ bootstrap }: ConverterProps) {
         setConvertedAmount(0);
         setRate(0);
         setRateDescription("");
+        setTransferFee("--");
+        setEstimatedArrival("--");
         setErrorMessage(
           error instanceof Error
             ? error.message

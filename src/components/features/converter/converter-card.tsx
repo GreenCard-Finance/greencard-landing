@@ -36,6 +36,16 @@ interface ConverterCardProps {
   onAmountChange: (value: number) => void;
 }
 
+function formatRecipientAmount(value: number, currencyCode: string) {
+  const fixedDecimalCurrencies = new Set(["CAD", "EUR", "GBP", "USD"]);
+  const usesFixedDecimals = fixedDecimalCurrencies.has(currencyCode);
+
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: usesFixedDecimals ? 2 : 0,
+    maximumFractionDigits: 2,
+  });
+}
+
 export function ConverterCard({
   rate,
   fromCurrency,
@@ -53,6 +63,15 @@ export function ConverterCard({
   errorMessage = "",
   rateDescription = "",
 }: ConverterCardProps) {
+  const rateSummary = isConverting
+    ? "Getting live quote..."
+    : errorMessage
+      ? "Rate unavailable"
+      : rateDescription ||
+        (rate > 0
+          ? `1 ${fromCurrency.code} = ${rate.toLocaleString()} ${toCurrency.code}`
+          : "Rate unavailable");
+
   const handleSwap = () => {
     onFromChange(toCurrency);
     onToChange(fromCurrency);
@@ -114,8 +133,7 @@ export function ConverterCard({
         <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3 mt-5 xl:mt-0">
           <TrendingUp size={16} strokeWidth={2} />
           <Typography size="body-sm" color="charcoal" className="font-medium">
-            {rateDescription ||
-              `1 ${fromCurrency.code} = ${rate.toLocaleString()} ${toCurrency.code}`}
+            {rateSummary}
           </Typography>
         </div>
         {errorMessage && (
@@ -133,15 +151,20 @@ export function ConverterCard({
           </Typography>
           <div className="bg-white border border-[#E5E7EB] rounded-2xl flex flex-col items-start justify-start text-center py-3 px-3">
             <div className="flex items-start gap-1 flex-wrap justify-start">
-              <Typography size="display-sm" weight="bold" align={"left"}>
-                {toCurrency.symbol}
-              </Typography>
-              <Typography size="display-sm" weight="bold" align={"left"}>
-                {convertedAmount.toLocaleString("en-US", {
-                  minimumFractionDigits: 0,
-                  maximumFractionDigits: 2,
-                })}
-              </Typography>
+              {errorMessage ? (
+                <Typography size="display-sm" weight="bold" align={"left"}>
+                  --
+                </Typography>
+              ) : (
+                <>
+                  <Typography size="display-sm" weight="bold" align={"left"}>
+                    {toCurrency.symbol}
+                  </Typography>
+                  <Typography size="display-sm" weight="bold" align={"left"}>
+                    {formatRecipientAmount(convertedAmount, toCurrency.code)}
+                  </Typography>
+                </>
+              )}
             </div>
           </div>
         </div>
