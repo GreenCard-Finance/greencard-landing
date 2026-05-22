@@ -23,10 +23,7 @@ async function SectionThree() {
   const bootstrap = await fetchPublicBootstrap({ headers: bootstrapHeaders });
 
   return (
-    <section
-      id="product"
-      className="relative overflow-hidden py-9 xl:py-6 px-6"
-    >
+    <section id="product" className="relative overflow-hidden">
       {/* <Image
         src={s3_svg}
         alt="svg image"
@@ -35,7 +32,7 @@ async function SectionThree() {
         className="hidden xl:block absolute right-0 top-0 h-full w-auto -z-5"
         priority
       /> */}
-      <div className="max-w-360 w-full mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center">
+      <div className="max-w-360 w-[90%] mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center py-9 xl:py-22">
         <MotionWrapper
           variants={slideInUp}
           className="w-full xl:flex-1 items-center"

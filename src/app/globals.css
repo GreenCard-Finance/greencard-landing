@@ -8,3 +8,8 @@
   --font-source: var(--font-source);
   --font-lato: var(--font-lato);
 }
+
+html,
+body {
+  overflow-x: hidden;
+}

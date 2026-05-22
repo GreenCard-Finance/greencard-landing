@@ -9,9 +9,9 @@ function SectionFive() {
   return (
     <section
       id="how-it-works"
-      className="bg-[#6A4076] w-full py-10 md:py-20 px-6 overflow-hidden"
+      className="bg-[#6A4076] w-full py-10 md:py-20 overflow-hidden"
     >
-      <div className="max-w-360 mx-auto text-center">
+      <div className="max-w-360 w-[90%] mx-auto text-center">
         <MotionWrapper variants={fadeIn}>
           <Typography
             as="h2"

@@ -6,8 +6,8 @@ import { slideInRight, springUp } from "@/lib/animations";
 
 function SectionFour() {
   return (
-    <section className="w-full bg-[#8E8E93] overflow-hidden pt-10 sm:py-10 xl:py-0 px-6 ">
-      <div className="max-w-7xl mx-auto ">
+    <section className="w-full bg-[#8E8E93] overflow-hidden pt-10 sm:py-10 xl:py-0 px-6 xl:px-0">
+      <div className="max-w-360 xl:w-[90%] mx-auto ">
         <div className="flex flex-col-reverse md:flex-col xl:flex-row items-center xl:justify-between">
           <MotionWrapper
             variants={springUp}
