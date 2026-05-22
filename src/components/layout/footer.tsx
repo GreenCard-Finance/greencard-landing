@@ -1,4 +1,4 @@
-import { logo } from "@/assets/images";
+import { logo_green } from "@/assets/images";
 import Image from "next/image";
 import {
   footerAddresses,
@@ -13,11 +13,11 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1F2933] py-5 px-5 xl:px-20">
-      <div className="max-w-7xl mx-auto ">
+    <footer className="bg-[#1F2933] py-5 px-5 xl:px-0">
+      <div className="max-w-360 w-[90%] mx-auto ">
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-y-3">
-            <Image src={logo} alt="footer-logo" width={140} height={36} />
+            <Image src={logo_green} alt="footer-logo" width={140} height={36} />
 
             <ul className="space-y-1 pl-12">
               {footerLinks.map((item) => (

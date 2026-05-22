@@ -53,6 +53,8 @@ export function ConverterCard({
     onToChange(fromCurrency);
   };
 
+  console.log({ convertedAmount });
+
   return (
     <div className="rounded-[40px] border-8 border-[#46654F] w-full p-6">
       <div className="flex flex-col ">
@@ -97,11 +99,11 @@ export function ConverterCard({
 
         <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3 mt-5 xl:mt-0">
           <TrendingUp size={16} strokeWidth={2} />
-          <Typography size="body-sm" color="charcoal" className="font-medium">
+          <Typography size="body-md" color="charcoal" className="font-medium">
             1 {fromCurrency.code}
           </Typography>
           =
-          <Typography size="body-sm" color="charcoal" className="font-medium">
+          <Typography size="body-md" color="charcoal" className="font-medium">
             {rate.toLocaleString()} {toCurrency.code}
           </Typography>
         </div>
@@ -115,7 +117,7 @@ export function ConverterCard({
                 {toCurrency.symbol}
               </Typography>
               <Typography size="display-sm" weight="bold" align={"left"}>
-                {convertedAmount.toLocaleString("en-US", {
+                {convertedAmount?.toLocaleString("en-US", {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
                 })}

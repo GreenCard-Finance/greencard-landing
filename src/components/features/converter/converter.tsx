@@ -68,7 +68,7 @@ function Converter({ data }: ConverterProps) {
         });
         const json = await res.json();
         console.log({ json });
-        setConvertedAmount(json?.recipient_gets ?? currentAmount * rate);
+        setConvertedAmount(json?.recipient_gets);
         setRate(json?.customer_rate ?? rate);
       } catch {
         setConvertedAmount(0);

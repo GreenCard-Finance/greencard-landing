@@ -22,11 +22,8 @@ function SectionSix() {
   };
 
   return (
-    <section
-      id="faqs"
-      className="bg-[#1F2933] w-full py-15 px-6 overflow-hidden"
-    >
-      <div className="max-w-360 mx-auto flex flex-col xl:flex-row xl:items-center gap-y-12">
+    <section id="faqs" className="bg-[#1F2933] w-full py-15 overflow-hidden">
+      <div className="max-w-360 w-[90%] mx-auto flex flex-col xl:flex-row xl:items-center gap-y-12">
         <div className="w-full sm:w-[80%] xl:w-full mx-auto flex-1 xl:mb-17 ">
           <MotionWrapper variants={slideInLeft}>
             <Typography as="p" font="source" size="body-lg" color="white">
