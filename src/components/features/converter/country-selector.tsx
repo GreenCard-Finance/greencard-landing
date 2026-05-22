@@ -10,7 +10,7 @@ export function CountrySelector() {
 
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <div className="relative">
+      <div className="relative z-40">
         <button
           onClick={() => setOpen((prev) => !prev)}
           className="cursor-pointer flex items-center gap-2 border border-[#46654F] rounded-xl px-5 py-3 bg-white hover:bg-gray-50"
@@ -27,7 +27,7 @@ export function CountrySelector() {
         </button>
 
         {open && (
-          <div className="absolute top-full left-0 mt-2 w-full bg-white border border-[#E5E7EB] rounded-xl shadow-lg overflow-hidden z-50">
+          <div className="absolute top-full left-0 mt-2 w-full bg-white border border-[#E5E7EB] rounded-xl shadow-lg overflow-hidden z-60">
             {currencies
               .filter((c) => c.code !== selected.code)
               .map((currency) => (
