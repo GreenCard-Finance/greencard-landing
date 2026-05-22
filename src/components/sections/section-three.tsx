@@ -1,14 +1,26 @@
-// import Image from "next/image";
-// import { s3_svg } from "@/assets/images";
 import { slideInUp, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
 
 import Converter from "../features/converter/converter";
-import { fetchInitialRate } from "@/lib/service/fx";
+import { fetchPublicBootstrap } from "@/lib/service/fx";
+import { headers } from "next/headers";
 
 async function SectionThree() {
-  const data = await fetchInitialRate();
+  const requestHeaders = await headers();
+  const bootstrapHeaders = new Headers();
+
+  [
+    "cf-ipcountry",
+    "x-vercel-ip-country",
+    "x-country-code",
+    "accept-language",
+  ].forEach((header) => {
+    const value = requestHeaders.get(header);
+    if (value) bootstrapHeaders.set(header, value);
+  });
+
+  const bootstrap = await fetchPublicBootstrap({ headers: bootstrapHeaders });
 
   return (
     <section id="product" className="relative overflow-hidden">
@@ -54,7 +66,7 @@ async function SectionThree() {
           </Typography>
         </MotionWrapper>
         <MotionWrapper variants={springUp} delay={0.5} className="xl:w-[40%]">
-          <Converter data={data} />
+          <Converter bootstrap={bootstrap} />
         </MotionWrapper>
       </div>
     </section>

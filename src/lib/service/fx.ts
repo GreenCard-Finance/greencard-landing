@@ -1,24 +1,141 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-export async function fetchInitialRate() {
+export type SupportedDirection = {
+  fromCurrency: string;
+  toCurrency: string;
+  label: string;
+};
+
+export type PublicBootstrapResponse = {
+  countryCode: string;
+  countryName: string;
+  flag: string;
+  language: string;
+  fromCurrency: string;
+  supportedDirections: SupportedDirection[];
+  defaultDirection: SupportedDirection | null;
+};
+
+export type PublicFxRateResponse = {
+  from_currency: string;
+  to_currency: string;
+  currency_pair_direction: string;
+  customer_rate: number;
+  transfer_fee: number;
+  estimated_arrival?: string;
+  published_at: string;
+  expires_at: string;
+};
+
+type ApiDirection = {
+  fromCurrency?: string;
+  toCurrency?: string;
+  from_currency?: string;
+  to_currency?: string;
+  label?: string;
+};
+
+type ApiBootstrap = Omit<
+  Partial<PublicBootstrapResponse>,
+  "supportedDirections" | "defaultDirection"
+> & {
+  country_code?: string;
+  country_name?: string;
+  from_currency?: string;
+  supportedDirections?: ApiDirection[];
+  supported_directions?: ApiDirection[];
+  defaultDirection?: ApiDirection | null;
+  default_direction?: ApiDirection | null;
+};
+
+function normalizeDirection(direction?: ApiDirection | null) {
+  if (!direction) return null;
+
+  const fromCurrency = direction.fromCurrency ?? direction.from_currency;
+  const toCurrency = direction.toCurrency ?? direction.to_currency;
+
+  if (!fromCurrency || !toCurrency) return null;
+
+  return {
+    fromCurrency,
+    toCurrency,
+    label: direction.label ?? `${fromCurrency} -> ${toCurrency}`,
+  };
+}
+
+function normalizeBootstrap(data: ApiBootstrap): PublicBootstrapResponse {
+  const supportedDirections = (
+    data.supportedDirections ??
+    data.supported_directions ??
+    []
+  )
+    .map(normalizeDirection)
+    .filter((direction): direction is SupportedDirection => Boolean(direction));
+
+  const defaultDirection =
+    normalizeDirection(data.defaultDirection ?? data.default_direction) ??
+    supportedDirections[0] ??
+    null;
+
+  return {
+    countryCode: data.countryCode ?? data.country_code ?? "",
+    countryName: data.countryName ?? data.country_name ?? "",
+    flag: data.flag ?? "",
+    language: data.language ?? "",
+    fromCurrency: data.fromCurrency ?? data.from_currency ?? "",
+    supportedDirections,
+    defaultDirection,
+  };
+}
+
+type FetchPublicBootstrapOptions = {
+  countryCode?: string;
+  headers?: HeadersInit;
+};
+
+export async function fetchPublicBootstrap(
+  options: FetchPublicBootstrapOptions = {},
+) {
+  if (!BASE_URL) return null;
+
   try {
-    const res = await fetch(
-      `${BASE_URL}/public/fx-rates?from_currency=NGN&to_currency=GBP`,
-    );
+    const url = new URL(`${BASE_URL}/public/bootstrap`);
 
-    console.log("STATUS", res.status);
-
-    if (!res.ok) {
-      throw new Error("Failed to fetch rate");
+    if (options.countryCode) {
+      url.searchParams.set("countryCode", options.countryCode);
     }
 
-    const data = await res.json();
+    const res = await fetch(url.toString(), {
+      cache: "no-store",
+      headers: options.headers,
+    });
 
-    console.log("DATA from api", data);
+    if (!res.ok) {
+      throw new Error("Failed to fetch FX bootstrap");
+    }
 
-    return data;
-  } catch (error) {
-    console.log("ERROR", error);
+    return normalizeBootstrap(await res.json());
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchPublicFxRate(fromCurrency: string, toCurrency: string) {
+  if (!BASE_URL) return null;
+
+  try {
+    const url = new URL(`${BASE_URL}/public/fx-rates`);
+    url.searchParams.set("from", fromCurrency);
+    url.searchParams.set("to", toCurrency);
+
+    const res = await fetch(url.toString(), {
+      cache: "no-store",
+    });
+
+    if (!res.ok) return null;
+
+    return (await res.json()) as PublicFxRateResponse;
+  } catch {
     return null;
   }
 }
