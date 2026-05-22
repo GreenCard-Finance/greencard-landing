@@ -2,7 +2,7 @@ import Image from "next/image";
 import { s4_img } from "@/assets/images";
 import { Typography } from "../ui/typography";
 import { MotionWrapper } from "../ui/motion-wrapper";
-import { fadeIn, slideInLeft, slideInRight, springUp } from "@/lib/animations";
+import { slideInRight, springUp } from "@/lib/animations";
 
 function SectionFour() {
   return (

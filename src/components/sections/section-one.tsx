@@ -177,7 +177,7 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full overflow-hidden bg-[#286744] ">
-      <div className="mx-auto max-w-360 xl:w-[90%]">
+      <div className="mx-auto max-w-360 ">
         <Image
           src={greencheck_s2}
           alt="check"
@@ -302,7 +302,11 @@ function SectionOne() {
         {/* desktop */}
         <div className="hidden xl:flex relative w-full h-fit overflow-hidden">
           <div className="w-[60%] z-20 mt-10">
-            <MotionWrapper variants={slideInRight} delay={0.2}>
+            <MotionWrapper
+              variants={slideInRight}
+              delay={0.2}
+              className="w-[92%] 2xl:w-full ml-auto"
+            >
               <Typography
                 as="h1"
                 font="heading"

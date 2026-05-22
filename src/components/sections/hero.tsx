@@ -17,7 +17,8 @@ import { HeroArrow } from "../ui/hero-arrow";
 
 function Hero() {
   return (
-    <section className="max-w-360 mx-auto xl:min-h-screen w-full overflow-x-hidden xl:flex justify-between">
+    <section className="max-w-360 mx-auto min-h-[calc(100vh-80px)] w-full overflow-x-hidden xl:flex justify-between xl:mt-20">
+      {" "}
       {/* mobile */}
       <div className="xl:hidden relative">
         <MotionWrapper
@@ -72,8 +73,11 @@ function Hero() {
         </MotionWrapper>
       </div>
       {/* desktop */}
-      <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between">
-        <MotionWrapper variants={slideInLeft} className="mt-28 xl:mt-32 pl-20">
+      <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between relative">
+        <MotionWrapper
+          variants={slideInLeft}
+          className="mt-28 xl:mt-12 pl-20 2xl:mt-20 2xl:pl-0"
+        >
           <Typography
             as="h1"
             font="heading"
@@ -91,23 +95,23 @@ function Hero() {
         <MotionWrapper
           variants={springUp}
           delay={0.5}
-          className="w-full h-105 flex items-end"
+          className="w-full h-fit xl:h-80 flex items-end absolute bottom-0 left-0"
         >
           <Image
             src={heropay}
             alt="app showing Payment Received"
             width={420}
             height={450}
-            className="object-cover w-full h-full"
+            className="object-conver w-full h-full"
             priority
           />
         </MotionWrapper>
       </div>
-      <div className="hidden w-[50%] min-h-full xl:flex flex-col justify-between relative">
+      <div className="hidden w-[50%] relative xl:flex">
         <MotionWrapper
           delay={0.4}
           variants={slideInRight}
-          className="w-full h-[75%]"
+          className="w-full h-[85%]"
         >
           <Image
             src={herowoman}
@@ -118,9 +122,9 @@ function Hero() {
             className="w-full h-full object-cover"
           />
         </MotionWrapper>
-        <div className="absolute bottom-18 left-30 z-20">
-          <HeroArrow />
-        </div>
+      </div>
+      <div className="absolute -translate-x-35 left-1/2 -translate-y-1/2 top-1/2 z-20 hidden xl:block">
+        <HeroArrow />
       </div>
     </section>
   );
