@@ -13,7 +13,7 @@ export function CountrySelector() {
       <div className="relative">
         <button
           onClick={() => setOpen((prev) => !prev)}
-          className="flex items-center gap-2 border border-[#E5E7EB] rounded-xl px-5 py-3 bg-white hover:bg-gray-50"
+          className="cursor-pointer flex items-center gap-2 border border-[#E5E7EB] rounded-xl px-5 py-3 bg-white hover:bg-gray-50"
         >
           <div className="w-5 h-5 rounded-full overflow-hidden">
             <ReactCountryFlag
