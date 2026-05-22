@@ -9,6 +9,14 @@ import { headers } from "next/headers";
 async function SectionThree() {
   const requestHeaders = await headers();
   const bootstrapHeaders = new Headers();
+  const countryCode = firstHeaderValue(requestHeaders, [
+    "x-user-country-code",
+    "x-preferred-country-code",
+    "x-user-country",
+    "cf-ipcountry",
+    "x-vercel-ip-country",
+    "x-country-code",
+  ]);
 
   [
     "cf-ipcountry",
@@ -20,7 +28,10 @@ async function SectionThree() {
     if (value) bootstrapHeaders.set(header, value);
   });
 
-  const bootstrap = await fetchPublicBootstrap({ headers: bootstrapHeaders });
+  const bootstrap = await fetchPublicBootstrap({
+    countryCode,
+    headers: bootstrapHeaders,
+  });
 
   return (
     <section id="product" className="relative overflow-hidden">
@@ -71,6 +82,15 @@ async function SectionThree() {
       </div>
     </section>
   );
+}
+
+function firstHeaderValue(requestHeaders: Headers, headerNames: string[]) {
+  for (const headerName of headerNames) {
+    const value = requestHeaders.get(headerName)?.trim();
+    if (value) return value;
+  }
+
+  return undefined;
 }
 
 export default SectionThree;
