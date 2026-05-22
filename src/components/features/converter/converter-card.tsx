@@ -25,7 +25,8 @@ interface ConverterCardProps {
   toCurrencies: Currency[];
   amount: number;
   convertedAmount: number;
-  // isConverting: boolean;
+  isConverting?: boolean;
+  errorMessage?: string;
   transferFees: number | string;
 
   estimatedTime: number | string;
@@ -47,6 +48,8 @@ export function ConverterCard({
   onAmountChange,
   estimatedTime,
   transferFees,
+  isConverting = false,
+  errorMessage = "",
 }: ConverterCardProps) {
   const handleSwap = () => {
     onFromChange(toCurrency);
@@ -63,10 +66,21 @@ export function ConverterCard({
           <div className="w-full border border-[#E5E7EB] rounded-2xl px-4 py-3">
             <input
               type="text"
+              inputMode="decimal"
               value={amount.toLocaleString()}
-              onChange={(e) =>
-                onAmountChange(Number(e.target.value.replace(/,/g, "")))
-              }
+              onChange={(e) => {
+                const cleaned = e.target.value
+                  .replace(/,/g, "")
+                  .replace(/[^\d.]/g, "");
+                const [whole, ...decimals] = cleaned.split(".");
+                const normalized =
+                  decimals.length > 0
+                    ? `${whole}.${decimals.join("")}`
+                    : whole;
+                const nextAmount = Number(normalized);
+
+                onAmountChange(Number.isFinite(nextAmount) ? nextAmount : 0);
+              }}
               className="bg-transparent border-none outline-none text-3xl font-bold w-full"
             />
           </div>
@@ -105,6 +119,15 @@ export function ConverterCard({
             {rate.toLocaleString()} {toCurrency.code}
           </Typography>
         </div>
+        {errorMessage && (
+          <Typography
+            size="body-sm"
+            color="charcoal"
+            className="mt-2 text-red-600"
+          >
+            {errorMessage}
+          </Typography>
+        )}
         <div className="my-4">
           <Typography as="span" size="body-sm" color="charcoal" weight="medium">
             They recieve
@@ -146,7 +169,7 @@ export function ConverterCard({
 
       <Link href="#waitlist" className="full">
         <Button variant={"forest"} className="font-semibold">
-          Transfer
+          {isConverting ? "Getting quote..." : "Transfer"}
         </Button>
       </Link>
     </div>

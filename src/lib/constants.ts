@@ -113,7 +113,7 @@ export const faqData = [
   {
     question: "Do I need crypto knowledge to use GreenCard?",
     answer:
-      "No. You use a normal payment app — receive, convert, withdraw, pay. There are no wallets, seed phrases or tokens to manage.",
+      "No. You use a normal payment app - receive, convert, withdraw, pay. There are no wallets, seed phrases or tokens to manage.",
   },
   {
     question: "What does stablecoin-backed statement actually mean?",
@@ -123,12 +123,12 @@ export const faqData = [
   {
     question: "Can I use it for foreign online payments?",
     answer:
-      "Yes. Pay any merchant that accepts cards or bank payments online — airline tickets, software, subscriptions, visa fees, travel, and more.",
+      "Yes. Pay any merchant that accepts cards or bank payments online - airline tickets, software, subscriptions, visa fees, travel, and more.",
   },
   {
     question: "Who is GreenCard for?",
     answer:
-      "Freelancers, creators, remote workers, SMEs, and individuals in emerging markets — starting with Africa — who earn or pay globally.",
+      "Freelancers, creators, remote workers, SMEs, and individuals in emerging markets - starting with Africa - who earn or pay globally.",
   },
   {
     question: "What happens if a payment fails?",
@@ -157,67 +157,5 @@ export const sectionFive = [
     title: "Get your GREENCARD <br /> account",
     description:
       "Now you card receive any currency <br /> and spend with your GREENCARD",
-  },
-];
-
-export const currencies = [
-  {
-    code: "NGN",
-    name: "Nigerian Naira",
-    country: "Nigeria",
-    countryCode: "NG",
-    symbol: "₦",
-  },
-  {
-    code: "GBP",
-    name: "British Pound Sterling",
-    country: "United Kingdom",
-    countryCode: "GB",
-    symbol: "£",
-  },
-  {
-    code: "USD",
-    name: "United States Dollar",
-    country: "United States",
-    countryCode: "US",
-    symbol: "$",
-  },
-];
-
-export const supportedPairs = [
-  { from: "USD", to: "NGN" },
-  { from: "NGN", to: "USD" },
-  { from: "GBP", to: "NGN" },
-  { from: "NGN", to: "GBP" },
-];
-
-export const exchangeRates = [
-  {
-    pair: "USD/NGN",
-    rate: "1500.00",
-    change: "+2.5%",
-    trend: "up",
-    flag: "🇳🇬",
-  },
-  {
-    pair: "USD/CAD",
-    rate: "1.352",
-    change: "+0.3%",
-    trend: "up",
-    flag: "🇨🇦",
-  },
-  {
-    pair: "USD/GBP",
-    rate: "0.785",
-    change: "-0.1%",
-    trend: "down",
-    flag: "🇬🇧",
-  },
-  {
-    pair: "USD/USD",
-    rate: "1.000",
-    change: "0.0%",
-    trend: "neutral",
-    flag: "🇺🇸",
   },
 ];
