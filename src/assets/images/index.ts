@@ -35,3 +35,9 @@ export { default as logo } from "../../../public/images/logo-dark.svg";
 export { default as linkedin } from "../../../public/images/linkedin.svg";
 export { default as x } from "../../../public/images/x.svg";
 export { default as ig } from "../../../public/images/instagram.svg";
+
+// partners
+export { default as paga } from "../../../public/images/Paga logo_.png";
+export { default as didit } from "../../../public/images/didit.svg";
+export { default as kadavra } from "../../../public/images/kadavra.png";
+export { default as afriex } from "../../../public/images/afriex.svg";

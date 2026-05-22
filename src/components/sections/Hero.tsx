@@ -17,7 +17,7 @@ import { HeroArrow } from "../ui/hero-arrow";
 
 function Hero() {
   return (
-    <section className="maxw-360 mx-auto xl:min-h-screen w-full overflow-x-hidden xl:flex justify-between">
+    <section className="max-w-360 mx-auto xl:min-h-screen w-full overflow-x-hidden xl:flex justify-between">
       {/* mobile */}
       <div className="xl:hidden relative">
         <MotionWrapper
@@ -107,7 +107,7 @@ function Hero() {
         <MotionWrapper
           delay={0.4}
           variants={slideInRight}
-          className="w-full h-[75%] xl:h-[90%]"
+          className="w-full h-[75%]"
         >
           <Image
             src={herowoman}
