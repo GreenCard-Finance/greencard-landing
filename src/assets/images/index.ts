@@ -1,4 +1,5 @@
-export { default as logo } from "../../../public/images/logo-green.svg";
+export { default as logo_green } from "../../../public/images/logo-green.svg";
+export { default as logo_white } from "../../../public/images/logo-green.svg";
 
 export { default as hero_hands } from "../../../public/images/hero-hands.svg";
 

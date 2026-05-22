@@ -1,4 +1,4 @@
-import { logo } from "@/assets/images";
+import { logo_white } from "@/assets/images";
 import Image from "next/image";
 import {
   footerAddresses,
@@ -17,7 +17,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto ">
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-y-3">
-            <Image src={logo} alt="footer-logo" width={140} height={36} />
+            <Image src={logo_white} alt="footer-logo" width={140} height={36} />
 
             <ul className="space-y-1 pl-12">
               {footerLinks.map((item) => (
