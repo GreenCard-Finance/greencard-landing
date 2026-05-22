@@ -138,10 +138,6 @@ function Converter({ bootstrap }: ConverterProps) {
     );
   }, [directions, selectedDirection]);
 
-  useEffect(() => {
-    setSelectedDirection(initialDirection);
-  }, [initialDirection]);
-
   const handleConvert = useCallback(
     async (currentAmount: number) => {
       if (!BASE_URL || !selectedDirection || currentAmount <= 0) {
@@ -191,17 +187,9 @@ function Converter({ bootstrap }: ConverterProps) {
     [selectedDirection],
   );
 
-  const handleConvertRef = useRef(handleConvert);
-  useEffect(() => {
-    handleConvertRef.current = handleConvert;
-  }, [handleConvert]);
-
   const debouncedConvert = useMemo(
-    () =>
-      debounce((currentAmount: number) => {
-        handleConvertRef.current(currentAmount);
-      }, 500),
-    [],
+    () => debounce(handleConvert, 500),
+    [handleConvert],
   );
 
   useEffect(() => {
@@ -217,8 +205,8 @@ function Converter({ bootstrap }: ConverterProps) {
   useEffect(() => {
     if (!selectedDirection) return;
 
-    handleConvertRef.current(amountRef.current);
-  }, [selectedDirection]);
+    void handleConvert(amountRef.current);
+  }, [handleConvert, selectedDirection]);
 
   const handleFromChange = (currency: Currency) => {
     const nextDirection =

@@ -48,7 +48,7 @@ function SectionSix() {
               color="white"
               className="opacity-80"
             >
-              If you don't see your question here,
+              If you don&apos;t see your question here,
               <br /> our team is happy to answer it directly
             </Typography>
           </MotionWrapper>

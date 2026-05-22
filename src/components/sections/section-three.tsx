@@ -1,5 +1,3 @@
-import Image from "next/image";
-import { s3_svg } from "@/assets/images";
 import { slideInUp, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";

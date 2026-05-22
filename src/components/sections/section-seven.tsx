@@ -188,7 +188,7 @@ function SectionSeven() {
                 tracking="wide"
                 weight="regular"
               >
-                YOU'RE ON THE LIST
+                YOU&apos;RE ON THE LIST
               </Typography>
             </MotionWrapper>
 
