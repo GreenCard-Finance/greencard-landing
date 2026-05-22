@@ -27,8 +27,39 @@ const sourceSans = Source_Sans_3({
 });
 
 export const metadata: Metadata = {
-  title: "Greencard Finance",
-  description: "Built for African Freelancers",
+  metadataBase: new URL("https://www.greencardfinance.com"),
+  title: {
+    default: "GreenCard Finance | Global payments for African freelancers",
+    template: "%s | GreenCard Finance",
+  },
+  description:
+    "Global payments, transparent FX, and seamless money movement built for African freelancers.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "https://www.greencardfinance.com",
+    siteName: "GreenCard Finance",
+    title: "GreenCard Finance | Global payments for African freelancers",
+    description:
+      "Global payments, transparent FX, and seamless money movement built for African freelancers.",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "GreenCard Finance - Global payments for African freelancers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "GreenCard Finance | Global payments for African freelancers",
+    description:
+      "Global payments, transparent FX, and seamless money movement built for African freelancers.",
+    images: ["/opengraph-image"],
+  },
   icons: {
     icon: "/favicon.ico",
   },
