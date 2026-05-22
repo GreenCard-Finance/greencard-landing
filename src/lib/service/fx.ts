@@ -77,13 +77,26 @@ function normalizeBootstrap(data: ApiBootstrap): PublicBootstrapResponse {
   };
 }
 
-export async function fetchPublicBootstrap(headers?: HeadersInit) {
+type FetchPublicBootstrapOptions = {
+  countryCode?: string;
+  headers?: HeadersInit;
+};
+
+export async function fetchPublicBootstrap(
+  options: FetchPublicBootstrapOptions = {},
+) {
   if (!BASE_URL) return null;
 
   try {
-    const res = await fetch(`${BASE_URL}/public/bootstrap`, {
+    const url = new URL(`${BASE_URL}/public/bootstrap`);
+
+    if (options.countryCode) {
+      url.searchParams.set("countryCode", options.countryCode);
+    }
+
+    const res = await fetch(url.toString(), {
       cache: "no-store",
-      headers,
+      headers: options.headers,
     });
 
     if (!res.ok) {

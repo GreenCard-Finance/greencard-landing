@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import Footer from "@/components/layout/footer";
 import Nav from "@/components/layout/nav";
 import { Analytics } from "@vercel/analytics/next";
+import { CountryPreferenceProvider } from "@/components/features/country/country-preference";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -47,10 +48,12 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-source">
-        <Nav />
-        <main className="flex-1 w-full">{children}</main>
-        <Footer />
-        <Analytics />
+        <CountryPreferenceProvider>
+          <Nav />
+          <main className="flex-1 w-full">{children}</main>
+          <Footer />
+          <Analytics />
+        </CountryPreferenceProvider>
       </body>
     </html>
   );

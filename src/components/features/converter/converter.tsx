@@ -2,10 +2,12 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ConverterCard, Currency } from "./converter-card";
-import type {
-  PublicBootstrapResponse,
-  SupportedDirection,
+import {
+  fetchPublicBootstrap,
+  type PublicBootstrapResponse,
+  type SupportedDirection,
 } from "@/lib/service/fx";
+import { useCountryPreference } from "../country/country-preference";
 import { debounce } from "lodash";
 
 type ConverterProps = {
@@ -87,14 +89,18 @@ function uniqueCurrencies(codes: string[]) {
 }
 
 function Converter({ bootstrap }: ConverterProps) {
+  const { selectedCountry } = useCountryPreference();
+  const [bootstrapData, setBootstrapData] =
+    useState<PublicBootstrapResponse | null>(bootstrap);
+
   const directions = useMemo(
-    () => bootstrap?.supportedDirections ?? [],
-    [bootstrap],
+    () => bootstrapData?.supportedDirections ?? [],
+    [bootstrapData],
   );
 
   const initialDirection = useMemo(
-    () => bootstrap?.defaultDirection ?? directions[0] ?? null,
-    [bootstrap, directions],
+    () => bootstrapData?.defaultDirection ?? directions[0] ?? null,
+    [bootstrapData, directions],
   );
 
   const [selectedDirection, setSelectedDirection] =
@@ -109,6 +115,42 @@ function Converter({ bootstrap }: ConverterProps) {
   const [isConverting, setIsConverting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const amountRef = useRef(amount);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function loadCountryBootstrap() {
+      const nextBootstrap = await fetchPublicBootstrap({
+        countryCode: selectedCountry.countryCode,
+      });
+
+      if (cancelled) return;
+
+      if (!nextBootstrap) {
+        setErrorMessage("Unable to load currency options for this country.");
+        return;
+      }
+
+      const nextDirection =
+        nextBootstrap.defaultDirection ??
+        nextBootstrap.supportedDirections[0] ??
+        null;
+
+      setBootstrapData(nextBootstrap);
+      setSelectedDirection(nextDirection);
+      setConvertedAmount(0);
+      setRate(0);
+      setTransferFee("--");
+      setEstimatedArrival("--");
+      setErrorMessage("");
+    }
+
+    void loadCountryBootstrap();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [selectedCountry.countryCode]);
 
   const fromCurrency = selectedDirection
     ? toCurrency(selectedDirection.fromCurrency)

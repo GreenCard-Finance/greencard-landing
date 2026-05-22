@@ -9,6 +9,7 @@ import { logo } from "@/assets/images";
 import { navItems } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { CountrySelector } from "../features/country/country-selector";
 
 export default function Nav() {
   const [showNav, setShowNav] = useState(true);
@@ -59,7 +60,7 @@ export default function Nav() {
         )}
       >
         <nav className="w-full">
-          <div className="max-w-360 w-full mx-auto flex items-center justify-between xl:justify-start gap-x-10 h-20 px-4 sm:h-30 xl:h-20 md:px-8 lg:px-20">
+          <div className="max-w-360 w-full mx-auto flex items-center justify-between gap-x-6 h-20 px-4 sm:h-30 xl:h-20 md:px-8 lg:px-20">
             <Link
               href="/"
               className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"
@@ -91,24 +92,28 @@ export default function Nav() {
                 </li>
               ))}
             </ul>
-            <div className="hidden xl:flex">
+            <div className="hidden xl:ml-auto xl:flex xl:items-center xl:gap-3">
+              <CountrySelector />
               {ctaItem && (
                 <Link href={ctaItem.href}>
                   <Button variant={"lime"}>{ctaItem.label}</Button>
                 </Link>
               )}
             </div>
-            <button
-              className="xl:hidden text-[#1D1E22] flex items-center z-30"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Open menu"
-            >
-              {isOpen ? (
-                <X className="size-9 " fontWeight={600} />
-              ) : (
-                <Menu className="size-7" fontWeight={600} />
-              )}
-            </button>
+            <div className="xl:hidden flex items-center gap-2 z-30">
+              <CountrySelector compact />
+              <button
+                className="text-[#1D1E22] flex items-center"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-label="Open menu"
+              >
+                {isOpen ? (
+                  <X className="size-9 " fontWeight={600} />
+                ) : (
+                  <Menu className="size-7" fontWeight={600} />
+                )}
+              </button>
+            </div>
           </div>
         </nav>
 

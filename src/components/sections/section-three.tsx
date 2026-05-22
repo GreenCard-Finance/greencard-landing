@@ -20,7 +20,7 @@ async function SectionThree() {
     if (value) bootstrapHeaders.set(header, value);
   });
 
-  const bootstrap = await fetchPublicBootstrap(bootstrapHeaders);
+  const bootstrap = await fetchPublicBootstrap({ headers: bootstrapHeaders });
 
   return (
     <section
