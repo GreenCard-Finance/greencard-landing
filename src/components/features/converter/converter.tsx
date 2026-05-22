@@ -4,10 +4,14 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ConverterCard, Currency } from "./converter-card";
 import {
   fetchPublicBootstrap,
+  fetchPublicFxRate,
   type PublicBootstrapResponse,
   type SupportedDirection,
 } from "@/lib/service/fx";
-import { useCountryPreference } from "../country/country-preference";
+import {
+  countryPreferences,
+  useCountryPreference,
+} from "../country/country-preference";
 import { debounce } from "lodash";
 
 type ConverterProps = {
@@ -24,6 +28,13 @@ type CustomerQuoteResponse = {
   expires_at?: string;
   message?: string;
 };
+
+function isTinyAmountQuoteError(response: CustomerQuoteResponse) {
+  return (
+    response.code === "VALIDATION_ERROR" &&
+    response.message?.toLowerCase().includes("too small")
+  );
+}
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -91,7 +102,7 @@ function uniqueCurrencies(codes: string[]) {
 }
 
 function Converter({ bootstrap }: ConverterProps) {
-  const { selectedCountry } = useCountryPreference();
+  const { selectedCountry, setSelectedCountry } = useCountryPreference();
   const [bootstrapData, setBootstrapData] =
     useState<PublicBootstrapResponse | null>(bootstrap);
 
@@ -164,11 +175,8 @@ function Converter({ bootstrap }: ConverterProps) {
     : null;
 
   const fromCurrencies = useMemo(
-    () =>
-      uniqueCurrencies(
-        directions.map((direction) => direction.fromCurrency),
-      ),
-    [directions],
+    () => uniqueCurrencies(countryPreferences.map((country) => country.currencyCode)),
+    [],
   );
 
   const toCurrencies = useMemo(() => {
@@ -211,6 +219,25 @@ function Converter({ bootstrap }: ConverterProps) {
         const json = (await res.json()) as CustomerQuoteResponse;
 
         if (!res.ok) {
+          if (isTinyAmountQuoteError(json)) {
+            const publicRate = await fetchPublicFxRate(
+              selectedDirection.fromCurrency,
+              selectedDirection.toCurrency,
+            );
+
+            if (publicRate) {
+              setConvertedAmount(0);
+              setRate(publicRate.customer_rate ?? 0);
+              setRateDescription("");
+              setTransferFee(publicRate.transfer_fee ?? 0);
+              setEstimatedArrival(
+                publicRate.estimated_arrival ?? "Usually within minutes",
+              );
+              setErrorMessage("");
+              return;
+            }
+          }
+
           throw new Error(
             json.code === "RATE_UNAVAILABLE"
               ? "Rate unavailable for this direction right now."
@@ -267,6 +294,18 @@ function Converter({ bootstrap }: ConverterProps) {
   }, [handleConvert, selectedDirection]);
 
   const handleFromChange = (currency: Currency) => {
+    const matchingCountry = countryPreferences.find(
+      (country) => country.currencyCode === currency.code,
+    );
+
+    if (
+      matchingCountry &&
+      matchingCountry.currencyCode !== selectedDirection?.fromCurrency
+    ) {
+      setSelectedCountry(matchingCountry);
+      return;
+    }
+
     const nextDirection =
       findDirection(directions, currency.code, selectedDirection?.toCurrency) ??
       findDirection(directions, currency.code);

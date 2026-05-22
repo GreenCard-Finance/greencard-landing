@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Typography } from "@/components/ui/typography";
-import { ArrowLeftRight, ChevronDown } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { TrendingUp } from "lucide-react";
@@ -46,6 +46,48 @@ function formatRecipientAmount(value: number, currencyCode: string) {
   });
 }
 
+function formatAmount(value: number) {
+  return value.toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatDirectionalRate(value: number) {
+  if (value <= 0 || !Number.isFinite(value)) return "0";
+
+  if (value >= 1) {
+    return value.toLocaleString("en-US", {
+      maximumFractionDigits: 2,
+    });
+  }
+
+  if (value < 0.01) {
+    return value.toLocaleString("en-US", {
+      minimumFractionDigits: 4,
+      maximumFractionDigits: 4,
+    });
+  }
+
+  return value.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 4,
+  });
+}
+
+function getDirectionalRateSummary(
+  rate: number,
+  fromCurrency: Currency,
+  toCurrency: Currency,
+) {
+  if (rate <= 0) return "Rate unavailable";
+
+  const isNgnToForeign =
+    fromCurrency.code === "NGN" && toCurrency.code !== "NGN";
+  const displayRate = isNgnToForeign ? 1 / rate : rate;
+
+  return `1 ${fromCurrency.code} = ${formatDirectionalRate(displayRate)} ${toCurrency.code}`;
+}
+
 export function ConverterCard({
   rate,
   fromCurrency,
@@ -61,33 +103,25 @@ export function ConverterCard({
   transferFees,
   isConverting = false,
   errorMessage = "",
-  rateDescription = "",
 }: ConverterCardProps) {
   const rateSummary = isConverting
     ? "Getting live quote..."
     : errorMessage
       ? "Rate unavailable"
-      : rateDescription ||
-        (rate > 0
-          ? `1 ${fromCurrency.code} = ${rate.toLocaleString()} ${toCurrency.code}`
-          : "Rate unavailable");
-
-  const handleSwap = () => {
-    onFromChange(toCurrency);
-    onToChange(fromCurrency);
-  };
+      : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
 
   return (
-    <div className="rounded-[40px] border-8 border-[#46654F] w-full p-6">
-      <div className="flex flex-col ">
-        <div className="space-y-2">
-          <Typography as="span" size="body-sm" color="charcoal" weight="medium">
-            You send
-          </Typography>
-          <div className="w-full border border-[#E5E7EB] rounded-2xl px-4 py-3">
+    <div className="w-full rounded-[34px] border-[7px] border-[#7DAE8A] bg-[#DFF3E5] shadow-[0_18px_50px_rgba(69,121,82,0.16)]">
+      <div className="rounded-[24px] bg-white px-7 py-8 sm:px-9">
+        <div className="flex items-start justify-between gap-4">
+          <label className="min-w-0 flex-1">
+            <Typography as="span" size="body-sm" color="charcoal" weight="medium">
+              You send
+            </Typography>
             <input
               type="text"
               inputMode="decimal"
+              aria-label="Amount to send"
               value={amount.toLocaleString()}
               onChange={(e) => {
                 const cleaned = e.target.value
@@ -102,137 +136,140 @@ export function ConverterCard({
 
                 onAmountChange(Number.isFinite(nextAmount) ? nextAmount : 0);
               }}
-              className="bg-transparent border-none outline-none text-3xl font-bold w-full"
+              className="mt-3 block w-full bg-transparent text-[2rem] font-extrabold leading-none text-black outline-none sm:text-[2.4rem]"
             />
-          </div>
-        </div>
+          </label>
 
-        <div className="flex flex-col xl:flex-row items-center xl:gap-4 relative my-4">
           <CurrencySelect
-            label="From"
             selected={fromCurrency}
             options={fromCurrencies}
             onChange={onFromChange}
-          />
-
-          <button
-            onClick={handleSwap}
-            className="bg-[#1F2933] text-white p-2 rounded-full z-10 hover:scale-110 transition-transform mt-3.5 xl:mb-0"
-          >
-            <ArrowLeftRight size={20} />
-          </button>
-
-          <CurrencySelect
-            label="To"
-            selected={toCurrency}
-            options={toCurrencies}
-            onChange={onToChange}
+            ariaLabel="Select currency to send"
           />
         </div>
 
-        <div className="w-fit mx-auto bg-[#BDE1BE] flex items-center gap-x-2 rounded-xl justify-center py-1.5 px-3 mt-5 xl:mt-0">
-          <TrendingUp size={16} strokeWidth={2} />
-          <Typography size="body-sm" color="charcoal" className="font-medium">
-            {rateSummary}
-          </Typography>
-        </div>
-        {errorMessage && (
-          <Typography
-            size="body-sm"
-            color="charcoal"
-            className="mt-2 text-red-600"
-          >
-            {errorMessage}
-          </Typography>
-        )}
-        <div className="my-4">
-          <Typography as="span" size="body-sm" color="charcoal" weight="medium">
-            They receive
-          </Typography>
-          <div className="bg-white border border-[#E5E7EB] rounded-2xl flex flex-col items-start justify-start text-center py-3 px-3">
-            <div className="flex items-start gap-1 flex-wrap justify-start">
-              {errorMessage ? (
-                <Typography size="display-sm" weight="bold" align={"left"}>
-                  --
-                </Typography>
-              ) : (
-                <>
-                  <Typography size="display-sm" weight="bold" align={"left"}>
-                    {toCurrency.symbol}
-                  </Typography>
-                  <Typography size="display-sm" weight="bold" align={"left"}>
-                    {formatRecipientAmount(convertedAmount, toCurrency.code)}
-                  </Typography>
-                </>
-              )}
+        <div className="relative py-7">
+          <div className="h-px w-full bg-[#DFE4E2]" />
+          <div className="absolute left-1/2 top-1/2 w-max max-w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[#DDF8E6] px-4 py-2 shadow-[0_10px_24px_rgba(53,142,75,0.12)]">
+            <div className="flex items-center justify-center gap-2">
+              <TrendingUp size={16} strokeWidth={2.2} />
+              <Typography size="body-sm" color="charcoal" className="font-semibold">
+                {rateSummary}
+              </Typography>
             </div>
           </div>
         </div>
+
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <Typography as="span" size="body-sm" color="charcoal" weight="medium">
+              Recipient gets
+            </Typography>
+            <div className="mt-3 flex min-h-[42px] items-center gap-1">
+              {errorMessage ? (
+                <Typography size="display-sm" weight="bold" align={"left"}>
+                  0
+                </Typography>
+              ) : (
+                <Typography size="display-sm" weight="bold" align={"left"}>
+                  {formatRecipientAmount(convertedAmount, toCurrency.code)}
+                </Typography>
+              )}
+            </div>
+          </div>
+
+          <CurrencySelect
+            selected={toCurrency}
+            options={toCurrencies}
+            onChange={onToChange}
+            ariaLabel="Select currency to receive"
+          />
+        </div>
+
+        {errorMessage && (
+          <Typography size="body-sm" color="charcoal" className="mt-4 text-red-600">
+            {errorMessage}
+          </Typography>
+        )}
       </div>
 
-      <div className="w-full space-y-3 my-2">
+      <div className="w-full space-y-3 px-7 py-5 sm:px-9">
         <div className="flex items-center justify-between w-full">
-          <Typography size="body-md" weight="regular" align={"left"}>
+          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
             Transfer fees
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"}>
+          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
             {transferFees === 0 ? "Zero" : transferFees}
           </Typography>
         </div>
+        <div className="flex items-center justify-between w-full">
+          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+            We&apos;ll convert
+          </Typography>
+          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
+            {errorMessage ? "--" : `${formatAmount(amount)} ${fromCurrency.code}`}
+          </Typography>
+        </div>
+        <div className="flex items-center justify-between w-full">
+          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+            We&apos;ll charge you
+          </Typography>
+          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
+            {errorMessage ? "--" : `${formatAmount(amount)} ${fromCurrency.code}`}
+          </Typography>
+        </div>
         <div className="flex items-center justify-between w-full ">
-          <Typography size="body-md" weight="regular" align={"left"}>
+          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
             Funds will arrive
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"}>
+          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
             {estimatedTime}
           </Typography>
         </div>
       </div>
 
-      <Link href="#waitlist" className="full">
-        <Button variant={"forest"} className="font-semibold">
-          {isConverting ? "Getting quote..." : "Transfer"}
-        </Button>
-      </Link>
+      <div className="px-7 pb-7 sm:px-9">
+        <Link href="#waitlist" className="block">
+          <Button variant={"forest"} className="font-semibold">
+            {isConverting ? "Getting quote..." : "Send money"}
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }
 
 interface CurrencySelectProps {
-  label: string;
   selected: Currency;
   options: Currency[];
   onChange: (currency: Currency) => void;
+  ariaLabel: string;
 }
 
 function CurrencySelect({
-  label,
   selected,
   options,
   onChange,
+  ariaLabel,
 }: CurrencySelectProps) {
   const [open, setOpen] = useState(false);
-  const hasOptions =
-    options.filter((curr) => curr.code !== selected.code).length > 0;
+  const menuOptions = [
+    selected,
+    ...options.filter((curr) => curr.code !== selected.code),
+  ];
+
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <div className="relative w-full flex-1 space-y-2 cursor-pointer">
-        <Typography
-          as="span"
-          size="body-sm"
-          color="charcoal"
-          weight="bold"
-          className="uppercase"
+      <div className="relative shrink-0 cursor-pointer">
+        <button
+          type="button"
+          aria-label={ariaLabel}
+          aria-expanded={open}
+          onClick={() => setOpen((prev) => !prev)}
+          className="flex min-w-[124px] cursor-pointer items-center justify-between gap-2 rounded-full border-2 border-[#66676C] bg-white px-2.5 py-2 text-black transition-colors hover:border-[#46654F]"
         >
-          {label}
-        </Typography>
-
-        <div
-          onClick={() => hasOptions && setOpen((prev) => !prev)}
-          className={`border border-[#E5E7EB] bg-white rounded-2xl px-3 py-1.5 flex items-center justify-between ${hasOptions ? "cursor-pointer hover:bg-gray-50" : "cursor-default"}`}
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-100">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-100 ring-1 ring-black/10">
               <ReactCountryFlag
                 countryCode={selected.countryCode}
                 svg
@@ -243,37 +280,35 @@ function CurrencySelect({
                 }}
               />
             </div>
-            <div className="flex flex-col">
-              <Typography size="body-sm" weight="bold" className="leading-none">
-                {selected.code}
-              </Typography>
-              <Typography size="body-xs" color="charcoal">
-                {selected.country}
-              </Typography>
-            </div>
+            <Typography size="body-md" weight="bold" className="leading-none">
+              {selected.code}
+            </Typography>
           </div>
-          {hasOptions && (
-            <ChevronDown size={16} className="text-black text-2xl" />
-          )}{" "}
-        </div>
+          <ChevronDown size={18} className="shrink-0 text-black" />
+        </button>
 
         <div
-          className={`absolute top-full left-0 w-full bg-white border border-[#E5E7EB] rounded-xl mt-2 z-50 shadow-lg overflow-hidden ${
+          className={`absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-2xl border border-[#E5E7EB] bg-white shadow-xl ${
             open ? "block" : "hidden"
           }`}
         >
-          {options
-            .filter((curr) => curr.code !== selected.code)
-            .map((curr) => (
-              <div
+          {menuOptions.map((curr) => {
+            const isSelected = curr.code === selected.code;
+
+            return (
+              <button
+                type="button"
                 key={curr.code}
                 onClick={() => {
                   onChange(curr);
                   setOpen(false);
                 }}
-                className="py-1.5 px-3 flex items-center gap-1 hover:bg-gray-100 cursor-pointer"
+                className={`flex w-full cursor-pointer items-center gap-2 px-3 py-2 text-left hover:bg-gray-100 ${
+                  isSelected ? "bg-[#EFF8F1]" : "bg-white"
+                }`}
+                aria-current={isSelected ? "true" : undefined}
               >
-                <div className="w-6 h-6 rounded-full overflow-hidden bg-gray-100">
+                <div className="h-7 w-7 overflow-hidden rounded-full bg-gray-100">
                   <ReactCountryFlag
                     countryCode={curr.countryCode}
                     svg
@@ -284,9 +319,15 @@ function CurrencySelect({
                     }}
                   />
                 </div>
-                <Typography size="body-md">{curr.code}</Typography>
-              </div>
-            ))}
+                <Typography
+                  size="body-md"
+                  weight={isSelected ? "bold" : "regular"}
+                >
+                  {curr.code}
+                </Typography>
+              </button>
+            );
+          })}
         </div>
       </div>
     </ClickAwayListener>

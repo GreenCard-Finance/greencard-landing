@@ -38,12 +38,7 @@ export function CountrySelector({ compact = false }: { compact?: boolean }) {
               }}
             />
           </span>
-          <span className={compact ? "hidden sm:inline" : ""}>
-            {selectedCountry.countryName} · {selectedCountry.currencyCode}
-          </span>
-          <span className={compact ? "sm:hidden" : "hidden"}>
-            {selectedCountry.countryCode} · {selectedCountry.currencyCode}
-          </span>
+          <span>{selectedCountry.countryCode}</span>
           <ChevronDown
             size={16}
             className={cn("transition-transform", open && "rotate-180")}
@@ -51,7 +46,7 @@ export function CountrySelector({ compact = false }: { compact?: boolean }) {
         </button>
 
         {open && (
-          <div className="absolute right-0 mt-2 w-64 overflow-hidden rounded-2xl border border-[#D8E0DC] bg-white shadow-xl">
+          <div className="absolute right-0 mt-2 w-40 overflow-hidden rounded-2xl border border-[#D8E0DC] bg-white shadow-xl">
             {countryPreferences.map((country) => {
               const selected =
                 country.countryCode === selectedCountry.countryCode;
@@ -81,11 +76,8 @@ export function CountrySelector({ compact = false }: { compact?: boolean }) {
                         }}
                       />
                     </span>
-                    <span>
-                      {country.countryName} · {country.currencyCode}
-                    </span>
+                    <span>{country.countryCode}</span>
                   </span>
-                  {selected && <span className="text-xs">Active</span>}
                 </button>
               );
             })}

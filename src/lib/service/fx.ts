@@ -16,6 +16,17 @@ export type PublicBootstrapResponse = {
   defaultDirection: SupportedDirection | null;
 };
 
+export type PublicFxRateResponse = {
+  from_currency: string;
+  to_currency: string;
+  currency_pair_direction: string;
+  customer_rate: number;
+  transfer_fee: number;
+  estimated_arrival?: string;
+  published_at: string;
+  expires_at: string;
+};
+
 type ApiDirection = {
   fromCurrency?: string;
   toCurrency?: string;
@@ -104,6 +115,26 @@ export async function fetchPublicBootstrap(
     }
 
     return normalizeBootstrap(await res.json());
+  } catch {
+    return null;
+  }
+}
+
+export async function fetchPublicFxRate(fromCurrency: string, toCurrency: string) {
+  if (!BASE_URL) return null;
+
+  try {
+    const url = new URL(`${BASE_URL}/public/fx-rates`);
+    url.searchParams.set("from", fromCurrency);
+    url.searchParams.set("to", toCurrency);
+
+    const res = await fetch(url.toString(), {
+      cache: "no-store",
+    });
+
+    if (!res.ok) return null;
+
+    return (await res.json()) as PublicFxRateResponse;
   } catch {
     return null;
   }
