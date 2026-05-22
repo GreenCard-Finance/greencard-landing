@@ -5,15 +5,18 @@ import SessionSix from "@/components/sections/section-six";
 import SectionThree from "@/components/sections/section-three";
 import SectionOne from "@/components/sections/section-one";
 import SectionTwo from "@/components/sections/section-two";
+import SectionEight from "@/components/sections/section-eight";
 import Hero from "@/components/sections/hero";
 
 function Home() {
   return (
     <>
       <Hero />
+      <SectionEight />
+      <SectionThree />
       <SectionOne />
       <SectionTwo />
-      <SectionThree />
+
       <SectionFour />
       <SectionFive />
       <SessionSix />
