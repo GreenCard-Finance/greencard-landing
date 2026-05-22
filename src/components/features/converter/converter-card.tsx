@@ -65,6 +65,7 @@ export function ConverterCard({
           <div className="w-full border border-[#E5E7EB] rounded-2xl px-4 py-3">
             <input
               type="text"
+              inputMode="numeric"
               value={amount.toLocaleString()}
               onChange={(e) =>
                 onAmountChange(Number(e.target.value.replace(/,/g, "")))
