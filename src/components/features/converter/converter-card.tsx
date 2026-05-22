@@ -53,6 +53,8 @@ export function ConverterCard({
     onToChange(fromCurrency);
   };
 
+  console.log({ convertedAmount });
+
   return (
     <div className="rounded-[40px] border-8 border-[#46654F] w-full p-6">
       <div className="flex flex-col ">
@@ -115,7 +117,7 @@ export function ConverterCard({
                 {toCurrency.symbol}
               </Typography>
               <Typography size="display-sm" weight="bold" align={"left"}>
-                {convertedAmount.toLocaleString("en-US", {
+                {convertedAmount?.toLocaleString("en-US", {
                   minimumFractionDigits: 0,
                   maximumFractionDigits: 2,
                 })}
