@@ -192,14 +192,49 @@ function Converter({ bootstrap }: ConverterProps) {
     );
   }, [directions, selectedDirection]);
 
+  const applyPublicRate = useCallback(async (direction: SupportedDirection) => {
+    const publicRate = await fetchPublicFxRate(
+      direction.fromCurrency,
+      direction.toCurrency,
+    );
+
+    if (!publicRate) return false;
+
+    setRate(publicRate.customer_rate ?? 0);
+    setRateDescription("");
+    setTransferFee(publicRate.transfer_fee ?? 0);
+    setEstimatedArrival(
+      publicRate.estimated_arrival ?? "Usually within minutes",
+    );
+    setErrorMessage("");
+
+    return true;
+  }, []);
+
   const handleConvert = useCallback(
     async (currentAmount: number) => {
-      if (!BASE_URL || !selectedDirection || currentAmount <= 0) {
+      if (!BASE_URL || !selectedDirection) {
         setConvertedAmount(0);
         setRate(0);
         setRateDescription("");
         setTransferFee("--");
         setEstimatedArrival("--");
+        return;
+      }
+
+      if (currentAmount <= 0) {
+        setConvertedAmount(0);
+        setErrorMessage("");
+
+        const hasPublicRate = await applyPublicRate(selectedDirection);
+
+        if (!hasPublicRate) {
+          setRate(0);
+          setRateDescription("");
+          setTransferFee("--");
+          setEstimatedArrival("--");
+        }
+
         return;
       }
 
@@ -220,20 +255,8 @@ function Converter({ bootstrap }: ConverterProps) {
 
         if (!res.ok) {
           if (isTinyAmountQuoteError(json)) {
-            const publicRate = await fetchPublicFxRate(
-              selectedDirection.fromCurrency,
-              selectedDirection.toCurrency,
-            );
-
-            if (publicRate) {
+            if (await applyPublicRate(selectedDirection)) {
               setConvertedAmount(0);
-              setRate(publicRate.customer_rate ?? 0);
-              setRateDescription("");
-              setTransferFee(publicRate.transfer_fee ?? 0);
-              setEstimatedArrival(
-                publicRate.estimated_arrival ?? "Usually within minutes",
-              );
-              setErrorMessage("");
               return;
             }
           }
@@ -269,7 +292,7 @@ function Converter({ bootstrap }: ConverterProps) {
         setIsConverting(false);
       }
     },
-    [selectedDirection],
+    [applyPublicRate, selectedDirection],
   );
 
   const debouncedConvert = useMemo(
