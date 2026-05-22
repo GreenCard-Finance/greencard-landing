@@ -9,9 +9,9 @@ import {
 } from "react";
 
 export type CountryPreference = {
-  countryCode: "GB" | "NG" | "US";
+  countryCode: "GB" | "NG" | "US" | "CA";
   countryName: string;
-  currencyCode: "GBP" | "NGN" | "USD";
+  currencyCode: "GBP" | "NGN" | "USD" | "CAD";
 };
 
 export const countryPreferences: CountryPreference[] = [
@@ -29,6 +29,11 @@ export const countryPreferences: CountryPreference[] = [
     countryCode: "US",
     countryName: "United States",
     currencyCode: "USD",
+  },
+  {
+    countryCode: "CA",
+    countryName: "Canada",
+    currencyCode: "CAD",
   },
 ];
 
@@ -52,18 +57,23 @@ function findCountryPreference(countryCode: string | null) {
 
 export function CountryPreferenceProvider({
   children,
+  initialCountryCode,
 }: {
   children: React.ReactNode;
+  initialCountryCode?: string;
 }) {
+  const initialCountryPreference = findCountryPreference(initialCountryCode ?? null);
   const [selectedCountry, setSelectedCountryState] = useState(
-    defaultCountryPreference,
+    initialCountryPreference,
   );
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
-      setSelectedCountryState(
-        findCountryPreference(window.localStorage.getItem(storageKey)),
-      );
+      const savedCountryCode = window.localStorage.getItem(storageKey);
+
+      if (savedCountryCode) {
+        setSelectedCountryState(findCountryPreference(savedCountryCode));
+      }
     }, 0);
 
     return () => window.clearTimeout(timer);

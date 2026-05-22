@@ -6,6 +6,8 @@ import Footer from "@/components/layout/footer";
 import Nav from "@/components/layout/nav";
 import { Analytics } from "@vercel/analytics/next";
 import { CountryPreferenceProvider } from "@/components/features/country/country-preference";
+import { fetchPublicBootstrap } from "@/lib/service/fx";
+import { headers } from "next/headers";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -32,11 +34,52 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+async function getInitialCountryCode() {
+  const requestHeaders = await headers();
+  const bootstrapHeaders = new Headers();
+  const countryCode = firstHeaderValue(requestHeaders, [
+    "x-user-country-code",
+    "x-preferred-country-code",
+    "x-user-country",
+    "cf-ipcountry",
+    "x-vercel-ip-country",
+    "x-country-code",
+  ]);
+
+  [
+    "cf-ipcountry",
+    "x-vercel-ip-country",
+    "x-country-code",
+    "accept-language",
+  ].forEach((header) => {
+    const value = requestHeaders.get(header);
+    if (value) bootstrapHeaders.set(header, value);
+  });
+
+  const bootstrap = await fetchPublicBootstrap({
+    countryCode,
+    headers: bootstrapHeaders,
+  });
+
+  return bootstrap?.countryCode;
+}
+
+function firstHeaderValue(requestHeaders: Headers, headerNames: string[]) {
+  for (const headerName of headerNames) {
+    const value = requestHeaders.get(headerName)?.trim();
+    if (value) return value;
+  }
+
+  return undefined;
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialCountryCode = await getInitialCountryCode();
+
   return (
     <html
       lang="en"
@@ -48,7 +91,7 @@ export default function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-source">
-        <CountryPreferenceProvider>
+        <CountryPreferenceProvider initialCountryCode={initialCountryCode}>
           <Nav />
           <main className="flex-1 w-full">{children}</main>
           <Footer />
