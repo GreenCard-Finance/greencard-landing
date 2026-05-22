@@ -52,7 +52,7 @@ export default function Nav() {
     <>
       <header
         className={cn(
-          "sticky xl:fixed xl:w-full top-0 z-50 transition-all duration-300 shadow-sm",
+          "sticky xl:fixed xl:w-full top-0 z-50 transition-all duration-300 shadow-sm ",
           showNav ? "translate-y-0" : "-translate-y-full",
           isScrolled
             ? "bg-white/40 backdrop-blur-md shadow-sm"
@@ -63,7 +63,7 @@ export default function Nav() {
           <div className=" flex items-center gap-x-5">
             <Link
               href="/"
-              className="flex items-center gap-2 shrink-0 z-30 w-3/10 xl:w-fit"
+              className="flex items-center gap-2 shrink-0 z-30 w-4/10 xl:w-fit"
             >
               <Image
                 src={logo_green}
@@ -102,7 +102,7 @@ export default function Nav() {
             )}
           </div>
           <button
-            className="xl:hidden text-[#1D1E22] flex items-center z-30"
+            className="xl:hidden text-[#1D1E22] flex items-center z-30 w-7 h-7"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Open menu"
           >
@@ -116,7 +116,7 @@ export default function Nav() {
 
         <div
           className={cn(
-            "fixed inset-0 z-20 top-0 pt-40 bg-white h-screen flex flex-col transition-transform duration-300 ease-in-out xl:hidden",
+            "fixed inset-0 z-20 top-0 pt-40 bg-white h-screen flex flex-col transition-transform duration-300 ease-in-out xl:hidden overflow-hidden",
             isOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
