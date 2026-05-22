@@ -116,7 +116,7 @@ export default function Nav() {
 
         <div
           className={cn(
-            "fixed inset-0 z-20 top-0 pt-40 bg-white h-screen flex flex-col transition-transform duration-300 ease-in-out xl:hidden",
+            "fixed inset-0 z-20 top-0 pt-40 bg-white h-screen flex flex-col transition-transform duration-300 ease-in-out xl:hidden overflow-hidden",
             isOpen ? "translate-x-0" : "translate-x-full",
           )}
         >
