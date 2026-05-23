@@ -8,33 +8,30 @@ export const size = {
 };
 export const contentType = "image/png";
 
-const previewTitle =
-  "GreenCard Finance | Global payments for African freelancers";
-
 function BrandLogo() {
   return (
     <div
       style={{
         display: "flex",
         alignItems: "center",
-        gap: 24,
+        gap: 42,
       }}
     >
       <div
         style={{
           position: "relative",
-          width: 128,
-          height: 128,
+          width: 232,
+          height: 232,
           display: "flex",
         }}
       >
         <div
           style={{
             position: "absolute",
-            left: 10,
-            bottom: 8,
-            width: 42,
-            height: 106,
+            left: 18,
+            bottom: 15,
+            width: 76,
+            height: 192,
             background: "#0E3E29",
             transform: "rotate(24deg)",
           }}
@@ -42,10 +39,10 @@ function BrandLogo() {
         <div
           style={{
             position: "absolute",
-            left: 48,
+            left: 88,
             top: 0,
-            width: 72,
-            height: 118,
+            width: 130,
+            height: 214,
             background: "#2E8B57",
             transform: "rotate(24deg)",
           }}
@@ -61,7 +58,7 @@ function BrandLogo() {
       >
         <span
           style={{
-            fontSize: 52,
+            fontSize: 82,
             fontWeight: 900,
             letterSpacing: 0,
           }}
@@ -70,10 +67,10 @@ function BrandLogo() {
         </span>
         <span
           style={{
-            fontSize: 40,
+            fontSize: 64,
             fontWeight: 500,
-            letterSpacing: 18,
-            marginTop: 8,
+            letterSpacing: 28,
+            marginTop: 14,
           }}
         >
           FINANCE
@@ -91,56 +88,13 @@ export default function Image() {
           width: "100%",
           height: "100%",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
+          alignItems: "center",
+          justifyContent: "center",
           background: "#D8F2E2",
-          padding: "72px 84px 64px",
           fontFamily: "Arial, sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 58,
-          }}
-        >
-          <BrandLogo />
-
-          <div
-            style={{
-              color: "#0B1510",
-              fontSize: 76,
-              fontWeight: 900,
-              lineHeight: 1.04,
-              letterSpacing: 0,
-              maxWidth: 1000,
-            }}
-          >
-            {previewTitle}
-          </div>
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            justifyContent: "space-between",
-            alignItems: "center",
-            color: "#0E3E29",
-            fontSize: 32,
-            fontWeight: 800,
-          }}
-        >
-          <span>greencardfinance.com</span>
-          <span
-            style={{
-              color: "#2E8B57",
-            }}
-          >
-            Transparent FX. Global payments.
-          </span>
-        </div>
+        <BrandLogo />
       </div>
     ),
     size,
