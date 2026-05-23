@@ -34,6 +34,7 @@ interface ConverterCardProps {
   onFromChange: (currency: Currency) => void;
   onToChange: (currency: Currency) => void;
   onAmountChange: (value: number) => void;
+  onRecipientAmountChange: (value: number) => void;
 }
 
 function formatRecipientAmount(value: number, currencyCode: string) {
@@ -47,6 +48,12 @@ function formatRecipientAmount(value: number, currencyCode: string) {
 }
 
 function formatAmount(value: number) {
+  return value.toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatInputAmount(value: number) {
   return value.toLocaleString("en-US", {
     maximumFractionDigits: 2,
   });
@@ -99,6 +106,7 @@ export function ConverterCard({
   onFromChange,
   onToChange,
   onAmountChange,
+  onRecipientAmountChange,
   estimatedTime,
   transferFees,
   isConverting = false,
@@ -109,6 +117,10 @@ export function ConverterCard({
     : errorMessage
       ? "Rate unavailable"
       : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
+  const formattedRecipientText = errorMessage
+    ? "0"
+    : formatRecipientAmount(convertedAmount, toCurrency.code);
+  const [recipientDraft, setRecipientDraft] = useState<string | null>(null);
 
   return (
     <div className="w-full rounded-[34px] border-[7px] border-[#7DAE8A] bg-[#DFF3E5] shadow-[0_18px_50px_rgba(69,121,82,0.16)]">
@@ -122,17 +134,9 @@ export function ConverterCard({
               type="text"
               inputMode="decimal"
               aria-label="Amount to send"
-              value={amount.toLocaleString()}
+              value={formatInputAmount(amount)}
               onChange={(e) => {
-                const cleaned = e.target.value
-                  .replace(/,/g, "")
-                  .replace(/[^\d.]/g, "");
-                const [whole, ...decimals] = cleaned.split(".");
-                const normalized =
-                  decimals.length > 0
-                    ? `${whole}.${decimals.join("")}`
-                    : whole;
-                const nextAmount = Number(normalized);
+                const nextAmount = parseMoneyInput(e.target.value);
 
                 onAmountChange(Number.isFinite(nextAmount) ? nextAmount : 0);
               }}
@@ -161,22 +165,32 @@ export function ConverterCard({
         </div>
 
         <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 flex-1">
+          <label className="min-w-0 flex-1">
             <Typography as="span" size="body-sm" color="charcoal" weight="medium">
               Recipient gets
             </Typography>
-            <div className="mt-3 flex min-h-[42px] items-center gap-1">
-              {errorMessage ? (
-                <Typography size="display-sm" weight="bold" align={"left"}>
-                  0
-                </Typography>
-              ) : (
-                <Typography size="display-sm" weight="bold" align={"left"}>
-                  {formatRecipientAmount(convertedAmount, toCurrency.code)}
-                </Typography>
-              )}
-            </div>
-          </div>
+            <input
+              type="text"
+              inputMode="decimal"
+              aria-label="Amount recipient gets"
+              value={recipientDraft ?? formattedRecipientText}
+              onFocus={() => {
+                setRecipientDraft(errorMessage ? "" : formattedRecipientText);
+              }}
+              onChange={(e) => {
+                setRecipientDraft(e.target.value);
+                const nextAmount = parseMoneyInput(e.target.value);
+
+                onRecipientAmountChange(
+                  Number.isFinite(nextAmount) ? nextAmount : 0,
+                );
+              }}
+              onBlur={() => {
+                setRecipientDraft(null);
+              }}
+              className="mt-3 block w-full bg-transparent text-[2rem] font-extrabold leading-none text-black outline-none sm:text-[2.4rem]"
+            />
+          </label>
 
           <CurrencySelect
             selected={toCurrency}
@@ -237,6 +251,15 @@ export function ConverterCard({
       </div>
     </div>
   );
+}
+
+function parseMoneyInput(value: string) {
+  const cleaned = value.replace(/,/g, "").replace(/[^\d.]/g, "");
+  const [whole, ...decimals] = cleaned.split(".");
+  const normalized =
+    decimals.length > 0 ? `${whole}.${decimals.join("")}` : whole;
+
+  return Number(normalized);
 }
 
 interface CurrencySelectProps {

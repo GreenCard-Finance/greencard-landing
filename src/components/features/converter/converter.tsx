@@ -6,6 +6,7 @@ import {
   fetchPublicBootstrap,
   fetchPublicFxRate,
   type PublicBootstrapResponse,
+  type PublicFxRateResponse,
   type SupportedDirection,
 } from "@/lib/service/fx";
 import {
@@ -99,6 +100,23 @@ function findDirection(
 
 function uniqueCurrencies(codes: string[]) {
   return Array.from(new Set(codes)).map(toCurrency);
+}
+
+function calculateSourceAmountFromRecipient(
+  recipientAmount: number,
+  customerRate: number,
+  direction: SupportedDirection,
+) {
+  if (recipientAmount <= 0 || customerRate <= 0) return 0;
+
+  const isNgnToForeign =
+    direction.fromCurrency === "NGN" && direction.toCurrency !== "NGN";
+
+  const sourceAmount = isNgnToForeign
+    ? recipientAmount * customerRate
+    : recipientAmount / customerRate;
+
+  return Math.round(sourceAmount * 100) / 100;
 }
 
 function Converter({ bootstrap }: ConverterProps) {
@@ -198,7 +216,7 @@ function Converter({ bootstrap }: ConverterProps) {
       direction.toCurrency,
     );
 
-    if (!publicRate) return false;
+    if (!publicRate) return null;
 
     setRate(publicRate.customer_rate ?? 0);
     setRateDescription("");
@@ -208,7 +226,7 @@ function Converter({ bootstrap }: ConverterProps) {
     );
     setErrorMessage("");
 
-    return true;
+    return publicRate;
   }, []);
 
   const handleConvert = useCallback(
@@ -226,9 +244,9 @@ function Converter({ bootstrap }: ConverterProps) {
         setConvertedAmount(0);
         setErrorMessage("");
 
-        const hasPublicRate = await applyPublicRate(selectedDirection);
+        const publicRate = await applyPublicRate(selectedDirection);
 
-        if (!hasPublicRate) {
+        if (!publicRate) {
           setRate(0);
           setRateDescription("");
           setTransferFee("--");
@@ -310,6 +328,31 @@ function Converter({ bootstrap }: ConverterProps) {
     debouncedConvert(value);
   };
 
+  const onRecipientAmountChange = async (value: number) => {
+    setConvertedAmount(value);
+    setErrorMessage("");
+
+    if (!selectedDirection) return;
+
+    let currentRate: number | undefined = rate;
+    let publicRate: PublicFxRateResponse | null = null;
+
+    if (!currentRate || currentRate <= 0) {
+      publicRate = await applyPublicRate(selectedDirection);
+      currentRate = publicRate?.customer_rate;
+    }
+
+    const nextAmount = calculateSourceAmountFromRecipient(
+      value,
+      currentRate ?? 0,
+      selectedDirection,
+    );
+
+    setAmount(nextAmount);
+    amountRef.current = nextAmount;
+    debouncedConvert(nextAmount);
+  };
+
   useEffect(() => {
     if (!selectedDirection) return;
 
@@ -373,6 +416,9 @@ function Converter({ bootstrap }: ConverterProps) {
         rateDescription={rateDescription}
         amount={amount}
         onAmountChange={onAmountChange}
+        onRecipientAmountChange={(value) => {
+          void onRecipientAmountChange(value);
+        }}
         convertedAmount={convertedAmount}
         transferFees={transferFee}
         estimatedTime={estimatedArrival}
