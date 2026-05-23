@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "Global payments, transparent FX, and seamless money movement built for African freelancers.",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/images/gcf-social-preview.png",
         width: 1200,
         height: 630,
         alt: "GreenCard Finance - Global payments for African freelancers",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     title: "GreenCard Finance | Global payments for African freelancers",
     description:
       "Global payments, transparent FX, and seamless money movement built for African freelancers.",
-    images: ["/opengraph-image"],
+    images: ["/images/gcf-social-preview.png"],
   },
   icons: {
     icon: "/favicon.ico",
