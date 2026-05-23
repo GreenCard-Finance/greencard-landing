@@ -144,7 +144,6 @@ function Converter({ bootstrap }: ConverterProps) {
   const [estimatedArrival, setEstimatedArrival] = useState<number | string>(
     "--",
   );
-  const [isConverting, setIsConverting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const amountRef = useRef(amount);
 
@@ -256,7 +255,6 @@ function Converter({ bootstrap }: ConverterProps) {
         return;
       }
 
-      setIsConverting(true);
       setErrorMessage("");
 
       try {
@@ -306,8 +304,6 @@ function Converter({ bootstrap }: ConverterProps) {
             ? error.message
             : "Unable to create quote right now",
         );
-      } finally {
-        setIsConverting(false);
       }
     },
     [applyPublicRate, selectedDirection],
@@ -422,7 +418,6 @@ function Converter({ bootstrap }: ConverterProps) {
         convertedAmount={convertedAmount}
         transferFees={transferFee}
         estimatedTime={estimatedArrival}
-        isConverting={isConverting}
         errorMessage={errorMessage}
       />
     </div>

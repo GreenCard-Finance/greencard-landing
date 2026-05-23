@@ -26,7 +26,6 @@ interface ConverterCardProps {
   toCurrencies: Currency[];
   amount: number;
   convertedAmount: number;
-  isConverting?: boolean;
   errorMessage?: string;
   transferFees: number | string;
 
@@ -109,7 +108,6 @@ export function ConverterCard({
   onRecipientAmountChange,
   estimatedTime,
   transferFees,
-  isConverting = false,
   errorMessage = "",
 }: ConverterCardProps) {
   const rateSummary = errorMessage
@@ -243,7 +241,7 @@ export function ConverterCard({
       <div className="px-7 pb-7 sm:px-9">
         <Link href="#waitlist" className="block">
           <Button variant={"forest"} className="font-semibold">
-            {isConverting ? "Getting quote..." : "Send money"}
+            Send money
           </Button>
         </Link>
       </div>
