@@ -91,7 +91,8 @@ function SectionSeven() {
                 size="display-md"
                 color="charcoal"
                 align="center"
-                tracking="tight"
+                weight={"bold"}
+                className="tracking-wide "
               >
                 Get early access to <br />
                 <Typography
@@ -99,7 +100,8 @@ function SectionSeven() {
                   font="heading"
                   size="display-md"
                   color="green"
-                  tracking="tight"
+                  weight={"bold"}
+                  className="tracking-wide"
                 >
                   GREENCARD FINANCE
                 </Typography>
@@ -209,7 +211,8 @@ function SectionSeven() {
                 size="display-md"
                 color="green"
                 align="center"
-                tracking="tight"
+                weight={"bold"}
+                className="tracking-wide"
               >
                 TALK SOON
               </Typography>

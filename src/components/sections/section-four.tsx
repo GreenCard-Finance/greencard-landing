@@ -36,7 +36,8 @@ function SectionFour() {
               size="display-lg"
               color="white"
               align={"right"}
-              className="z-10"
+              weight={"bold"}
+              className="tracking-wide z-10"
             >
               Borderless <br />
               payments <br />

@@ -1,24 +1,13 @@
-import {
-  fadeInRight,
-  slideInLeft,
-  slideInRight,
-  springUp,
-} from "@/lib/animations";
+import { fadeInRight, slideInLeft, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
-import {
-  herowoman,
-  heropay,
-  heropay_mobile,
-  herowoman_mobile,
-} from "@/assets/images";
+import { heropay_mobile, herowoman_mobile, lady, hand } from "@/assets/images";
 import Image from "next/image";
 import { HeroArrow } from "../ui/hero-arrow";
 
 function Hero() {
   return (
-    <section className="max-w-360 mx-auto min-h-[calc(100vh-80px)] w-full overflow-x-hidden xl:flex justify-between xl:mt-20">
-      {" "}
+    <section className="mx-auto min-h-screen w-full overflow-x-hidden xl:flex justify-between">
       {/* mobile */}
       <div className="xl:hidden relative">
         <MotionWrapper
@@ -73,7 +62,79 @@ function Hero() {
         </MotionWrapper>
       </div>
       {/* desktop */}
-      <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between relative">
+
+      <div className="w-full h-screen relative overflow-hidden flex flex-col">
+        <div className="flex w-full h-[74vh] justify-between">
+          <MotionWrapper
+            variants={slideInLeft}
+            className="mt-40 2xl:mt-35 pl-[5%] 2xl:pl-[10%]"
+          >
+            <Typography
+              as="h1"
+              font="heading"
+              size="display-lg"
+              color="charcoal"
+              align="left"
+              weight={"bold"}
+              className="tracking-wide"
+            >
+              Pay globally <br />
+              with your <br />
+              <span className="text-green-700">GreenCard</span>
+            </Typography>
+          </MotionWrapper>
+          <div className="w-[55%] relative h-full">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: "#B286BF",
+                clipPath: "polygon(72% 0%, 100% 0%, 100% 100%, 0% 100%)",
+              }}
+            />
+
+            <Image
+              src={lady}
+              alt="Woman at computer"
+              width={800}
+              height={800}
+              priority
+              className="absolute bottom-0 right-0 w-auto"
+              style={{
+                height: "calc(100% - 110px)",
+                // width: "calc(100% - 100px)",
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="flex-1 flex w-full h-full">
+          <div className="w-[45%] relative">
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundColor: "#1F2933",
+                clipPath: "polygon(0% 0%, 100% 0%, 60% 100%, 0% 100%)",
+              }}
+            />
+
+            <Image
+              src={hand}
+              alt="Hand holding phone"
+              width={600}
+              height={600}
+              priority
+              className="absolute bottom-0 left-0 h-full w-auto"
+              style={{ height: "calc(25vh + 50px)" }}
+            />
+          </div>
+
+          <div className="flex-1 mt-9 ml-20">
+            <HeroArrow />
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between relative">
         <MotionWrapper
           variants={slideInLeft}
           className="mt-28 xl:mt-12 pl-20 2xl:mt-20 2xl:pl-0"
@@ -125,7 +186,7 @@ function Hero() {
       </div>
       <div className="absolute -translate-x-35 left-1/2 -translate-y-1/2 top-1/2 z-20 hidden xl:block">
         <HeroArrow />
-      </div>
+      </div> */}
     </section>
   );
 }
