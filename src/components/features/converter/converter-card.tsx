@@ -112,11 +112,9 @@ export function ConverterCard({
   isConverting = false,
   errorMessage = "",
 }: ConverterCardProps) {
-  const rateSummary = isConverting
-    ? "Getting live quote..."
-    : errorMessage
-      ? "Rate unavailable"
-      : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
+  const rateSummary = errorMessage
+    ? "Rate unavailable"
+    : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
   const formattedRecipientText = errorMessage
     ? "0"
     : formatRecipientAmount(convertedAmount, toCurrency.code);
