@@ -8,78 +8,13 @@ export const size = {
 };
 export const contentType = "image/png";
 
-function BrandLogo() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: 42,
-      }}
-    >
-      <div
-        style={{
-          position: "relative",
-          width: 232,
-          height: 232,
-          display: "flex",
-        }}
-      >
-        <div
-          style={{
-            position: "absolute",
-            left: 18,
-            bottom: 15,
-            width: 76,
-            height: 192,
-            background: "#0E3E29",
-            transform: "rotate(24deg)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            left: 88,
-            top: 0,
-            width: 130,
-            height: 214,
-            background: "#2E8B57",
-            transform: "rotate(24deg)",
-          }}
-        />
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          color: "#0B1510",
-          lineHeight: 1,
-        }}
-      >
-        <span
-          style={{
-            fontSize: 82,
-            fontWeight: 900,
-            letterSpacing: 0,
-          }}
-        >
-          GREENCARD
-        </span>
-        <span
-          style={{
-            fontSize: 64,
-            fontWeight: 500,
-            letterSpacing: 28,
-            marginTop: 14,
-          }}
-        >
-          FINANCE
-        </span>
-      </div>
-    </div>
-  );
-}
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000");
 
+/* eslint-disable @next/next/no-img-element */
 export default function Image() {
   return new ImageResponse(
     (
@@ -94,7 +29,17 @@ export default function Image() {
           fontFamily: "Arial, sans-serif",
         }}
       >
-        <BrandLogo />
+        <img
+          src={`${siteUrl}/images/gcf-horizontal-logo.svg`}
+          alt="GreenCard Finance"
+          width="960"
+          height="960"
+          style={{
+            width: 960,
+            height: 960,
+            objectFit: "contain",
+          }}
+        />
       </div>
     ),
     size,
