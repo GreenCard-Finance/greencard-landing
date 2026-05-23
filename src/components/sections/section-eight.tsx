@@ -20,6 +20,7 @@ function SectionEight() {
             align={"center"}
             className="uppercase tracking-widest"
           >
+            {" "}
             Our Partners
           </Typography>
           <Typography
@@ -31,6 +32,7 @@ function SectionEight() {
             align={"center"}
             className="text-3xl font-bold text-gray-900 leading-tight mb-4"
           >
+            {" "}
             Trusted by the best in fintech{" "}
           </Typography>
 
@@ -41,7 +43,7 @@ function SectionEight() {
             color={"charcoal"}
             weight={"regular"}
             align={"center"}
-            className="leading-relaxed"
+            className="leading-relaxed hidden xl:block"
           >
             We collaborate with leading platforms across Africa to deliver
             seamless, reliable financial experiences for everyone.{" "}
