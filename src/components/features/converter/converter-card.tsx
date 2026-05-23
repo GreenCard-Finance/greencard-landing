@@ -19,14 +19,12 @@ export interface Currency {
 
 interface ConverterCardProps {
   rate: number;
-  rateDescription?: string;
   fromCurrency: Currency;
   toCurrency: Currency;
   fromCurrencies: Currency[];
   toCurrencies: Currency[];
   amount: number;
   convertedAmount: number;
-  isConverting?: boolean;
   errorMessage?: string;
   transferFees: number | string;
 
@@ -86,7 +84,7 @@ function getDirectionalRateSummary(
   fromCurrency: Currency,
   toCurrency: Currency,
 ) {
-  if (rate <= 0) return "Rate unavailable";
+  if (rate <= 0) return "";
 
   const isNgnToForeign =
     fromCurrency.code === "NGN" && toCurrency.code !== "NGN";
@@ -109,14 +107,9 @@ export function ConverterCard({
   onRecipientAmountChange,
   estimatedTime,
   transferFees,
-  isConverting = false,
   errorMessage = "",
 }: ConverterCardProps) {
-  const rateSummary = isConverting
-    ? "Getting live quote..."
-    : errorMessage
-      ? "Rate unavailable"
-      : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
+  const rateSummary = getDirectionalRateSummary(rate, fromCurrency, toCurrency);
   const formattedRecipientText = errorMessage
     ? "0"
     : formatRecipientAmount(convertedAmount, toCurrency.code);
@@ -157,9 +150,13 @@ export function ConverterCard({
           <div className="absolute left-1/2 top-1/2 w-max max-w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[#DDF8E6] px-4 py-2 shadow-[0_10px_24px_rgba(53,142,75,0.12)]">
             <div className="flex items-center justify-center gap-2">
               <TrendingUp size={16} strokeWidth={2.2} />
-              <Typography size="body-sm" color="charcoal" className="font-semibold">
-                {rateSummary}
-              </Typography>
+              {rateSummary ? (
+                <Typography size="body-sm" color="charcoal" className="font-semibold">
+                  {rateSummary}
+                </Typography>
+              ) : (
+                <span className="block h-5 w-28" aria-hidden="true" />
+              )}
             </div>
           </div>
         </div>
@@ -245,7 +242,7 @@ export function ConverterCard({
       <div className="px-7 pb-7 sm:px-9">
         <Link href="#waitlist" className="block">
           <Button variant={"forest"} className="font-semibold">
-            {isConverting ? "Getting quote..." : "Send money"}
+            Send money
           </Button>
         </Link>
       </div>

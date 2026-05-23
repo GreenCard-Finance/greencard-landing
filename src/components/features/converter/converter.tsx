@@ -13,7 +13,6 @@ import {
   countryPreferences,
   useCountryPreference,
 } from "../country/country-preference";
-import { debounce } from "lodash";
 
 type ConverterProps = {
   bootstrap: PublicBootstrapResponse | null;
@@ -102,6 +101,10 @@ function uniqueCurrencies(codes: string[]) {
   return Array.from(new Set(codes)).map(toCurrency);
 }
 
+function getDirectionKey(direction: SupportedDirection) {
+  return `${direction.fromCurrency}-${direction.toCurrency}`;
+}
+
 function calculateSourceAmountFromRecipient(
   recipientAmount: number,
   customerRate: number,
@@ -136,17 +139,16 @@ function Converter({ bootstrap }: ConverterProps) {
 
   const [selectedDirection, setSelectedDirection] =
     useState<SupportedDirection | null>(initialDirection);
-  const [rate, setRate] = useState<number>(0);
-  const [rateDescription, setRateDescription] = useState("");
+  const [rateCache, setRateCache] = useState<
+    Record<string, PublicFxRateResponse>
+  >({});
   const [amount, setAmount] = useState<number>(100);
   const [convertedAmount, setConvertedAmount] = useState<number>(0);
-  const [transferFee, setTransferFee] = useState<number | string>("--");
-  const [estimatedArrival, setEstimatedArrival] = useState<number | string>(
-    "--",
-  );
-  const [isConverting, setIsConverting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const amountRef = useRef(amount);
+  const activeQuoteRequestRef = useRef(0);
+  const selectedDirectionKeyRef = useRef("");
+  const convertDelayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -171,10 +173,6 @@ function Converter({ bootstrap }: ConverterProps) {
       setBootstrapData(nextBootstrap);
       setSelectedDirection(nextDirection);
       setConvertedAmount(0);
-      setRate(0);
-      setRateDescription("");
-      setTransferFee("--");
-      setEstimatedArrival("--");
       setErrorMessage("");
     }
 
@@ -210,53 +208,141 @@ function Converter({ bootstrap }: ConverterProps) {
     );
   }, [directions, selectedDirection]);
 
-  const applyPublicRate = useCallback(async (direction: SupportedDirection) => {
-    const publicRate = await fetchPublicFxRate(
-      direction.fromCurrency,
-      direction.toCurrency,
-    );
+  const selectedDirectionKey = selectedDirection
+    ? getDirectionKey(selectedDirection)
+    : "";
+  const selectedPublicRate = selectedDirectionKey
+    ? rateCache[selectedDirectionKey]
+    : undefined;
+  const rate = selectedPublicRate?.customer_rate ?? 0;
+  const transferFee = selectedPublicRate?.transfer_fee ?? "--";
+  const estimatedArrival = selectedPublicRate
+    ? selectedPublicRate.estimated_arrival ?? "Usually within minutes"
+    : "--";
 
-    if (!publicRate) return null;
+  useEffect(() => {
+    selectedDirectionKeyRef.current = selectedDirectionKey;
+  }, [selectedDirectionKey]);
 
-    setRate(publicRate.customer_rate ?? 0);
-    setRateDescription("");
-    setTransferFee(publicRate.transfer_fee ?? 0);
-    setEstimatedArrival(
-      publicRate.estimated_arrival ?? "Usually within minutes",
-    );
-    setErrorMessage("");
+  const cachePublicRate = useCallback(
+    (direction: SupportedDirection, publicRate: PublicFxRateResponse) => {
+      setRateCache((currentCache) => ({
+        ...currentCache,
+        [getDirectionKey(direction)]: publicRate,
+      }));
+    },
+    [],
+  );
 
-    return publicRate;
+  const cacheQuoteRate = useCallback(
+    (direction: SupportedDirection, quote: CustomerQuoteResponse) => {
+      if (typeof quote.customer_rate !== "number") return;
+
+      const customerRate = quote.customer_rate;
+
+      setRateCache((currentCache) => {
+        const key = getDirectionKey(direction);
+        const existingRate = currentCache[key];
+
+        return {
+          ...currentCache,
+          [key]: {
+            from_currency: direction.fromCurrency,
+            to_currency: direction.toCurrency,
+            currency_pair_direction: `${direction.fromCurrency} -> ${direction.toCurrency}`,
+            customer_rate: customerRate,
+            transfer_fee:
+              typeof quote.transfer_fee === "number"
+                ? quote.transfer_fee
+                : existingRate?.transfer_fee ?? 0,
+            estimated_arrival:
+              quote.estimated_arrival ?? existingRate?.estimated_arrival,
+            published_at: existingRate?.published_at ?? "",
+            expires_at: quote.expires_at ?? existingRate?.expires_at ?? "",
+          },
+        };
+      });
+    },
+    [],
+  );
+
+  const removeCachedRate = useCallback((direction: SupportedDirection) => {
+    setRateCache((currentCache) => {
+      const nextCache = { ...currentCache };
+
+      delete nextCache[getDirectionKey(direction)];
+
+      return nextCache;
+    });
   }, []);
+
+  const applyPublicRate = useCallback(
+    async (direction: SupportedDirection, options?: { clearError?: boolean }) => {
+      const publicRate = await fetchPublicFxRate(
+        direction.fromCurrency,
+        direction.toCurrency,
+      );
+
+      if (!publicRate) return null;
+
+      cachePublicRate(direction, publicRate);
+
+      if (
+        options?.clearError &&
+        selectedDirectionKeyRef.current === getDirectionKey(direction)
+      ) {
+        setErrorMessage("");
+      }
+
+      return publicRate;
+    },
+    [cachePublicRate],
+  );
+
+  useEffect(() => {
+    let cancelled = false;
+
+    directions.forEach((direction) => {
+      void (async () => {
+        const publicRate = await fetchPublicFxRate(
+          direction.fromCurrency,
+          direction.toCurrency,
+        );
+
+        if (!cancelled && publicRate) {
+          cachePublicRate(direction, publicRate);
+        }
+      })();
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [cachePublicRate, directions]);
 
   const handleConvert = useCallback(
     async (currentAmount: number) => {
-      if (!BASE_URL || !selectedDirection) {
+      const direction = selectedDirection;
+
+      if (!BASE_URL || !direction) {
         setConvertedAmount(0);
-        setRate(0);
-        setRateDescription("");
-        setTransferFee("--");
-        setEstimatedArrival("--");
         return;
       }
+
+      const directionKey = getDirectionKey(direction);
+      const requestId = activeQuoteRequestRef.current + 1;
+
+      activeQuoteRequestRef.current = requestId;
 
       if (currentAmount <= 0) {
         setConvertedAmount(0);
         setErrorMessage("");
 
-        const publicRate = await applyPublicRate(selectedDirection);
-
-        if (!publicRate) {
-          setRate(0);
-          setRateDescription("");
-          setTransferFee("--");
-          setEstimatedArrival("--");
-        }
+        await applyPublicRate(direction, { clearError: true });
 
         return;
       }
 
-      setIsConverting(true);
       setErrorMessage("");
 
       try {
@@ -264,19 +350,30 @@ function Converter({ bootstrap }: ConverterProps) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            fromCurrency: selectedDirection.fromCurrency,
-            toCurrency: selectedDirection.toCurrency,
+            fromCurrency: direction.fromCurrency,
+            toCurrency: direction.toCurrency,
             sourceAmount: currentAmount,
           }),
         });
         const json = (await res.json()) as CustomerQuoteResponse;
 
+        if (
+          activeQuoteRequestRef.current !== requestId ||
+          selectedDirectionKeyRef.current !== directionKey
+        ) {
+          return;
+        }
+
         if (!res.ok) {
           if (isTinyAmountQuoteError(json)) {
-            if (await applyPublicRate(selectedDirection)) {
+            if (await applyPublicRate(direction, { clearError: true })) {
               setConvertedAmount(0);
               return;
             }
+          }
+
+          if (json.code === "RATE_UNAVAILABLE") {
+            removeCachedRate(direction);
           }
 
           throw new Error(
@@ -291,41 +388,51 @@ function Converter({ bootstrap }: ConverterProps) {
         }
 
         setConvertedAmount(json.recipient_gets);
-        setRate(json.customer_rate ?? 0);
-        setRateDescription(json.rate_description ?? "");
-        setTransferFee(json.transfer_fee ?? "--");
-        setEstimatedArrival(json.estimated_arrival ?? "--");
+        cacheQuoteRate(direction, json);
       } catch (error) {
+        if (
+          activeQuoteRequestRef.current !== requestId ||
+          selectedDirectionKeyRef.current !== directionKey
+        ) {
+          return;
+        }
+
         setConvertedAmount(0);
-        setRate(0);
-        setRateDescription("");
-        setTransferFee("--");
-        setEstimatedArrival("--");
         setErrorMessage(
           error instanceof Error
             ? error.message
             : "Unable to create quote right now",
         );
-      } finally {
-        setIsConverting(false);
       }
     },
-    [applyPublicRate, selectedDirection],
+    [applyPublicRate, cacheQuoteRate, removeCachedRate, selectedDirection],
   );
 
-  const debouncedConvert = useMemo(
-    () => debounce(handleConvert, 500),
+  const scheduleConvert = useCallback(
+    (nextAmount: number) => {
+      if (convertDelayRef.current) {
+        clearTimeout(convertDelayRef.current);
+      }
+
+      convertDelayRef.current = setTimeout(() => {
+        void handleConvert(nextAmount);
+      }, 500);
+    },
     [handleConvert],
   );
 
   useEffect(() => {
-    return () => debouncedConvert.cancel();
-  }, [debouncedConvert]);
+    return () => {
+      if (convertDelayRef.current) {
+        clearTimeout(convertDelayRef.current);
+      }
+    };
+  }, [handleConvert]);
 
   const onAmountChange = (value: number) => {
     setAmount(value);
     amountRef.current = value;
-    debouncedConvert(value);
+    scheduleConvert(value);
   };
 
   const onRecipientAmountChange = async (value: number) => {
@@ -350,14 +457,33 @@ function Converter({ bootstrap }: ConverterProps) {
 
     setAmount(nextAmount);
     amountRef.current = nextAmount;
-    debouncedConvert(nextAmount);
+    scheduleConvert(nextAmount);
   };
 
   useEffect(() => {
     if (!selectedDirection) return;
 
+    let cancelled = false;
+    const direction = selectedDirection;
+
+    void (async () => {
+      const publicRate = await fetchPublicFxRate(
+        direction.fromCurrency,
+        direction.toCurrency,
+      );
+
+      if (!cancelled && publicRate) {
+        cachePublicRate(direction, publicRate);
+        setErrorMessage("");
+      }
+    })();
+
     void handleConvert(amountRef.current);
-  }, [handleConvert, selectedDirection]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [cachePublicRate, handleConvert, selectedDirection]);
 
   const handleFromChange = (currency: Currency) => {
     const matchingCountry = countryPreferences.find(
@@ -413,7 +539,6 @@ function Converter({ bootstrap }: ConverterProps) {
         onFromChange={handleFromChange}
         onToChange={handleToChange}
         rate={rate}
-        rateDescription={rateDescription}
         amount={amount}
         onAmountChange={onAmountChange}
         onRecipientAmountChange={(value) => {
@@ -422,7 +547,6 @@ function Converter({ bootstrap }: ConverterProps) {
         convertedAmount={convertedAmount}
         transferFees={transferFee}
         estimatedTime={estimatedArrival}
-        isConverting={isConverting}
         errorMessage={errorMessage}
       />
     </div>
