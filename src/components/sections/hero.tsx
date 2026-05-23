@@ -1,19 +1,7 @@
-import {
-  fadeInRight,
-  slideInLeft,
-  slideInRight,
-  springUp,
-} from "@/lib/animations";
+import { fadeInRight, slideInLeft, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
-import {
-  herowoman,
-  heropay,
-  heropay_mobile,
-  herowoman_mobile,
-  lady,
-  hand,
-} from "@/assets/images";
+import { heropay_mobile, herowoman_mobile, lady, hand } from "@/assets/images";
 import Image from "next/image";
 import { HeroArrow } from "../ui/hero-arrow";
 
@@ -77,14 +65,18 @@ function Hero() {
 
       <div className="w-full h-screen relative overflow-hidden flex flex-col">
         <div className="flex w-full h-[74vh] justify-between">
-          <MotionWrapper variants={slideInLeft} className="mt-30">
+          <MotionWrapper
+            variants={slideInLeft}
+            className="mt-40 2xl:mt-35 pl-[5%] 2xl:pl-[10%]"
+          >
             <Typography
               as="h1"
               font="heading"
               size="display-lg"
               color="charcoal"
               align="left"
-              tracking="tight"
+              weight={"bold"}
+              className="tracking-wide"
             >
               Pay globally <br />
               with your <br />
@@ -107,7 +99,10 @@ function Hero() {
               height={800}
               priority
               className="absolute bottom-0 right-0 w-auto"
-              style={{ height: "calc(100% - 110px)" }}
+              style={{
+                height: "calc(100% - 110px)",
+                // width: "calc(100% - 100px)",
+              }}
             />
           </div>
         </div>
