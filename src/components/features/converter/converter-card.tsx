@@ -26,7 +26,6 @@ interface ConverterCardProps {
   toCurrencies: Currency[];
   amount: number;
   convertedAmount: number;
-  isConverting?: boolean;
   errorMessage?: string;
   transferFees: number | string;
 
@@ -34,6 +33,7 @@ interface ConverterCardProps {
   onFromChange: (currency: Currency) => void;
   onToChange: (currency: Currency) => void;
   onAmountChange: (value: number) => void;
+  onRecipientAmountChange: (value: number) => void;
 }
 
 function formatRecipientAmount(value: number, currencyCode: string) {
@@ -47,6 +47,12 @@ function formatRecipientAmount(value: number, currencyCode: string) {
 }
 
 function formatAmount(value: number) {
+  return value.toLocaleString("en-US", {
+    maximumFractionDigits: 2,
+  });
+}
+
+function formatInputAmount(value: number) {
   return value.toLocaleString("en-US", {
     maximumFractionDigits: 2,
   });
@@ -99,40 +105,39 @@ export function ConverterCard({
   onFromChange,
   onToChange,
   onAmountChange,
+  onRecipientAmountChange,
   estimatedTime,
   transferFees,
-  isConverting = false,
   errorMessage = "",
 }: ConverterCardProps) {
-  const rateSummary = isConverting
-    ? "Getting live quote..."
-    : errorMessage
-      ? "Rate unavailable"
-      : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
+  const rateSummary = errorMessage
+    ? "Rate unavailable"
+    : getDirectionalRateSummary(rate, fromCurrency, toCurrency);
+  const formattedRecipientText = errorMessage
+    ? "0"
+    : formatRecipientAmount(convertedAmount, toCurrency.code);
+  const [recipientDraft, setRecipientDraft] = useState<string | null>(null);
 
   return (
     <div className="w-full rounded-[34px] border-[7px] border-[#7DAE8A] bg-[#DFF3E5] shadow-[0_18px_50px_rgba(69,121,82,0.16)]">
-      <div className="rounded-[24px] bg-white px-7 py-8 sm:px-9">
+      <div className="rounded-3xl bg-white px-7 py-8 sm:px-9">
         <div className="flex items-start justify-between gap-4">
           <label className="min-w-0 flex-1">
-            <Typography as="span" size="body-sm" color="charcoal" weight="medium">
+            <Typography
+              as="span"
+              size="body-sm"
+              color="charcoal"
+              weight="medium"
+            >
               You send
             </Typography>
             <input
               type="text"
               inputMode="decimal"
               aria-label="Amount to send"
-              value={amount.toLocaleString()}
+              value={formatInputAmount(amount)}
               onChange={(e) => {
-                const cleaned = e.target.value
-                  .replace(/,/g, "")
-                  .replace(/[^\d.]/g, "");
-                const [whole, ...decimals] = cleaned.split(".");
-                const normalized =
-                  decimals.length > 0
-                    ? `${whole}.${decimals.join("")}`
-                    : whole;
-                const nextAmount = Number(normalized);
+                const nextAmount = parseMoneyInput(e.target.value);
 
                 onAmountChange(Number.isFinite(nextAmount) ? nextAmount : 0);
               }}
@@ -153,7 +158,11 @@ export function ConverterCard({
           <div className="absolute left-1/2 top-1/2 w-max max-w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[#DDF8E6] px-4 py-2 shadow-[0_10px_24px_rgba(53,142,75,0.12)]">
             <div className="flex items-center justify-center gap-2">
               <TrendingUp size={16} strokeWidth={2.2} />
-              <Typography size="body-sm" color="charcoal" className="font-semibold">
+              <Typography
+                size="body-sm"
+                color="charcoal"
+                className="font-semibold"
+              >
                 {rateSummary}
               </Typography>
             </div>
@@ -161,22 +170,37 @@ export function ConverterCard({
         </div>
 
         <div className="flex items-start justify-between gap-4">
-          <div className="min-w-0 flex-1">
-            <Typography as="span" size="body-sm" color="charcoal" weight="medium">
+          <label className="min-w-0 flex-1">
+            <Typography
+              as="span"
+              size="body-sm"
+              color="charcoal"
+              weight="medium"
+            >
               Recipient gets
             </Typography>
-            <div className="mt-3 flex min-h-[42px] items-center gap-1">
-              {errorMessage ? (
-                <Typography size="display-sm" weight="bold" align={"left"}>
-                  0
-                </Typography>
-              ) : (
-                <Typography size="display-sm" weight="bold" align={"left"}>
-                  {formatRecipientAmount(convertedAmount, toCurrency.code)}
-                </Typography>
-              )}
-            </div>
-          </div>
+            <input
+              type="text"
+              inputMode="decimal"
+              aria-label="Amount recipient gets"
+              value={recipientDraft ?? formattedRecipientText}
+              onFocus={() => {
+                setRecipientDraft(errorMessage ? "" : formattedRecipientText);
+              }}
+              onChange={(e) => {
+                setRecipientDraft(e.target.value);
+                const nextAmount = parseMoneyInput(e.target.value);
+
+                onRecipientAmountChange(
+                  Number.isFinite(nextAmount) ? nextAmount : 0,
+                );
+              }}
+              onBlur={() => {
+                setRecipientDraft(null);
+              }}
+              className="mt-3 block w-full bg-transparent text-[2rem] font-extrabold leading-none text-black outline-none sm:text-[2.4rem]"
+            />
+          </label>
 
           <CurrencySelect
             selected={toCurrency}
@@ -187,7 +211,11 @@ export function ConverterCard({
         </div>
 
         {errorMessage && (
-          <Typography size="body-sm" color="charcoal" className="mt-4 text-red-600">
+          <Typography
+            size="body-sm"
+            color="charcoal"
+            className="mt-4 text-red-600"
+          >
             {errorMessage}
           </Typography>
         )}
@@ -195,34 +223,78 @@ export function ConverterCard({
 
       <div className="w-full space-y-3 px-7 py-5 sm:px-9">
         <div className="flex items-center justify-between w-full">
-          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="regular"
+            align={"left"}
+            className="text-[#254333]"
+          >
             Transfer fees
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="bold"
+            align={"left"}
+            className="text-[#254333]"
+          >
             {transferFees === 0 ? "Zero" : transferFees}
           </Typography>
         </div>
         <div className="flex items-center justify-between w-full">
-          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="regular"
+            align={"left"}
+            className="text-[#254333]"
+          >
             We&apos;ll convert
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
-            {errorMessage ? "--" : `${formatAmount(amount)} ${fromCurrency.code}`}
+          <Typography
+            size="body-md"
+            weight="bold"
+            align={"left"}
+            className="text-[#254333]"
+          >
+            {errorMessage
+              ? "--"
+              : `${formatAmount(amount)} ${fromCurrency.code}`}
           </Typography>
         </div>
         <div className="flex items-center justify-between w-full">
-          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="regular"
+            align={"left"}
+            className="text-[#254333]"
+          >
             We&apos;ll charge you
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
-            {errorMessage ? "--" : `${formatAmount(amount)} ${fromCurrency.code}`}
+          <Typography
+            size="body-md"
+            weight="bold"
+            align={"left"}
+            className="text-[#254333]"
+          >
+            {errorMessage
+              ? "--"
+              : `${formatAmount(amount)} ${fromCurrency.code}`}
           </Typography>
         </div>
         <div className="flex items-center justify-between w-full ">
-          <Typography size="body-md" weight="regular" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="regular"
+            align={"left"}
+            className="text-[#254333]"
+          >
             Funds will arrive
           </Typography>
-          <Typography size="body-md" weight="bold" align={"left"} className="text-[#254333]">
+          <Typography
+            size="body-md"
+            weight="bold"
+            align={"left"}
+            className="text-[#254333]"
+          >
             {estimatedTime}
           </Typography>
         </div>
@@ -231,12 +303,21 @@ export function ConverterCard({
       <div className="px-7 pb-7 sm:px-9">
         <Link href="#waitlist" className="block">
           <Button variant={"forest"} className="font-semibold">
-            {isConverting ? "Getting quote..." : "Send money"}
+            Send money
           </Button>
         </Link>
       </div>
     </div>
   );
+}
+
+function parseMoneyInput(value: string) {
+  const cleaned = value.replace(/,/g, "").replace(/[^\d.]/g, "");
+  const [whole, ...decimals] = cleaned.split(".");
+  const normalized =
+    decimals.length > 0 ? `${whole}.${decimals.join("")}` : whole;
+
+  return Number(normalized);
 }
 
 interface CurrencySelectProps {
@@ -266,7 +347,7 @@ function CurrencySelect({
           aria-label={ariaLabel}
           aria-expanded={open}
           onClick={() => setOpen((prev) => !prev)}
-          className="flex min-w-[124px] cursor-pointer items-center justify-between gap-2 rounded-full border-2 border-[#66676C] bg-white px-2.5 py-2 text-black transition-colors hover:border-[#46654F]"
+          className="flex min-w-31 cursor-pointer items-center justify-between gap-2 rounded-full border-2 border-[#66676C] bg-white px-2.5 py-2 text-black transition-colors hover:border-[#46654F]"
         >
           <div className="flex min-w-0 items-center gap-2">
             <div className="h-8 w-8 overflow-hidden rounded-full bg-gray-100 ring-1 ring-black/10">

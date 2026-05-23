@@ -54,11 +54,12 @@ async function SectionThree() {
             size="display-lg"
             color="forest"
             align={"left"}
-            className="text-center xl:text-left"
+            weight={"bold"}
+            className="text-center xl:text-left tracking-wide"
           >
-            Transfers at <br className="hidden sm:block xl:block" /> rates
-            <br className="block sm:hidden" /> that{" "}
-            <br className="hidden sm:block" /> work{" "}
+            Transfers at <br className="hidden sm:block xl:hidden" /> rates
+            <br className="block sm:hidden" /> That{" "}
+            <br className="hidden sm:block xl:hidden" /> work{" "}
             <br className="hidden sm:hidden" /> for
             <br className="block sm:hidden" /> you
           </Typography>

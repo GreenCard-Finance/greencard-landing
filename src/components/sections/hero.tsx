@@ -1,18 +1,7 @@
-import {
-  fadeInRight,
-  slideInLeft,
-  slideInRight,
-  springUp,
-} from "@/lib/animations";
+import { fadeInRight, slideInLeft, springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 import { Typography } from "../ui/typography";
-import {
-  herowoman,
-  heropay,
-  heropay_mobile,
-  herowoman_mobile,
-  lady,
-} from "@/assets/images";
+import { heropay_mobile, herowoman_mobile, lady, hand } from "@/assets/images";
 import Image from "next/image";
 import { HeroArrow } from "../ui/hero-arrow";
 
@@ -74,16 +63,20 @@ function Hero() {
       </div>
       {/* desktop */}
 
-      <div className="w-full h-full relative overflow-hidden flex flex-col bg-yellow-400">
+      <div className="hidden xl:flex w-full h-screen relative overflow-hidden flex-col">
         <div className="flex w-full h-[74vh] justify-between">
-          <MotionWrapper variants={slideInLeft} className="mt-30">
+          <MotionWrapper
+            variants={slideInLeft}
+            className="mt-40 2xl:mt-35 pl-[5%] 2xl:pl-[10%]"
+          >
             <Typography
               as="h1"
               font="heading"
               size="display-lg"
               color="charcoal"
               align="left"
-              tracking="tight"
+              weight={"bold"}
+              className="tracking-wide"
             >
               Pay globally <br />
               with your <br />
@@ -120,9 +113,21 @@ function Hero() {
                 clipPath: "polygon(0% 0%, 100% 0%, 60% 100%, 0% 100%)",
               }}
             />
+
+            <Image
+              src={hand}
+              alt="Hand holding phone"
+              width={600}
+              height={600}
+              priority
+              className="absolute bottom-0 left-0 h-full w-auto"
+              style={{ height: "calc(25vh + 50px)" }}
+            />
           </div>
 
-          <div className="flex-1 bg-red-900">arrow</div>
+          <div className="flex-1 mt-9 ml-20">
+            <HeroArrow />
+          </div>
         </div>
       </div>
 

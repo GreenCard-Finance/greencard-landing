@@ -85,7 +85,7 @@ function SectionEight() {
               variants={springUp}
               delay={i * 0.15}
               key={i}
-              className="w-[25%] grayscale hover:grayscale-0 opacity-70 hover:opacity-100 transition-all duration-300"
+              className="w-[25%] opacity-70 hover:opacity-100 transition-all duration-300"
             >
               <Image
                 alt={`Partner ${i + 1}`}
