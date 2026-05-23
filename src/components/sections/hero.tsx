@@ -63,7 +63,7 @@ function Hero() {
       </div>
       {/* desktop */}
 
-      <div className="w-full h-screen relative overflow-hidden flex flex-col">
+      <div className="hidden xl:flex w-full h-screen relative overflow-hidden flex-col">
         <div className="flex w-full h-[74vh] justify-between">
           <MotionWrapper
             variants={slideInLeft}
