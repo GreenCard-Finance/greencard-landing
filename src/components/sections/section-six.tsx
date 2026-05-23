@@ -34,7 +34,8 @@ function SectionSix() {
               font="heading"
               size="display-lg"
               color="lime"
-              className="my-2"
+              weight={"bold"}
+              className="tracking-wide z-10 my-2"
             >
               Straight <br /> Answers
             </Typography>

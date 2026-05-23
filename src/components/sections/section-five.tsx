@@ -19,6 +19,8 @@ function SectionFive() {
             size="display-md"
             color="white"
             align={"center"}
+            weight={"bold"}
+            className="tracking-wide"
           >
             Get on board, easy as...
           </Typography>

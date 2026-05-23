@@ -54,8 +54,8 @@ async function SectionThree() {
             size="display-lg"
             color="forest"
             align={"left"}
-            weight={"black"}
-            className="text-center xl:text-left"
+            weight={"bold"}
+            className="text-center xl:text-left tracking-wide"
           >
             Transfers at <br className="hidden sm:block xl:hidden" /> rates
             <br className="block sm:hidden" /> That{" "}
