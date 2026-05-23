@@ -31,11 +31,12 @@ async function SectionThree() {
             size="display-lg"
             color="forest"
             align={"left"}
+            weight={"black"}
             className="text-center xl:text-left"
           >
-            Transfers at <br className="hidden sm:block xl:block" /> rates
-            <br className="block sm:hidden" /> that{" "}
-            <br className="hidden sm:block" /> work{" "}
+            Transfers at <br className="hidden sm:block xl:hidden" /> rates
+            <br className="block sm:hidden" /> That{" "}
+            <br className="hidden sm:block xl:hidden" /> work{" "}
             <br className="hidden sm:hidden" /> for
             <br className="block sm:hidden" /> you
           </Typography>
