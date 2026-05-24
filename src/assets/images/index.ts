@@ -41,3 +41,6 @@ export { default as paga } from "../../../public/images/Paga logo_.png";
 export { default as didit } from "../../../public/images/didit.svg";
 export { default as kadavra } from "../../../public/images/kadavra.png";
 export { default as afriex } from "../../../public/images/afriex.svg";
+
+export { default as hand } from "../../../public/images/Layer 2.svg";
+export { default as lady } from "../../../public/images/cleanuplady.svg";

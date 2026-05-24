@@ -177,7 +177,7 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full overflow-hidden bg-[#286744] ">
-      <div className="mx-auto max-w-360 ">
+      <div className="mx-auto max-w-360">
         <Image
           src={greencheck_s2}
           alt="check"
@@ -303,7 +303,7 @@ function SectionOne() {
         <div className="hidden xl:flex relative w-full h-fit overflow-hidden">
           <div className="w-[60%] z-20 mt-10">
             <MotionWrapper
-              variants={slideInRight}
+              variants={slideInLeft}
               delay={0.2}
               className="w-[92%] 2xl:w-full ml-auto"
             >
@@ -313,6 +313,8 @@ function SectionOne() {
                 size="display-lg"
                 color="lime"
                 align="left"
+                weight={"bold"}
+                tracking="wide"
               >
                 Everything
                 <br />
@@ -321,19 +323,18 @@ function SectionOne() {
                 <span className="text-white">instantly accessible</span>
               </Typography>
             </MotionWrapper>
-
-            <MotionWrapper
-              variants={slideInLeft}
-              delay={0.3}
-              className="w-[20%] h-fit absolute left-0"
-            >
-              <Image
-                src={s1_left_hand_desk}
-                alt=""
-                className="w-full h-auto object-contain object-top"
-              />
-            </MotionWrapper>
           </div>
+          <MotionWrapper
+            variants={springUp}
+            delay={0.3}
+            className="w-[20%] h-fit absolute left-0"
+          >
+            <Image
+              src={s1_left_hand_desk}
+              alt=""
+              className="w-full h-auto object-contain object-top"
+            />
+          </MotionWrapper>
 
           <MotionWrapper variants={springUp} delay={0.5} className="flex-1">
             <Image

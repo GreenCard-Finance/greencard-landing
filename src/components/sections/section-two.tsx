@@ -28,7 +28,8 @@ function SectionTwo() {
                 size="display-lg"
                 color="charcoal"
                 weight={"bold"}
-                className="text-center xl:text-left tracking-wide"
+                align={"left"}
+                className="tracking-wide"
               >
                 Smart fx, <br /> better value
               </Typography>

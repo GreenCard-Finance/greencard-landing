@@ -60,7 +60,7 @@ export default function Nav() {
         )}
       >
         <nav className="w-full">
-          <div className="max-w-360 w-full mx-auto flex items-center justify-between gap-x-6 h-20 px-4 sm:h-30 xl:h-20 md:px-8 lg:px-20">
+          <div className="max-w-360 w-[90%] mx-auto flex items-center justify-between gap-x-6 h-20 px-4 sm:h-30 xl:h-20 md:px-8 lg:px-20 xl:px-0">
             <Link
               href="/"
               className="flex items-center gap-2 shrink-0 z-30 w-4/10 xl:w-fit"
@@ -103,7 +103,7 @@ export default function Nav() {
             <div className="xl:hidden flex items-center gap-2 z-30">
               <CountrySelector compact />
               <button
-                className="text-[#1D1E22] flex items-center"
+                className="text-[#1D1E22] flex items-center w-7 h-7"
                 onClick={() => setIsOpen(!isOpen)}
                 aria-label="Open menu"
               >
