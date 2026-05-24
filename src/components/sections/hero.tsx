@@ -9,6 +9,7 @@ import { Typography } from "../ui/typography";
 import { heropay_mobile, herowoman_mobile, hand, lady } from "@/assets/images";
 import Image from "next/image";
 import { HeroArrow } from "../ui/hero-arrow";
+import AnimatedText from "../ui/type-text";
 
 function Hero() {
   return (
@@ -72,6 +73,7 @@ function Hero() {
         <div className="flex w-[45%] mx-auto h-full flex-col justify-between ">
           <MotionWrapper
             variants={slideInLeft}
+            delay={0.5}
             className="ml-auto w-full pt-30 2xl:pt-35 pl-10 xl:pl-15 2xl:pl-0 2xl:w-160"
           >
             <Typography
@@ -85,49 +87,41 @@ function Hero() {
             >
               Pay globally <br />
               with your <br />
-              <span className="text-green-700">GreenCard</span>
+              <AnimatedText />
+              {/* <span className="text-green-700">GreenCard</span> */}
             </Typography>
           </MotionWrapper>
 
-          <div
-            className="w-full relative h-full"
-            style={{ height: "calc(35vh + 50px)" }}
-          >
-            {/* <div
-              className="absolute inset-0 h-full"
-              style={{
-                backgroundColor: "#1F2933",
-                clipPath: "polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%)",
-              }}
-            /> */}
-
+          <MotionWrapper variants={springUp} delay={0.2}>
             <div
-              className="absolute bottom-0 left-0 right-0"
-              style={{
-                height: "85%",
-                backgroundColor: "#1F2933",
-                clipPath: "polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%)",
-              }}
-            />
-            <div
-              // variants={springUp}
-              className="w-full h-full"
+              className="w-full relative h-full"
+              style={{ height: "calc(35vh + 50px)" }}
             >
-              <Image
-                src={hand}
-                alt="Hand holding phone"
-                width={800}
-                height={800}
-                priority
-                className="absolute -bottom-2.5 left-0 h-full w-full object-contain"
+              <div
+                className="absolute bottom-0 left-0 right-0"
+                style={{
+                  height: "85%",
+                  backgroundColor: "#1F2933",
+                  clipPath: "polygon(0% 0%, 100% 0%, 90% 100%, 0% 100%)",
+                }}
               />
+              <div className="w-full h-full">
+                <Image
+                  src={hand}
+                  alt="Hand holding phone"
+                  width={800}
+                  height={800}
+                  priority
+                  className="absolute -bottom-2.5 left-0 h-full w-full object-contain"
+                />
+              </div>
             </div>
-          </div>
+          </MotionWrapper>
         </div>
 
         <div className="w-[55%] h-full relative">
-          <div className="relative w-full h-[80vh]">
-            <MotionWrapper variants={slideInRight} delay={0.2}>
+          <MotionWrapper variants={slideInRight} delay={0.2}>
+            <div className="relative w-full h-[80vh]">
               <div
                 className="absolute inset-0 w-[60%] ml-auto"
                 style={{
@@ -144,8 +138,8 @@ function Hero() {
                 className="absolute bottom-0 right-0 w-full"
                 style={{ height: "calc(100% - 90px)", maxWidth: "none" }}
               />
-            </MotionWrapper>
-          </div>
+            </div>{" "}
+          </MotionWrapper>
           <div className="absolute left-20 mt-6">
             <HeroArrow />
           </div>

@@ -15,6 +15,10 @@ export default function Nav() {
   const [showNav, setShowNav] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [currentTab, setCurrentTab] = useState<{
+    label: string;
+    href: string;
+  }>();
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -76,14 +80,14 @@ export default function Nav() {
             </Link>
             <ul className="hidden xl:flex items-center gap-x-10 w-fit">
               {regularLinks.map((item) => (
-                <li key={item.label}>
+                <li key={item.label} onClick={() => setCurrentTab(item)}>
                   <Link href={item.href}>
                     <Typography
                       as="span"
                       font="source"
                       size="body-lg"
-                      weight="regular"
-                      color="dark-gray"
+                      weight={currentTab === item ? "semibold" : "regular"}
+                      color={currentTab === item ? "lime" : "dark-gray"}
                       className="hover:text-[#145932] transition-colors duration-200"
                     >
                       {item.label}
@@ -108,7 +112,7 @@ export default function Nav() {
                 aria-label="Open menu"
               >
                 {isOpen ? (
-                  <X className="size-9 " fontWeight={600} />
+                  <X className="size-9" fontWeight={600} />
                 ) : (
                   <Menu className="size-7" fontWeight={600} />
                 )}
