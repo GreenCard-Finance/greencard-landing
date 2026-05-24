@@ -58,9 +58,7 @@ export default function Nav() {
         className={cn(
           "sticky xl:fixed xl:w-full top-0 z-50 transition-all duration-300 shadow-sm ",
           showNav ? "translate-y-0" : "-translate-y-full",
-          isScrolled
-            ? "bg-white/40 backdrop-blur-md shadow-sm"
-            : "bg-transparent",
+          isScrolled ? "bg-white/40 backdrop-blur-md shadow-sm" : "bg-white",
         )}
       >
         <nav className="w-full">

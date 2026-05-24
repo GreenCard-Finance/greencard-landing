@@ -13,7 +13,7 @@ import AnimatedText from "../ui/type-text";
 
 function Hero() {
   return (
-    <section className="mx-auto w-full overflow-x-hidden xl:flex justify-between xl:mt20">
+    <section className="mx-auto w-full overflo-hidden xl:flex justify-between">
       {" "}
       {/* mobile */}
       <div className="xl:hidden relative">
@@ -49,7 +49,7 @@ function Hero() {
               <span className="text-[#145932]">GreenCard</span>
             </Typography>
           </MotionWrapper>
-          <div className="absolute right-4 -top-12 sm:top-15 overflow-hidden">
+          <div className="absolute right-4 -top-20 sm:top-15 overflow-hidden">
             <HeroArrow />
           </div>
         </div>
@@ -74,7 +74,7 @@ function Hero() {
           <MotionWrapper
             variants={slideInLeft}
             delay={0.5}
-            className="ml-auto w-full pt-30 2xl:pt-35 pl-10 xl:pl-15 2xl:pl-0 2xl:w-160"
+            className="ml-auto w-full pt-35 2xl:pt-40 pl-10 xl:pl-15 2xl:pl-0 2xl:w-160"
           >
             <Typography
               as="h1"

@@ -8,6 +8,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { CountryPreferenceProvider } from "@/components/features/country/country-preference";
 import { fetchPublicBootstrap } from "@/lib/service/fx";
 import { headers } from "next/headers";
+import { FloatingWaitlistButton } from "@/components/ui/floating-waitlist";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -127,6 +128,7 @@ export default async function RootLayout({
           <main className="flex-1 w-full">{children}</main>
           <Footer />
           <Analytics />
+          <FloatingWaitlistButton />
         </CountryPreferenceProvider>
       </body>
     </html>
