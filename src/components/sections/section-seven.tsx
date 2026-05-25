@@ -44,6 +44,9 @@ function SectionSeven() {
       }
 
       setSubmitted(true);
+      setTimeout(() => {
+        window.open("https://www.instagram.com/greencard_finance/", "_blank");
+      }, 2000);
     } catch {
       setError("Failed to join waitlist. Please try again.");
     } finally {
