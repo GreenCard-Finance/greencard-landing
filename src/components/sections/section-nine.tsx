@@ -61,9 +61,9 @@ function SectionNine() {
             >
               Whether you earn in pounds, dollars, or Canadian dollars,
               GreenCard makes it easier to turn global income into local value.
-              We're starting with Nigeria; helping users get competitive rates,
-              fast naira payouts, and clear transaction tracking from start to
-              finish.
+              With competitive rates, fast local payouts, and clear transaction
+              tracking from start to finish, GreenCard Finance is designed to
+              make cross-border money feel simpler and more reliable.
             </Typography>
           </MotionWrapper>
         </div>
