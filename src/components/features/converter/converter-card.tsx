@@ -8,6 +8,7 @@ import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import ClickAwayListener from "react-click-away-listener";
+import { scrollToSection } from "@/lib/utils";
 
 export interface Currency {
   code: string;
@@ -302,11 +303,13 @@ export function ConverterCard({
       </div>
 
       <div className="px-7 pb-7 sm:px-9">
-        <Link href="#waitlist" className="block">
-          <Button variant={"forest"} className="font-semibold">
-            Send money
-          </Button>
-        </Link>
+        <Button
+          onClick={() => scrollToSection("waitlist")}
+          variant={"forest"}
+          className="font-semibold"
+        >
+          Send money
+        </Button>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Typography } from "@/components/ui/typography";
 import { logo_green } from "@/assets/images";
 import { navItems } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn, scrollToSection } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { CountrySelector } from "../features/country/country-selector";
 
@@ -15,10 +15,7 @@ export default function Nav() {
   const [showNav, setShowNav] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [currentTab, setCurrentTab] = useState<{
-    label: string;
-    href: string;
-  }>();
+  const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -49,6 +46,17 @@ export default function Nav() {
     };
   }, [isOpen]);
 
+  useEffect(() => {
+    const updateHash = () => {
+      setActiveHash(window.location.hash);
+    };
+
+    updateHash();
+    window.addEventListener("hashchange", updateHash);
+
+    return () => window.removeEventListener("hashchange", updateHash);
+  }, []);
+
   const regularLinks = navItems.filter((item) => !item.isButton);
   const ctaItem = navItems.find((item) => item.isButton);
 
@@ -78,14 +86,20 @@ export default function Nav() {
             </Link>
             <ul className="hidden xl:flex items-center gap-x-10 w-fit">
               {regularLinks.map((item) => (
-                <li key={item.label} onClick={() => setCurrentTab(item)}>
-                  <Link href={item.href}>
+                <li key={item.label}>
+                  <Link
+                    href={item.href}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      scrollToSection(item.href.replace("#", ""));
+                    }}
+                  >
                     <Typography
                       as="span"
                       font="source"
                       size="body-lg"
-                      weight={currentTab === item ? "semibold" : "regular"}
-                      color={currentTab === item ? "lime" : "dark-gray"}
+                      weight={activeHash === item.href ? "semibold" : "regular"}
+                      color={"dark-gray"}
                       className="hover:text-[#145932] transition-colors duration-200"
                     >
                       {item.label}
@@ -97,9 +111,12 @@ export default function Nav() {
             <div className="hidden xl:flex xl:items-center xl:gap-3">
               <CountrySelector />
               {ctaItem && (
-                <Link href={ctaItem.href}>
-                  <Button variant={"lime"}>{ctaItem.label}</Button>
-                </Link>
+                <Button
+                  onClick={() => scrollToSection(ctaItem.href.replace("#", ""))}
+                  variant={"lime"}
+                >
+                  {ctaItem.label}
+                </Button>
               )}
             </div>
             <div className="xl:hidden flex items-center gap-2 z-30">
@@ -128,7 +145,11 @@ export default function Nav() {
           {ctaItem && (
             <Link
               href={ctaItem.href}
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsOpen(false);
+                scrollToSection(ctaItem.href.replace("#", ""));
+              }}
               className="w-full bg-[#9FE870] py-3 flex items-center justify-center"
             >
               <Typography
@@ -148,7 +169,11 @@ export default function Nav() {
               <li key={item.label} className="bg-[#F2F3FC]">
                 <Link
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    scrollToSection(item.href.replace("#", ""));
+                  }}
                   className="flex items-center justify-center py-3"
                 >
                   <Typography
