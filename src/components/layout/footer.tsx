@@ -13,7 +13,7 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#1F2933] py-5 px-5 xl:px-0 w-full">
+    <footer className="bg-black py-5 px-5 xl:px-0 w-full">
       <div className="max-w-360 w-[90%] mx-auto">
         <div className="flex flex-col sm:flex-row items-start justify-between w-full">
           <div className="flex flex-col gap-y-3 w-fit">

@@ -17,12 +17,14 @@ function Home() {
       <SectionThree />
       <SectionOne />
       <SectionTwo />
-      <SectionNine />
+
       <SectionFour />
 
       <SectionFive />
       <SectionSix />
+
       <SectionSeven />
+      <SectionNine />
     </>
   );
 }
