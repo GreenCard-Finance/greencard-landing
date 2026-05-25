@@ -1,4 +1,4 @@
-import { logo_green } from "@/assets/images";
+import { logo_white } from "@/assets/images";
 import Image from "next/image";
 import {
   footerAddresses,
@@ -15,9 +15,9 @@ function Footer() {
   return (
     <footer className="bg-[#1F2933] py-5 px-5 xl:px-0">
       <div className="max-w-360 w-[90%] mx-auto ">
-        <div className="flex items-start justify-between">
-          <div className="flex flex-col gap-y-3">
-            <Image src={logo_green} alt="footer-logo" width={140} height={36} />
+        <div className="flex flex-col items-start justify-between">
+          <div className="flex flex-col xl:flex-row gap-y-3">
+            <Image src={logo_white} alt="footer-logo" width={140} height={36} />
 
             <ul className="space-y-1 pl-12">
               {footerLinks.map((item) => (
@@ -49,8 +49,8 @@ function Footer() {
             Contact us
           </Typography>
 
-          <div className="flex flex-col gap-y-3">
-            <ul className="flex items-center justify-end gap-x-3">
+          <div className="flex flex-col gap-y-3 mt-8 mb-2 pl-12 xl:pl-0 xl:mt-0 xl:mb-0">
+            <ul className="flex items-center justify-start xl:justify-end gap-x-3">
               {footerSocialLinks.map((item) => (
                 <li key={item.label} className="cursor-pointer">
                   <Link
@@ -73,7 +73,7 @@ function Footer() {
                       size="body-sm"
                       weight="regular"
                       color="white"
-                      align="right"
+                      align="left"
                       className="transition-opacity duration-200 group-hover:opacity-50"
                     >
                       {item.label}

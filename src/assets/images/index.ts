@@ -31,7 +31,7 @@ export { default as s7_hello } from "../../../public/images/section-waitlist-bfo
 export { default as s7_bye } from "../../../public/images/section-waitlist-after.svg";
 
 // footer icons
-export { default as logo_white } from "../../../public/images/logo-dark.svg";
+export { default as logo_white } from "../../../public/images/GCF Alt Logo.png";
 export { default as linkedin } from "../../../public/images/linkedin.svg";
 export { default as x } from "../../../public/images/x.svg";
 export { default as ig } from "../../../public/images/instagram.svg";
@@ -41,3 +41,6 @@ export { default as paga } from "../../../public/images/Paga logo_.png";
 export { default as didit } from "../../../public/images/didit.svg";
 export { default as kadavra } from "../../../public/images/kadavra.png";
 export { default as afriex } from "../../../public/images/afriex.svg";
+
+export { default as hand } from "../../../public/images/Layer 2.svg";
+export { default as lady } from "../../../public/images/cleanuplady.svg";

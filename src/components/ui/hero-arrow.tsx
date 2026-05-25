@@ -12,7 +12,7 @@ export function HeroArrow() {
         viewBox="0 0 247 369"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="xl:hidden w-25 sm:w-40 md:w-40 lg:w-45 [--arrow-rotate:-15deg] md:[--arrow-rotate:-2deg]"
+        className="xl:hidden w-20 sm:w-40 md:w-40 lg:w-45 [--arrow-rotate:-15deg] md:[--arrow-rotate:-2deg]"
         style={{ transform: "rotate(var(--arrow-rotate, -135deg))" }}
       >
         <motion.path
@@ -24,7 +24,7 @@ export function HeroArrow() {
           transition={{ delay: 1.5 }}
           stroke="#145932"
           strokeWidth="2"
-          fill="transparent"
+          fill="none"
         />
       </svg>
 
@@ -47,7 +47,7 @@ export function HeroArrow() {
           transition={{ delay: 1.5 }}
           stroke="#145932"
           strokeWidth="1"
-          fill="transparent"
+          fill="none"
         />
       </svg>
     </>
