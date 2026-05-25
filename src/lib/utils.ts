@@ -10,6 +10,7 @@ export const isValidEmail = (email: string) => {
 };
 
 export const scrollToSection = (id: string) => {
+  if (!id) return;
   const el = document.getElementById(id);
   if (!el) return;
 
