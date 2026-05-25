@@ -63,12 +63,12 @@ const currencyDetails: Record<string, Omit<Currency, "code">> = {
     countryCode: "EU",
     symbol: "€",
   },
-  CAD: {
-    name: "Canadian Dollar",
-    country: "Canada",
-    countryCode: "CA",
-    symbol: "C$",
-  },
+  // CAD: {
+  //   name: "Canadian Dollar",
+  //   country: "Canada",
+  //   countryCode: "CA",
+  //   symbol: "C$",
+  // },
 };
 
 function toCurrency(code: string): Currency {
@@ -191,7 +191,10 @@ function Converter({ bootstrap }: ConverterProps) {
     : null;
 
   const fromCurrencies = useMemo(
-    () => uniqueCurrencies(countryPreferences.map((country) => country.currencyCode)),
+    () =>
+      uniqueCurrencies(
+        countryPreferences.map((country) => country.currencyCode),
+      ),
     [],
   );
 
@@ -217,7 +220,7 @@ function Converter({ bootstrap }: ConverterProps) {
   const rate = selectedPublicRate?.customer_rate ?? 0;
   const transferFee = selectedPublicRate?.transfer_fee ?? "--";
   const estimatedArrival = selectedPublicRate
-    ? selectedPublicRate.estimated_arrival ?? "Usually within minutes"
+    ? (selectedPublicRate.estimated_arrival ?? "Usually within minutes")
     : "--";
 
   useEffect(() => {
@@ -254,7 +257,7 @@ function Converter({ bootstrap }: ConverterProps) {
             transfer_fee:
               typeof quote.transfer_fee === "number"
                 ? quote.transfer_fee
-                : existingRate?.transfer_fee ?? 0,
+                : (existingRate?.transfer_fee ?? 0),
             estimated_arrival:
               quote.estimated_arrival ?? existingRate?.estimated_arrival,
             published_at: existingRate?.published_at ?? "",
@@ -277,7 +280,10 @@ function Converter({ bootstrap }: ConverterProps) {
   }, []);
 
   const applyPublicRate = useCallback(
-    async (direction: SupportedDirection, options?: { clearError?: boolean }) => {
+    async (
+      direction: SupportedDirection,
+      options?: { clearError?: boolean },
+    ) => {
       const publicRate = await fetchPublicFxRate(
         direction.fromCurrency,
         direction.toCurrency,
@@ -379,7 +385,7 @@ function Converter({ bootstrap }: ConverterProps) {
           throw new Error(
             json.code === "RATE_UNAVAILABLE"
               ? "Rate unavailable for this direction right now."
-              : json.message ?? "Unable to create quote",
+              : (json.message ?? "Unable to create quote"),
           );
         }
 
