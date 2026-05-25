@@ -261,26 +261,6 @@ export function ConverterCard({
               : `${formatAmount(amount)} ${fromCurrency.code}`}
           </Typography>
         </div>
-        <div className="flex items-center justify-between w-full">
-          <Typography
-            size="body-md"
-            weight="regular"
-            align={"left"}
-            className="text-[#254333]"
-          >
-            We&apos;ll charge you
-          </Typography>
-          <Typography
-            size="body-md"
-            weight="bold"
-            align={"left"}
-            className="text-[#254333]"
-          >
-            {errorMessage
-              ? "--"
-              : `${formatAmount(amount)} ${fromCurrency.code}`}
-          </Typography>
-        </div>
         <div className="flex items-center justify-between w-full ">
           <Typography
             size="body-md"
