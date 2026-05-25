@@ -152,14 +152,14 @@ export function ConverterCard({
 
         <div className="relative py-7">
           <div className="h-px w-full bg-[#DFE4E2]" />
-          <div className="absolute left-1/2 top-1/2 w-max max-w-[90%] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[#DDF8E6] px-5 py-2.5 shadow-[0_10px_24px_rgba(53,142,75,0.12)]">
-            <div className="flex items-center justify-center gap-2.5">
-              <TrendingUp size={17} strokeWidth={2.2} />
+          <div className="absolute left-1/2 top-1/2 w-max max-w-[92%] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-[#DDF8E6] px-6 py-3 shadow-[0_10px_24px_rgba(53,142,75,0.12)]">
+            <div className="flex items-center justify-center gap-3">
+              <TrendingUp size={18} strokeWidth={2.3} />
               {rateSummary ? (
                 <Typography
                   size="body-sm"
                   color="charcoal"
-                  className="text-[0.88rem] font-semibold leading-none sm:text-[0.95rem]"
+                  className="whitespace-nowrap text-[1rem] font-semibold leading-none sm:text-[1.08rem]"
                 >
                   {rateSummary}
                 </Typography>
