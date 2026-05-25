@@ -53,12 +53,12 @@ export const footerLinks = [
 export const footerSocialLinks = [
   {
     icon: linkedin,
-    href: "#1",
+    href: "https://www.linkedin.com/company/greencard-finance/",
     label: "linkedin",
   },
   {
     icon: ig,
-    href: "#1",
+    href: "https://www.instagram.com/greencard_finance/",
     label: "ig",
   },
   {
