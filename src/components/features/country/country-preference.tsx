@@ -24,11 +24,11 @@ export const countryPreferences: CountryPreference[] = [
     countryName: "United States",
     currencyCode: "USD",
   },
-  // {
-  //   countryCode: "CA",
-  //   countryName: "Canada",
-  //   currencyCode: "CAD",
-  // },
+  {
+    countryCode: "CA",
+    countryName: "Canada",
+    currencyCode: "CAD",
+  },
 ];
 
 const storageKey = "greencard-country-preference";

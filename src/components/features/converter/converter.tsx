@@ -63,12 +63,12 @@ const currencyDetails: Record<string, Omit<Currency, "code">> = {
     countryCode: "EU",
     symbol: "€",
   },
-  // CAD: {
-  //   name: "Canadian Dollar",
-  //   country: "Canada",
-  //   countryCode: "CA",
-  //   symbol: "C$",
-  // },
+  CAD: {
+    name: "Canadian Dollar",
+    country: "Canada",
+    countryCode: "CA",
+    symbol: "C$",
+  },
 };
 
 function toCurrency(code: string): Currency {
