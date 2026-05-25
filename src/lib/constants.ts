@@ -17,6 +17,10 @@ export const navItems = [
     href: "#how-it-works",
   },
   {
+    label: "About us",
+    href: "#about-us",
+  },
+  {
     label: "FAQs",
     href: "#faqs",
   },
