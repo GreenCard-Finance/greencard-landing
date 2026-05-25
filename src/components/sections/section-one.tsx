@@ -6,8 +6,8 @@ import { Typography } from "../ui/typography";
 
 function SectionOne() {
   return (
-    <section className="relative w-full min-h-150 xl:min-h-170 2xl:min-h-180 overflow-hidden bg-[#286744]">
-      <div className="hidden xl:block absolute left-0 bottom-0 w-[22%] z-10">
+    <section className="relative w-full min-h-150 xl:min-h-170 2xl:min-h-190 overflow-hidden bg-[#286744]">
+      <div className="hidden xl:block absolute left-0 bottom-0 w-[19%] z-10">
         <MotionWrapper variants={springUp} delay={0.3}>
           <Image
             src={s1_left_hand_desk}
@@ -17,7 +17,7 @@ function SectionOne() {
         </MotionWrapper>
       </div>
 
-      <div className="hidden xl:block absolute right-0 bottom-0 w-[35%] z-10">
+      <div className="hidden xl:block absolute right-0 bottom-0 w-[29%] z-10">
         <MotionWrapper variants={springUp} delay={0.5}>
           <Image
             src={s1_mobile}
