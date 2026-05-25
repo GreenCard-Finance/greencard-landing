@@ -63,7 +63,7 @@ export const footerSocialLinks = [
   },
   {
     icon: x,
-    href: "#3",
+    href: "https://x.com/use_gcf",
     label: "x",
   },
 ];
