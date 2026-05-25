@@ -55,14 +55,14 @@ export const springUp: Variants = {
 };
 
 export const drawArrow: Variants = {
-  hidden: { pathLength: 0, opacity: 0, fill: "rgba(20, 89, 50, 0)" },
+  hidden: { pathLength: 0, opacity: 0 }, // drop fill from hidden
   visible: {
     pathLength: 1,
     opacity: 1,
     fill: "#145932",
     transition: {
       pathLength: { duration: 1.2, ease: "easeInOut" },
-      fill: { duration: 0.5, delay: 1 },
+      fill: { duration: 0.5, delay: 1.2 }, // delay matches pathLength duration
       opacity: { duration: 0.3 },
     },
   },

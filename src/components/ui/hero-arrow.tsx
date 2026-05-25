@@ -20,6 +20,7 @@ export function HeroArrow() {
           variants={drawArrow}
           initial="hidden"
           whileInView="visible"
+          animate="visible"
           viewport={{ once: true }}
           transition={{ delay: 1.5 }}
           stroke="#145932"
@@ -43,6 +44,7 @@ export function HeroArrow() {
           variants={drawArrow}
           initial="hidden"
           whileInView="visible"
+          animate="visible"
           viewport={{ once: true }}
           transition={{ delay: 1.5 }}
           stroke="#145932"
