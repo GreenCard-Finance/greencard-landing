@@ -53,12 +53,12 @@ function Hero() {
               font="source"
               size="body-md"
               color="charcoal"
-              weight="regular"
-              className="mt-3 max-w-sm"
+              weight="medium"
+              className="mt-3 max-w-[21rem] text-[0.92rem] leading-[1.5] tracking-normal text-[#405348]"
             >
-              Global payments for African freelancers to receive, convert, and
-              send money internationally with transparent USD, GBP, CAD, and
-              NGN exchange rates.
+              Global payments for African freelancers. Receive, convert, and
+              send money across USD, GBP, CAD, and NGN with clear exchange
+              rates.
             </Typography>
           </MotionWrapper>
           <div className="absolute right-4 -top-20 sm:top-15 overflow-hidden">
@@ -105,14 +105,14 @@ function Hero() {
             <Typography
               as="p"
               font="source"
-              size="body-lg"
+              size="body-md"
               color="charcoal"
-              weight="regular"
-              className="mt-6 max-w-xl leading-relaxed"
+              weight="medium"
+              className="mt-6 max-w-[34rem] text-[1.05rem] leading-[1.6] tracking-normal text-[#405348]"
             >
-              Global payments for African freelancers to receive, convert, and
-              send money internationally with transparent USD, GBP, CAD, and
-              NGN exchange rates.
+              Global payments for African freelancers. Receive, convert, and
+              send money across USD, GBP, CAD, and NGN with clear exchange
+              rates.
             </Typography>
           </MotionWrapper>
 
