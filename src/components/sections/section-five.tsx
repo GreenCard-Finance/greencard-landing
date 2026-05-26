@@ -65,7 +65,7 @@ function SectionFive() {
               </div>
 
               <Typography
-                as="p"
+                as="h3"
                 font="source"
                 size="body-xl"
                 color="charcoal"

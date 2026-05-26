@@ -49,7 +49,7 @@ async function SectionThree() {
           className="w-full xl:flex-1 items-center"
         >
           <Typography
-            as="h1"
+            as="h2"
             font="heading"
             size="display-lg"
             color="forest"
@@ -58,11 +58,11 @@ async function SectionThree() {
             tracking="wide"
             className="text-center xl:text-left tracking-wide"
           >
-            Transfers at <br className="hidden sm:block xl:hidden" /> rates
-            <br className="block sm:hidden" /> That{" "}
-            <br className="hidden sm:block xl:hidden" /> work{" "}
-            <br className="hidden sm:hidden" /> for
-            <br className="block sm:hidden" /> you
+            Convert USD, GBP,
+            <br className="hidden sm:block xl:hidden" /> CAD and NGN
+            <br className="block sm:hidden" /> at{" "}
+            <br className="hidden sm:block xl:hidden" /> live{" "}
+            <br className="hidden sm:hidden" /> rates
           </Typography>
 
           <Typography
@@ -74,8 +74,8 @@ async function SectionThree() {
             align={"left"}
             className="text-center xl:text-left"
           >
-            Move between currencies seamlessly <br />
-            when the market is in your favour
+            Check international transfer rates before you send money between
+            GBP, USD, CAD, and NGN.
           </Typography>
         </MotionWrapper>
         <MotionWrapper variants={springUp} delay={0.5} className="xl:w-[40%]">

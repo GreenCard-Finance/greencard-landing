@@ -31,7 +31,7 @@ function SectionFour() {
             className="w-full xl:w-1/2 flex flex-col items-end"
           >
             <Typography
-              as="h1"
+              as="h2"
               font="heading"
               size="display-lg"
               color="white"
@@ -52,7 +52,7 @@ function SectionFour() {
               weight="regular"
               className="-mt-1"
             >
-              Spend worldwide with zero restrictions
+              Make international payments and spend globally with fewer limits
             </Typography>
           </MotionWrapper>
         </div>

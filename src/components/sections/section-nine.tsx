@@ -59,11 +59,12 @@ function SectionNine() {
               align="left"
               className="opacity-80 leading-relaxed"
             >
-              Whether you earn in pounds, dollars, or Canadian dollars,
-              GreenCard makes it easier to turn global income into local value.
-              With competitive rates, fast local payouts, and clear transaction
-              tracking from start to finish, GreenCard Finance is designed to
-              make cross-border money feel simpler and more reliable.
+              Whether you earn in GBP, USD, CAD, or NGN, GreenCard makes it
+              easier to turn global income into local value. With competitive
+              exchange rates, international transfers, fast local payouts, and
+              clear transaction tracking from start to finish, GreenCard Finance
+              is designed to make cross-border money feel simpler and more
+              reliable.
             </Typography>
           </MotionWrapper>
         </div>
@@ -120,12 +121,12 @@ function SectionNine() {
                 weight="regular"
                 className="opacity-80 leading-relaxed"
               >
-                Whether you earn in pounds, dollars, or Canadian dollars,
-                GreenCard makes it easier to turn global income into local
-                value. With competitive rates, fast local payouts, and clear
-                transaction tracking from start to finish, GreenCard Finance is
-                designed to make cross-border money feel simpler and more
-                reliable.
+                Whether you earn in GBP, USD, CAD, or NGN, GreenCard makes it
+                easier to turn global income into local value. With competitive
+                exchange rates, international transfers, fast local payouts, and
+                clear transaction tracking from start to finish, GreenCard
+                Finance is designed to make cross-border money feel simpler and
+                more reliable.
               </Typography>
             </MotionWrapper>
 

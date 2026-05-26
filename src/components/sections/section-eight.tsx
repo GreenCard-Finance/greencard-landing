@@ -24,7 +24,7 @@ function SectionEight() {
             Our Partners
           </Typography>
           <Typography
-            as="p"
+            as="h2"
             font="source"
             size="body-md"
             color={"green"}
@@ -62,7 +62,7 @@ function SectionEight() {
             Our Partners
           </Typography>
           <Typography
-            as="p"
+            as="h2"
             font="source"
             // size="body-md"
             color={"green"}

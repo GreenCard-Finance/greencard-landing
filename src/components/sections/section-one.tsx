@@ -42,7 +42,7 @@ function SectionOne() {
               className="sm:hidden"
             >
               <Typography
-                as="h1"
+                as="h2"
                 font="heading"
                 size="display-lg"
                 color="lime"
@@ -65,7 +65,7 @@ function SectionOne() {
               className="hidden sm:flex"
             >
               <Typography
-                as="h1"
+                as="h2"
                 font="heading"
                 size="display-lg"
                 color="lime"
@@ -93,7 +93,8 @@ function SectionOne() {
                 color="white"
                 align="right"
               >
-                Your global wealth in your pocket
+                Your global wealth in your pocket. Receive foreign income and
+                access local payouts with more control.
               </Typography>
             </MotionWrapper>
           </div>
@@ -158,7 +159,7 @@ function SectionOne() {
               className="w-[92%] 2xl:w-full ml-auto"
             >
               <Typography
-                as="h1"
+                as="h2"
                 font="heading"
                 size="display-lg"
                 color="lime"
@@ -171,6 +172,23 @@ function SectionOne() {
                 you earn,
                 <br />
                 <span className="text-white">instantly accessible</span>
+              </Typography>
+            </MotionWrapper>
+            <MotionWrapper
+              variants={springUp}
+              delay={0.35}
+              className="w-[92%] 2xl:w-full ml-auto mt-5"
+            >
+              <Typography
+                as="p"
+                font="source"
+                size="body-lg"
+                color="white"
+                weight="regular"
+                className="max-w-xl opacity-90"
+              >
+                Receive foreign income, convert between global currencies, and
+                access local payouts with more control.
               </Typography>
             </MotionWrapper>
           </div>

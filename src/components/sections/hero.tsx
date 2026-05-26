@@ -48,6 +48,18 @@ function Hero() {
               <br className="sm:flex" /> with your <br />
               <span className="text-[#145932]">GreenCard</span>
             </Typography>
+            <Typography
+              as="p"
+              font="source"
+              size="body-md"
+              color="charcoal"
+              weight="regular"
+              className="mt-3 max-w-sm"
+            >
+              Global payments for African freelancers to receive, convert, and
+              send money internationally with transparent USD, GBP, CAD, and
+              NGN exchange rates.
+            </Typography>
           </MotionWrapper>
           <div className="absolute right-4 -top-20 sm:top-15 overflow-hidden">
             <HeroArrow />
@@ -77,7 +89,7 @@ function Hero() {
             className="ml-auto w-full pt-35 2xl:pt-40 pl-10 xl:pl-15 2xl:pl-0 2xl:w-160"
           >
             <Typography
-              as="h1"
+              as="p"
               font="heading"
               size="display-lg"
               color="charcoal"
@@ -89,6 +101,18 @@ function Hero() {
               with your <br />
               <AnimatedText />
               {/* <span className="text-green-700">GreenCard</span> */}
+            </Typography>
+            <Typography
+              as="p"
+              font="source"
+              size="body-lg"
+              color="charcoal"
+              weight="regular"
+              className="mt-6 max-w-xl leading-relaxed"
+            >
+              Global payments for African freelancers to receive, convert, and
+              send money internationally with transparent USD, GBP, CAD, and
+              NGN exchange rates.
             </Typography>
           </MotionWrapper>
 
