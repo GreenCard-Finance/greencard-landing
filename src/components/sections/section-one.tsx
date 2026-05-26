@@ -93,8 +93,24 @@ function SectionOne() {
                 color="white"
                 align="right"
               >
-                Your global wealth in your pocket. Receive foreign income and
-                access local payouts with more control.
+                Your global wealth in your pocket
+              </Typography>
+            </MotionWrapper>
+
+            <MotionWrapper
+              variants={springUp}
+              delay={0.2}
+              className="hidden sm:flex xl:hidden justify-center"
+            >
+              <Typography
+                as="p"
+                font="source"
+                size="body-xl"
+                weight="regular"
+                color="white"
+                align="center"
+              >
+                Your global wealth in your pocket
               </Typography>
             </MotionWrapper>
           </div>
@@ -187,8 +203,7 @@ function SectionOne() {
                 weight="regular"
                 className="max-w-xl opacity-90"
               >
-                Receive foreign income, convert between global currencies, and
-                access local payouts with more control.
+                Your global wealth in your pocket
               </Typography>
             </MotionWrapper>
           </div>
