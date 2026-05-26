@@ -28,16 +28,16 @@ function SectionFour() {
           <MotionWrapper
             delay={0.2}
             variants={slideInRight}
-            className="w-full xl:w-1/2 flex flex-col items-end"
+            className="w-full xl:w-1/2 flex flex-col items-center xl:items-end"
           >
             <Typography
               as="h2"
               font="heading"
               size="display-lg"
               color="white"
-              align={"right"}
+              align={"center"}
               weight={"bold"}
-              className="tracking-wide z-10"
+              className="tracking-wide z-10 xl:text-right"
             >
               Borderless <br />
               payments <br />
@@ -50,9 +50,10 @@ function SectionFour() {
               size="body-xl"
               color="black"
               weight="regular"
-              className="-mt-1"
+              align={"center"}
+              className="-mt-1 max-w-sm xl:max-w-none xl:text-right"
             >
-              Make international payments and spend globally with fewer limits
+              Make foreign payments and spend globally without limits
             </Typography>
           </MotionWrapper>
         </div>
