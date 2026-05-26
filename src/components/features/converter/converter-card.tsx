@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Typography } from "@/components/ui/typography";
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { TrendingUp } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import ClickAwayListener from "react-click-away-listener";
