@@ -6,6 +6,7 @@ import Footer from "@/components/layout/footer";
 import Nav from "@/components/layout/nav";
 import { Analytics } from "@vercel/analytics/next";
 import { CountryPreferenceProvider } from "@/components/features/country/country-preference";
+import { StructuredData } from "@/components/seo/structured-data";
 import { fetchPublicBootstrap } from "@/lib/service/fx";
 import { headers } from "next/headers";
 import { FloatingWaitlistButton } from "@/components/ui/floating-waitlist";
@@ -123,6 +124,7 @@ export default async function RootLayout({
       )}
     >
       <body className="min-h-full flex flex-col font-source">
+        <StructuredData />
         <CountryPreferenceProvider initialCountryCode={initialCountryCode}>
           <Nav />
           <main className="flex-1 w-full">{children}</main>
