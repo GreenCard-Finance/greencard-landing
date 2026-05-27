@@ -170,7 +170,7 @@ export function ConverterCard({
           </div>
         </div>
 
-        <div className="flex items-center xl:items-center justify-between gap-4 mt-7 xl:mt-0">
+        <div className="flex items-center xl:items-center justify-between gap-4 mt-2 xl:mt-0">
           <label className="min-w-0 flex-1">
             <Typography
               as="span"

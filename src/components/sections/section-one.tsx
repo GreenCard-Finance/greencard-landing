@@ -92,7 +92,7 @@ function SectionOne() {
                 size="body-md"
                 color="white"
                 align={"right"}
-                className="tracking-normal mt-4"
+                className="tracking-normal mt-4 w-[75%] ml-auto"
               >
                 Multi-currency wallets to receive and manage your foreign income
               </Typography>
@@ -110,7 +110,7 @@ function SectionOne() {
                 size="body-md"
                 color="white"
                 align={"center"}
-                className="tracking-normal mt-4"
+                className="tracking-normal mt-4 w-[75%] ml-auto"
               >
                 Multi-currency wallets to receive and manage your foreign income
               </Typography>
@@ -170,7 +170,7 @@ function SectionOne() {
 
         {/* desktop */}
         <div className="hidden xl:flex relative w-full h-fit overflow-hidden">
-          <div className="max-w-360 xl:w-[90%] mx-auto  z-20 mt-10">
+          <div className="max-w-360 xl:w-[90%] mx-auto z-20 mt-10">
             <MotionWrapper
               variants={springUp}
               delay={0.2}
