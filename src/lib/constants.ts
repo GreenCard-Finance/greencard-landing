@@ -100,7 +100,7 @@ export const footerPolicies = [
 
 export const faqData = [
   {
-    question: "Is GREENCARD Finance a Bank?",
+    question: "Is GreenCard Finance a Bank?",
     answer:
       "No. GreenCard Finance is a cross-border financial platform. We operate through licensed partners and use modern settlement infrastructure to help you receive, convert, withdraw and spend global income.",
   },

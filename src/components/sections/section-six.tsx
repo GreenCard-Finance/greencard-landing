@@ -42,7 +42,7 @@ function SectionSix() {
             <Typography
               as="p"
               font="source"
-              size="body-md"
+              size="body-xl"
               color="white"
               className="opacity-80"
             >

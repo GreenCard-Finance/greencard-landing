@@ -46,7 +46,7 @@ function Hero() {
             >
               Pay <br className="sm:hidden" /> globally{" "}
               <br className="sm:flex" /> with your <br />
-              <span className="text-[#145932]">GreenCard</span>
+              <AnimatedText />
             </Typography>
           </MotionWrapper>
           <div className="absolute right-4 -top-20 sm:top-15 overflow-hidden">
@@ -88,7 +88,6 @@ function Hero() {
               Pay globally <br />
               with your <br />
               <AnimatedText />
-              {/* <span className="text-green-700">GreenCard</span> */}
             </Typography>
           </MotionWrapper>
 
@@ -145,59 +144,6 @@ function Hero() {
           </div>
         </div>
       </div>
-      {/* <div className="hidden w-[45%] min-h-full xl:flex flex-col justify-between relative">
-        <MotionWrapper
-          variants={slideInLeft}
-          className="mt-28 xl:mt-12 pl-20 2xl:mt-20 2xl:pl-0"
-        >
-          <Typography
-            as="h1"
-            font="heading"
-            size="display-lg"
-            color="charcoal"
-            align="left"
-            tracking="tight"
-          >
-            Pay globally <br />
-            with your <br />
-            <span className="text-green-700">GreenCard</span>
-          </Typography>
-        </MotionWrapper>
-
-        <MotionWrapper
-          variants={springUp}
-          delay={0.5}
-          className="w-full h-fit xl:h-80 flex items-end absolute bottom-0 left-0"
-        >
-          <Image
-            src={heropay}
-            alt="app showing Payment Received"
-            width={420}
-            height={450}
-            className="object-conver w-full h-full"
-            priority
-          />
-        </MotionWrapper>
-      </div>
-      <div className="hidden w-[55%] relative xl:flex">
-        <MotionWrapper
-          delay={0.4}
-          variants={slideInRight}
-          className="w-full h-[75%] absolute right-0"
-        >
-          <Image
-            src={herowoman}
-            alt="Woman at computer"
-            width={800}
-            height={800}
-            priority
-            className="w-full h-full object-contain"
-          />
-        </MotionWrapper>
-      </div>
-      <div className="absolute -translate-x-35 left-1/2 -translate-y-1/2 top-1/2 z-20 hidden xl:block">
-        <HeroArrow />
-      </div> */}
     </section>
   );
 }
