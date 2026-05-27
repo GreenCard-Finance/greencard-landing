@@ -95,19 +95,9 @@ function SectionSeven() {
                 color="charcoal"
                 align="center"
                 weight={"bold"}
-                className="tracking-wide "
               >
                 Get early access to <br />
-                <Typography
-                  as="span"
-                  font="heading"
-                  size="display-md"
-                  color="green"
-                  weight={"bold"}
-                  className="tracking-wide"
-                >
-                  GREENCARD FINANCE
-                </Typography>
+                <span className="text-[#2E8B57]">GREENCARD FINANCE</span>
               </Typography>
             </MotionWrapper>
 
@@ -115,7 +105,7 @@ function SectionSeven() {
               <Typography
                 as="p"
                 font="source"
-                size="body-md"
+                size="body-xl"
                 color="black"
                 align="center"
                 weight="regular"
