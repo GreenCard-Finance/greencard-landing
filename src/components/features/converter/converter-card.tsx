@@ -118,7 +118,7 @@ export function ConverterCard({
   return (
     <div className="w-full rounded-[34px] border-[7px] border-[#7DAE8A] bg-[#DFF3E5] shadow-[0_18px_50px_rgba(69,121,82,0.16)]">
       <div className="rounded-3xl bg-white px-7 py-8 sm:px-9">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center xl:items-center justify-between gap-4">
           <label className="min-w-0 flex-1">
             <Typography
               as="span"
@@ -170,7 +170,7 @@ export function ConverterCard({
           </div>
         </div>
 
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex items-center xl:items-center justify-between gap-4 mt-7 xl:mt-0">
           <label className="min-w-0 flex-1">
             <Typography
               as="span"
