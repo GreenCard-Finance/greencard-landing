@@ -57,8 +57,8 @@ function Hero() {
               className="mt-3 max-w-84"
             >
               Global payments for African freelancers. Receive, convert, and
-              send money across USD, GBP, CAD, and NGN with clear exchange
-              rates.
+              send money across USD, GBP, CAD, and NGN, powered by stablecoin
+              infrastructure for faster settlement.
             </Typography>
           </MotionWrapper>
           <div className="absolute right-4 -top-20 sm:top-15 overflow-hidden">
@@ -111,8 +111,8 @@ function Hero() {
               className="mt-6 max-w-136"
             >
               Global payments for African freelancers. Receive, convert, and
-              send money across USD, GBP, CAD, and NGN with clear exchange
-              rates.
+              send money across USD, GBP, CAD, and NGN, powered by stablecoin
+              infrastructure for faster settlement.
             </Typography>
           </MotionWrapper>
 
