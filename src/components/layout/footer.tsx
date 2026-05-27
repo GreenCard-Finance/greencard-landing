@@ -38,15 +38,15 @@ function Footer() {
             </ul>
           </div>
 
-          <Typography
+          {/* <Typography
             font="source"
             weight="regular"
             color="white"
             align="center"
-            className="hidden xl:flex text-4xl! bg-red-5 uppercase transition-opacity duration-200 hover:opacity-50 cursor-default"
+            className="hidden xl:flex text-4xl! uppercase"
           >
             Contact us
-          </Typography>
+          </Typography> */}
 
           <div className="flex flex-col gap-y-3 mt-8 mb-2 pl-12 xl:pl-0 xl:mt-0 xl:mb-0">
             <ul className="flex items-center justify-start sm:justify-end gap-x-3">

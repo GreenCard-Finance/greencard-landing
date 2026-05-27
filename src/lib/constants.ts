@@ -46,7 +46,7 @@ export const footerLinks = [
   },
   {
     label: "Contact us",
-    href: "#contact",
+    href: "mailto:support@greencardfinance.com",
   },
 ];
 
@@ -158,8 +158,8 @@ export const sectionFive = [
   {
     step: "DONE",
     img: s5_thirdimg,
-    title: "Get your GREENCARD <br /> account",
+    title: "Get your GreenCard <br /> account",
     description:
-      "Now you card receive any currency <br /> and spend with your GREENCARD",
+      "Now you card receive any currency <br /> and spend with your GreenCard",
   },
 ];

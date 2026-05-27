@@ -48,8 +48,15 @@ function SectionSix() {
               color="white"
               className="opacity-80 mt-4"
             >
-              If you don&apos;t see your question here,
-              <br /> our team is happy to answer it directly
+              If you don&apos;t see your question here, <br />
+              our team is happy to answer it directly via{" "}
+              <a
+                href="mailto:support@greencardfinance.com?subject=Support%20Request"
+                className="text-[#9FE870] underline"
+              >
+                email
+              </a>
+              .
             </Typography>
           </MotionWrapper>
         </div>
