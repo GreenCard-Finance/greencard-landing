@@ -536,7 +536,7 @@ function Converter({ bootstrap }: ConverterProps) {
   }
 
   return (
-    <div className="flex-1 w-full flex flex-col items-center z-10 sm:max-w-[60%] sm:mx-auto xl:max-w-full">
+    <div className="flex-1 w-full flex flex-col items-center z-10 sm:max-w-[75%] md:max-w-[80%] sm:mx-auto xl:max-w-full">
       <ConverterCard
         fromCurrencies={fromCurrencies}
         toCurrencies={toCurrencies}

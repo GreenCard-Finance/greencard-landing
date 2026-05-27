@@ -65,7 +65,8 @@ async function SectionThree() {
             weight="medium"
             className="text-center xl:text-left xl:mt-4"
           >
-            Move between currencies seamlessly when the market is in your favour
+            Move between currencies seamlessly when <br className="xl:hidden" />{" "}
+            the market is in your favour
           </Typography>
         </MotionWrapper>
         <MotionWrapper variants={springUp} delay={0.5} className="xl:w-[40%]">

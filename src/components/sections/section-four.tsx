@@ -50,9 +50,10 @@ function SectionFour() {
               size="body-md"
               weight="medium"
               color="charcoal"
-              className="max-w-sm xl:max-w-none xl:text-right mt-4"
+              className="max-w-sm xl:max-w-none text-right mt-4"
             >
-              Make foreign payments and spend globally without limits
+              Make foreign payments and spend <br className="xl:hidden" />{" "}
+              globally without limits
             </Typography>
           </MotionWrapper>
         </div>
