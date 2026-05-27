@@ -35,14 +35,6 @@ async function SectionThree() {
 
   return (
     <section id="product" className="relative overflow-hidden">
-      {/* <Image
-        src={s3_svg}
-        alt="svg image"
-        width={500}
-        height={500}
-        className="hidden xl:block absolute right-0 top-0 h-full w-auto -z-5"
-        priority
-      /> */}
       <div className="max-w-360 w-[90%] mx-auto flex flex-col gap-y-5 xl:flex-row xl:items-center py-9 xl:py-22">
         <MotionWrapper
           variants={slideInUp}
@@ -68,14 +60,12 @@ async function SectionThree() {
           <Typography
             as="p"
             font="source"
-            size="body-xl"
+            size="body-md"
             color="black"
-            weight="regular"
-            align={"left"}
-            className="text-center xl:text-left"
+            weight="medium"
+            className="text-center xl:text-left xl:mt-4"
           >
-            Move between currencies seamlessly <br />
-            when the market is in your favour
+            Move between currencies seamlessly when the market is in your favour
           </Typography>
         </MotionWrapper>
         <MotionWrapper variants={springUp} delay={0.5} className="xl:w-[40%]">

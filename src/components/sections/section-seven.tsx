@@ -105,11 +105,11 @@ function SectionSeven() {
               <Typography
                 as="p"
                 font="source"
-                size="body-xl"
-                color="black"
+                size="body-md"
+                weight="medium"
+                color="charcoal"
                 align="center"
-                weight="regular"
-                className="leading-9"
+                className="xl:leading-9"
               >
                 Join the waitlist for clearer foreign online payments.
               </Typography>

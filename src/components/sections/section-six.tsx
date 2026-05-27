@@ -35,16 +35,18 @@ function SectionSix() {
               size="display-lg"
               color="lime"
               weight={"bold"}
-              className="tracking-wide z-10 my-2"
+              tracking={"wide"}
+              className="z-10 mt-2"
             >
               Straight <br /> Answers
             </Typography>
             <Typography
               as="p"
               font="source"
-              size="body-xl"
+              size="body-md"
+              weight="medium"
               color="white"
-              className="opacity-80"
+              className="opacity-80 mt-4"
             >
               If you don&apos;t see your question here,
               <br /> our team is happy to answer it directly

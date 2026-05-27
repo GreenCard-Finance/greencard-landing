@@ -39,9 +39,11 @@ function SectionTwo() {
               <Typography
                 as="p"
                 font="source"
-                size="body-xl"
+                size="body-md"
+                weight="medium"
                 color="charcoal"
-                weight="regular"
+                align={"left"}
+                className="mt-3"
               >
                 Stop losing money to hidden charges
               </Typography>
@@ -103,26 +105,27 @@ function SectionTwo() {
           </MotionWrapper>
 
           <div className="w-fit absolute right-15 2xl:right-0 bottom-0">
-            <MotionWrapper variants={springUp}>
+            <MotionWrapper variants={springUp} delay={0.2}>
               <Typography
                 as="h2"
                 font="heading"
                 size="display-lg"
                 color="charcoal"
                 align={"right"}
+                weight={"bold"}
+                tracking={"wide"}
               >
                 Smart fx, <br /> better value
               </Typography>
-            </MotionWrapper>
 
-            <MotionWrapper variants={springUp} delay={0.2}>
               <Typography
                 as="p"
                 font="source"
-                size="body-xl"
+                size="body-md"
+                weight="medium"
                 color="charcoal"
-                weight="regular"
                 align={"right"}
+                className="mt-3"
               >
                 Stop losing money to hidden charges
               </Typography>

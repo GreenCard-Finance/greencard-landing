@@ -51,10 +51,10 @@ function Hero() {
             <Typography
               as="p"
               font="source"
-              size="body-md"
               color="charcoal"
               weight="medium"
-              className="mt-3 max-w-[21rem] text-[0.92rem] leading-[1.5] tracking-normal text-[#405348]"
+              size="body-md"
+              className="mt-3 max-w-84"
             >
               Global payments for African freelancers. Receive, convert, and
               send money across USD, GBP, CAD, and NGN with clear exchange
@@ -105,9 +105,10 @@ function Hero() {
               as="p"
               font="source"
               size="body-md"
-              color="charcoal"
               weight="medium"
-              className="mt-6 max-w-[34rem] text-[1.05rem] leading-[1.6] tracking-normal text-[#405348]"
+              color="charcoal"
+              tracking={"normal"}
+              className="mt-6 max-w-136"
             >
               Global payments for African freelancers. Receive, convert, and
               send money across USD, GBP, CAD, and NGN with clear exchange
