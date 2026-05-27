@@ -7,8 +7,8 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full min-h-150 xl:min-h-170 2xl:min-h-190 overflow-hidden bg-[#286744]">
-      <div className="hidden xl:block absolute left-0 bottom-0 w-[19%] z-10">
-        <MotionWrapper variants={springUp} delay={0.3}>
+      <div className="hidden xl:block absolute left-0 bottom-10 w-[19%] z-10">
+        <MotionWrapper variants={slideInLeft} delay={0.3}>
           <Image
             src={s1_left_hand_desk}
             alt=""
@@ -47,14 +47,13 @@ function SectionOne() {
                 size="display-lg"
                 color="lime"
                 align="right"
+                weight={"bold"}
+                tracking="wide"
                 className="mb-1"
               >
-                Everything <br />
-                you earn,
+                Everything you earn,
                 <br />
-                <span className="text-white ml-2">
-                  instantly <br /> accessible
-                </span>
+                <span className="text-white ml-2">instantly accessible</span>
               </Typography>
             </MotionWrapper>
 
@@ -78,6 +77,7 @@ function SectionOne() {
                 </span>
               </Typography>
             </MotionWrapper>
+
             {/* tab */}
 
             <MotionWrapper
@@ -88,12 +88,13 @@ function SectionOne() {
               <Typography
                 as="p"
                 font="source"
-                size="body-xl"
-                weight="regular"
+                weight="medium"
+                size="body-md"
                 color="white"
-                align="right"
+                align={"right"}
+                className="tracking-normal mt-4 w-[75%] ml-auto"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
 
@@ -105,12 +106,13 @@ function SectionOne() {
               <Typography
                 as="p"
                 font="source"
-                size="body-xl"
-                weight="regular"
+                weight="medium"
+                size="body-md"
                 color="white"
-                align="center"
+                align={"center"}
+                className="tracking-normal mt-4 w-[75%] ml-auto"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
           </div>
@@ -119,7 +121,7 @@ function SectionOne() {
             <MotionWrapper
               variants={slideInLeft}
               delay={0.7}
-              className="absolute w-[35%] -top-30"
+              className="absolute w-[35%] -top-25"
             >
               <Image
                 src={s1_left_hand_desk}
@@ -168,11 +170,11 @@ function SectionOne() {
 
         {/* desktop */}
         <div className="hidden xl:flex relative w-full h-fit overflow-hidden">
-          <div className="w-[60%] z-20 mt-10">
+          <div className="max-w-360 xl:w-[90%] mx-auto z-20 mt-10">
             <MotionWrapper
-              variants={slideInLeft}
+              variants={springUp}
               delay={0.2}
-              className="w-[92%] 2xl:w-full ml-auto"
+              className="w-[92%] 2xl:w-full"
             >
               <Typography
                 as="h2"
@@ -183,27 +185,20 @@ function SectionOne() {
                 weight={"bold"}
                 tracking="wide"
               >
-                Everything
-                <br />
-                you earn,
-                <br />
+                Everything you earn, <br />
                 <span className="text-white">instantly accessible</span>
               </Typography>
-            </MotionWrapper>
-            <MotionWrapper
-              variants={springUp}
-              delay={0.35}
-              className="w-[92%] 2xl:w-full ml-auto mt-5"
-            >
+
               <Typography
                 as="p"
                 font="source"
-                size="body-lg"
+                weight="medium"
+                size="body-md"
                 color="white"
-                weight="regular"
-                className="max-w-xl opacity-90"
+                align={"left"}
+                className="tracking-normal mt-4"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
           </div>
