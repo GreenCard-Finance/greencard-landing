@@ -94,7 +94,7 @@ function SectionOne() {
                 align={"right"}
                 className="tracking-normal mt-4"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
 
@@ -112,7 +112,7 @@ function SectionOne() {
                 align={"center"}
                 className="tracking-normal mt-4"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
           </div>
@@ -198,7 +198,7 @@ function SectionOne() {
                 align={"left"}
                 className="tracking-normal mt-4"
               >
-                Your global wealth in your pocket
+                Multi-currency wallets to receive and manage your foreign income
               </Typography>
             </MotionWrapper>
           </div>

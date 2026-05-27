@@ -50,9 +50,9 @@ async function SectionThree() {
             tracking="wide"
             className="text-center xl:text-left tracking-wide"
           >
-            Transfers at <br className="hidden sm:block xl:hidden" /> rates
-            <br className="block sm:hidden" /> That{" "}
-            <br className="hidden sm:block xl:hidden" /> work{" "}
+            Transfers at <br className="hidden sm:block" /> rates
+            <br className="block sm:hidden" /> that{" "}
+            <br className="hidden sm:block" /> work{" "}
             <br className="hidden sm:hidden" /> for
             <br className="block sm:hidden" /> you
           </Typography>
