@@ -70,10 +70,10 @@ export default function Nav() {
         )}
       >
         <nav className="w-full">
-          <div className="max-w-360 w-[90%] mx-auto flex items-center justify-between gap-x-6 h-20 px-4 sm:h-30 xl:h-20 md:px-8 lg:px-20 xl:px-0">
+          <div className="max-w-360 w-[90%] mx-auto flex items-center justify-between gap-x-6 h-20 sm:h-30 xl:h-20 xl:px-0">
             <Link
               href="/"
-              className="flex items-center gap-2 shrink-0 z-30 w-4/10 xl:w-fit"
+              className="flex items-center gap-2 shrink-0 z-30 w-4/10 sm:w-3/10 xl:w-fit"
             >
               <Image
                 src={logo_green}
@@ -112,6 +112,7 @@ export default function Nav() {
               <CountrySelector />
               {ctaItem && (
                 <Button
+                  className="rounded-full"
                   onClick={() => scrollToSection(ctaItem.href.replace("#", ""))}
                   variant={"lime"}
                 >

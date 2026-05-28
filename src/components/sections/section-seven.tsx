@@ -151,9 +151,9 @@ function SectionSeven() {
                 variant="lime"
                 onClick={handleSubmit}
                 disabled={!name || !email || loading}
-                className="w-fit mx-auto"
+                className="w-fit mx-auto rounded-full py-2 xl:py-1"
               >
-                {loading ? "JOINING..." : "JOIN WAITLIST"}
+                {loading ? "Joining..." : "Join Waitlist"}
               </Button>
             </MotionWrapper>
 
@@ -215,7 +215,7 @@ function SectionSeven() {
               <Button
                 variant="dark"
                 onClick={handleBack}
-                className="rounded-none! w-30"
+                className="rounded-full w-30 py-2"
               >
                 Back
               </Button>
