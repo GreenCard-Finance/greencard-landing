@@ -34,9 +34,9 @@ export function FloatingWaitlistButton() {
     <Link href="#waitlist" className="fixed bottom-6 right-6 z-50 xl:hidden">
       <Button
         onClick={handleClick}
-        className="rounded-full px-6 py-3 shadow-lg border-gray-200"
+        className="rounded-full px-6 py-3 shadow-lg border-black"
       >
-        JOIN WAITLIST
+        Join Waitlist
       </Button>
     </Link>
   );
