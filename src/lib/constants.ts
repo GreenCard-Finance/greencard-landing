@@ -107,17 +107,17 @@ export const faqData = [
   {
     question: "What currencies can I receive?",
     answer:
-      "USD, GBP, EUR, CAD and NGN through ACH, wire, transfer, and supported payment routes. Coverage expands as we open new corridors.",
+      "USD, GBP and NGN through ACH, wire, transfer, and supported payment routes. Coverage expands as we open new corridors.",
   },
   {
     question: "How does GreenCard show FX transparency?",
     answer:
-      "Every conversion screen shows the live rate, GCF fee, network fee, the final amount, and how much you saved versus a typical alternative. Nothing is buried in the rate.",
+      "Every conversion screen shows all transaction fees and the final transaction amount. Nothing is buried in the rate.",
   },
   {
     question: "Do I need crypto knowledge to use GreenCard?",
     answer:
-      "No. You use a normal payment app - receive, convert, withdraw, pay. There are no wallets, seed phrases or tokens to manage.",
+      "No. Use GreenCard Finance as you would any other payment app, to receive, convert, withdraw and pay. There are no seed phrases or tokens to manage.",
   },
   {
     question: "What does stablecoin-backed statement actually mean?",
@@ -125,19 +125,19 @@ export const faqData = [
       "Every conversion screen shows the live rate, GCF fee, network fee, the final amount, and how much you saved versus a typical alternative. Nothing is buried in the rate.",
   },
   {
-    question: "Can I use it for foreign online payments?",
-    answer:
-      "Yes. Pay any merchant that accepts cards or bank payments online - airline tickets, software, subscriptions, visa fees, travel, and more.",
-  },
-  {
     question: "Who is GreenCard for?",
     answer:
-      "Freelancers, creators, remote workers, SMEs, and individuals in emerging markets - starting with Africa - who earn or pay globally.",
+      "Freelancers, creators, remote workers, SMEs, and individuals in emerging markets who earn or pay globally, starting with Africa.",
   },
   {
     question: "What happens if a payment fails?",
     answer:
       "You'll see a clear status, a reason, and the next step. Our support team can be reached directly from the payment, with full context already attached.",
+  },
+  {
+    question: "Can I use it for foreign online payments?",
+    answer:
+      "Yes. Pay any foreign merchant that accepts cards or bank payments online. This means your airline tickets, software, subscriptions, visa fees, travel, and more are sorted.",
   },
 ];
 
