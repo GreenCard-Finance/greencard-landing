@@ -49,7 +49,7 @@ function SectionFour() {
               font="source"
               size="body-md"
               weight="medium"
-              color="charcoal"
+              color="white"
               className="max-w-sm xl:max-w-none text-right mt-4"
             >
               Make foreign payments and spend <br className="xl:hidden" />{" "}
