@@ -22,9 +22,9 @@ const typographyVariants = cva("", {
       // Source Sans 3 body sizes
       "body-xl": "text-[16px] sm:text-[26px] leading-tight",
       "body-lg":
-        "text-[16px] leading-[1.5] md:text-[24px] md:leading-[40px] lg:text-[20px] lg:leading-[40px] ",
+        "text-[16px] leading-[1.5] sm:text-[28px] md:leading-[40px] lg:text-[20px] lg:leading-[40px] ",
       "body-md":
-        "text-[0.92rem] leading-[1.5] sm:text-[0.95rem] md:text-[1rem] md:leading-[1.6] lg:text-[1.02rem] xl:text-[1.05rem] xl:leading-[1.6] tracking-normal",
+        "text-[0.92rem] leading-[1.5] md:text-[1.25rem] md:leading-[1.6] lg:text-[1.3rem] xl:text-[1.05rem] xl:leading-[1.6] tracking-normal",
       "body-sm": "text-[12px] leading-[1.4] md:text-[14px] md:leading-[1.4]",
       "body-xs": "text-[10px] leading-[1] md:text-[12px]",
 

@@ -110,7 +110,7 @@ function SectionOne() {
                 size="body-md"
                 color="white"
                 align={"center"}
-                className="tracking-normal mt-4 w-[75%] ml-auto"
+                className="tracking-normal mt-4 w-[75%] mx-auto"
               >
                 Multi-currency wallets to receive and manage your foreign income
               </Typography>
