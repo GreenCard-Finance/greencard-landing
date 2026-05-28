@@ -16,7 +16,7 @@ function SectionFive() {
           <Typography
             as="h2"
             font="heading"
-            size="display-md"
+            size="display-lg"
             color="white"
             align={"center"}
             weight={"bold"}
