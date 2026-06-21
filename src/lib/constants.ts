@@ -58,7 +58,7 @@ export const footerSocialLinks = [
   },
   {
     icon: ig,
-    href: "https://www.instagram.com/greencard_finance/",
+    href: "https://www.instagram.com/greencardfinance",
     label: "ig",
   },
   {
