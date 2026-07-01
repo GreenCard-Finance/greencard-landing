@@ -1,16 +1,35 @@
 import { logo_white } from "@/assets/images";
 import Image from "next/image";
-import {
-  footerAddresses,
-  footerLinks,
-  footerPolicies,
-  footerSocialLinks,
-} from "@/lib/constants";
+import { footerAddresses, footerLinks, footerPolicies } from "@/lib/constants";
 import Link from "next/link";
 import { Typography } from "../ui/typography";
+import { FaLinkedin, FaInstagram, FaXTwitter, FaTiktok } from "react-icons/fa6";
 
 function Footer() {
   const year = new Date().getFullYear();
+
+  const footerSocialLinks = [
+    {
+      icon: FaLinkedin,
+      href: "https://www.linkedin.com/company/greencard-finance/",
+      label: "linkedin",
+    },
+    {
+      icon: FaInstagram,
+      href: "https://www.instagram.com/greencardfinance",
+      label: "ig",
+    },
+    {
+      icon: FaXTwitter,
+      href: "https://x.com/use_gcf",
+      label: "x",
+    },
+    {
+      icon: FaTiktok,
+      href: "https://www.tiktok.com/@greencard_finance",
+      label: "tiktok",
+    },
+  ];
 
   return (
     <footer className="bg-black py-5 px-5 xl:px-0 w-full">
@@ -50,21 +69,25 @@ function Footer() {
 
           <div className="flex flex-col gap-y-3 mt-8 mb-2 pl-12 xl:pl-0 xl:mt-0 xl:mb-0">
             <ul className="flex items-center justify-start sm:justify-end gap-x-3">
-              {footerSocialLinks.map((item, i) => (
-                <li
-                  key={item.label}
-                  className={i === 2 ? "mt-1 cursor-pointer" : "cursor-pointer"}
-                >
-                  <Link
-                    href={item.href}
-                    className="inline-flex transition-transform duration-200 hover:scale-90"
+              {footerSocialLinks.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <li
+                    key={item.label}
+                    className={
+                      i === 2 ? "mt-1 cursor-pointer" : "cursor-pointer"
+                    }
                   >
-                    <Image src={item.icon} alt={`${item.label}-icon`} />
-                  </Link>
-                </li>
-              ))}
+                    <Link
+                      href={item.href}
+                      className="inline-flex transition-transform duration-200 hover:scale-90"
+                    >
+                      <Icon size={20} className="text-white" />
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
-
             <ul className="space-y-1">
               {footerAddresses.map((item) => (
                 <li key={item.label} className="group cursor-pointer">

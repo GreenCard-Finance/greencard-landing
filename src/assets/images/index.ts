@@ -32,9 +32,6 @@ export { default as s7_bye } from "../../../public/images/section-waitlist-after
 
 // footer icons
 export { default as logo_white } from "../../../public/images/GCF Alt Logo.png";
-export { default as linkedin } from "../../../public/images/linkedin.svg";
-export { default as x } from "../../../public/images/x.svg";
-export { default as ig } from "../../../public/images/instagram.svg";
 
 // partners
 export { default as paga } from "../../../public/images/Paga logo_.png";

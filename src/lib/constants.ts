@@ -1,11 +1,4 @@
-import {
-  ig,
-  linkedin,
-  s5_firstimg,
-  s5_secondimg,
-  s5_thirdimg,
-  x,
-} from "@/assets/images";
+import { s5_firstimg, s5_secondimg, s5_thirdimg } from "@/assets/images";
 
 export const navItems = [
   {
@@ -47,24 +40,6 @@ export const footerLinks = [
   {
     label: "Contact us",
     href: "mailto:support@greencardfinance.com",
-  },
-];
-
-export const footerSocialLinks = [
-  {
-    icon: linkedin,
-    href: "https://www.linkedin.com/company/greencard-finance/",
-    label: "linkedin",
-  },
-  {
-    icon: ig,
-    href: "https://www.instagram.com/greencardfinance",
-    label: "ig",
-  },
-  {
-    icon: x,
-    href: "https://x.com/use_gcf",
-    label: "x",
   },
 ];
 
