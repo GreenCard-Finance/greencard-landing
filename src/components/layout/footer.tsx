@@ -16,17 +16,17 @@ function Footer() {
     },
     {
       icon: FaInstagram,
-      href: "https://www.instagram.com/greencardfinance",
+      href: "https://www.instagram.com/usegreencard",
       label: "ig",
     },
     {
       icon: FaXTwitter,
-      href: "https://x.com/use_gcf",
+      href: "https://x.com/usegreencard",
       label: "x",
     },
     {
       icon: FaTiktok,
-      href: "https://www.tiktok.com/@greencard_finance",
+      href: "https://www.tiktok.com/@usegreencard",
       label: "tiktok",
     },
   ];
