@@ -6,7 +6,7 @@ import { Typography } from "../ui/typography";
 import { FaLinkedin, FaInstagram, FaXTwitter, FaTiktok } from "react-icons/fa6";
 
 function Footer() {
-  const year = new Date().getFullYear();
+  const currYear = new Date().getFullYear();
 
   const footerSocialLinks = [
     {
@@ -114,7 +114,7 @@ function Footer() {
             align="center"
             className="transition-opacity duration-200 hover:opacity-50"
           >
-            © {year} GreenCard Finance. All rights reserved.
+            © {currYear} GreenCard Finance. All rights reserved.
           </Typography>
         </div>
 
