@@ -69,15 +69,10 @@ function Footer() {
 
           <div className="flex flex-col gap-y-3 mt-8 mb-2 pl-12 xl:pl-0 xl:mt-0 xl:mb-0">
             <ul className="flex items-center justify-start sm:justify-end gap-x-3">
-              {footerSocialLinks.map((item, i) => {
+              {footerSocialLinks.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <li
-                    key={item.label}
-                    className={
-                      i === 2 ? "mt-1 cursor-pointer" : "cursor-pointer"
-                    }
-                  >
+                  <li key={item.label}>
                     <Link
                       href={item.href}
                       className="inline-flex transition-transform duration-200 hover:scale-90"
