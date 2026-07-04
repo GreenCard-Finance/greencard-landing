@@ -160,8 +160,7 @@ function Hero() {
                 width={1400}
                 height={1400}
                 priority
-                className="absolute bottom-0 right-0 w-full"
-                style={{ height: "calc(100% - 90px)", maxWidth: "none" }}
+                className="absolute bottom-0 right-0 h-full w-full object-contain object-bottom"
               />
             </div>{" "}
           </MotionWrapper>
