@@ -1,17 +1,24 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const text = "GreenCard";
 
 export default function AnimatedText() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <div className="flex">
       {text.split("").map((char, index) => (
         <motion.span
           key={index}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={mounted ? { opacity: 1 } : { opacity: 0 }}
           transition={{
             delay: index * 0.2,
             duration: 0.05,
