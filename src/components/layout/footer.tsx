@@ -40,11 +40,7 @@ function Footer() {
             <ul className="space-y-1 pl-12">
               {footerLinks.map((item) => (
                 <li key={item.label} className="group cursor-pointer">
-                  <Link
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <Link href={item.href}>
                     <Typography
                       as="p"
                       font="lato"
@@ -77,12 +73,14 @@ function Footer() {
                 const Icon = item.icon;
                 return (
                   <li key={item.label}>
-                    <Link
+                    <a
                       href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex transition-transform duration-200 hover:scale-90"
                     >
                       <Icon size={20} className="text-white" />
-                    </Link>
+                    </a>
                   </li>
                 );
               })}
