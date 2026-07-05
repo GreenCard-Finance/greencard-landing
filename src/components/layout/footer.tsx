@@ -40,7 +40,11 @@ function Footer() {
             <ul className="space-y-1 pl-12">
               {footerLinks.map((item) => (
                 <li key={item.label} className="group cursor-pointer">
-                  <Link href={item.href}>
+                  <Link
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
                     <Typography
                       as="p"
                       font="lato"
