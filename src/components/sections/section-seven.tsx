@@ -45,7 +45,11 @@ function SectionSeven() {
 
       setSubmitted(true);
       setTimeout(() => {
-        window.open("https://www.instagram.com/usegreencard", "_blank");
+        window.open(
+          "https://www.instagram.com/usegreencard",
+          "_blank",
+          "noopener,noreferrer",
+        );
       }, 2000);
     } catch {
       setError("Failed to join waitlist. Please try again.");
