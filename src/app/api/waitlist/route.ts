@@ -49,7 +49,7 @@ const getEmailHtml = (firstName: string) => `
       </div>
       <div style="height:12px; line-height:12px; font-size:1px;">&nbsp;</div>
       <div style="font-family: Arial, sans-serif; font-size:15px; line-height:1.6; color:#555555;">
-        Thanks for joining the waitlist. We're building a clearer, simpler way to handle foreign online payments — and you'll be one of the first to know when we launch.
+        Thanks for joining the waitlist. We're building a clearer, simpler way to handle foreign online payments and you'll be one of the first to know when we launch.
       </div>
     </td>
   </tr>
