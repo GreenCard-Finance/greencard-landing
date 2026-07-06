@@ -77,42 +77,42 @@ export const faqData = [
   {
     question: "Is GreenCard Finance a Bank?",
     answer:
-      "No. GreenCard Finance is a cross-border financial platform. We operate through licensed partners and use modern settlement infrastructure to help you receive, convert, withdraw and spend global income.",
+      "No. GreenCard Finance is not a bank. We are launching Send Money Home for UK-to-Nigeria transfers and work with trusted payment and payout partners to process payments securely.",
   },
   {
-    question: "What currencies can I receive?",
+    question: "What can I use GreenCard for at launch?",
     answer:
-      "USD, GBP and NGN through ACH, wire, transfer, and supported payment routes. Coverage expands as we open new corridors.",
+      "At launch, GreenCard is focused on one corridor: verified users in the UK sending money to Nigeria, with recipients receiving NGN.",
   },
   {
-    question: "How does GreenCard show FX transparency?",
+    question: "What currencies are supported?",
     answer:
-      "Every conversion screen shows all transaction fees and the final transaction amount. Nothing is buried in the rate.",
+      "The launch flow is GBP to NGN. Additional currencies will be considered later and will be clearly marked as coming soon until they are available.",
   },
   {
-    question: "Do I need crypto knowledge to use GreenCard?",
+    question: "How does GreenCard show rates and fees?",
     answer:
-      "No. Use GreenCard Finance as you would any other payment app, to receive, convert, withdraw and pay. There are no seed phrases or tokens to manage.",
+      "Before you send, we show the exchange rate, fees, and estimated NGN payout so you can review the transfer before confirming.",
   },
   {
-    question: "What does stablecoin-backed statement actually mean?",
+    question: "Do I need to create a wallet or hold a balance?",
     answer:
-      "Every conversion screen shows the live rate, GCF fee, network fee, the final amount, and how much you saved versus a typical alternative. Nothing is buried in the rate.",
+      "No. The current MVP does not issue customer wallets, virtual accounts, cards, or stored balances.",
   },
   {
     question: "Who is GreenCard for?",
     answer:
-      "Freelancers, creators, remote workers, SMEs, and individuals in emerging markets who earn or pay globally, starting with Africa.",
+      "GreenCard is for Africans in the UK who want a simple way to send money home to family, friends, and the people who matter in Nigeria.",
   },
   {
-    question: "What happens if a payment fails?",
+    question: "What happens if a transfer fails?",
     answer:
-      "You'll see a clear status, a reason, and the next step. Our support team can be reached directly from the payment, with full context already attached.",
+      "You'll see a clear status, a reason where available, and the next step. Our support team can help review the transfer if you need assistance.",
   },
   {
-    question: "Can I use it for foreign online payments?",
+    question: "Are receiving money, cards, and other currencies available?",
     answer:
-      "Yes. Pay any foreign merchant that accepts cards or bank payments online. This means your airline tickets, software, subscriptions, visa fees, travel, and more are sorted.",
+      "Not yet. Receiving money, virtual accounts, cards, and additional currencies are future features. The current launch is UK-to-Nigeria transfers only.",
   },
 ];
 
