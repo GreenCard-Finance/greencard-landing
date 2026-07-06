@@ -41,10 +41,7 @@ function SectionNine() {
               align="left"
               className="opacity-80 leading-relaxed mt-4"
             >
-              GreenCard Finance is building a faster, clearer way for Africans
-              to move money across borders. We help freelancers, remote workers,
-              creators, and globally connected professionals send, receive,
-              convert, and access foreign currency with more control.
+              Bringing home closer.
             </Typography>
           </MotionWrapper>
 
@@ -58,12 +55,9 @@ function SectionNine() {
               align="left"
               className="opacity-80 leading-relaxed"
             >
-              Whether you earn in GBP, USD, CAD, or NGN, GreenCard makes it
-              easier to turn global income into local value. With competitive
-              exchange rates, international transfers, fast local payouts, and
-              clear transaction tracking from start to finish, GreenCard Finance
-              is designed to make cross-border money feel simpler and more
-              reliable.
+              GreenCard Finance makes it easier for Africans in the UK to send
+              money to Nigeria, with clear rates, secure payments, reliable
+              Naira payout, and simple tracking from start to finish.
             </Typography>
           </MotionWrapper>
         </div>
@@ -103,10 +97,7 @@ function SectionNine() {
                 weight="regular"
                 className="opacity-80 leading-relaxed"
               >
-                GreenCard Finance is building a faster, clearer way for Africans
-                to move money across borders. We help freelancers, remote
-                workers, creators, and globally connected professionals send,
-                receive, convert, and access foreign currency with more control.
+                Bringing home closer.
               </Typography>
             </MotionWrapper>
 
@@ -119,12 +110,9 @@ function SectionNine() {
                 weight="regular"
                 className="opacity-80 leading-relaxed"
               >
-                Whether you earn in GBP, USD, CAD, or NGN, GreenCard makes it
-                easier to turn global income into local value. With competitive
-                exchange rates, international transfers, fast local payouts, and
-                clear transaction tracking from start to finish, GreenCard
-                Finance is designed to make cross-border money feel simpler and
-                more reliable.
+                GreenCard Finance makes it easier for Africans in the UK to send
+                money to Nigeria, with clear rates, secure payments, reliable
+                Naira payout, and simple tracking from start to finish.
               </Typography>
             </MotionWrapper>
 
