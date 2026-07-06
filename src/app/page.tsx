@@ -8,6 +8,7 @@ import SectionSix from "@/components/sections/section-six";
 import SectionSeven from "@/components/sections/section-seven";
 import SectionEight from "@/components/sections/section-eight";
 import SectionNine from "@/components/sections/section-nine";
+import SectionBlog from "@/components/sections/section-blog";
 
 function Home() {
   return (
@@ -21,6 +22,7 @@ function Home() {
       <SectionFour />
 
       <SectionFive />
+      <SectionBlog />
       <SectionSix />
 
       <SectionSeven />

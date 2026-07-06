@@ -14,6 +14,10 @@ export const navItems = [
     href: "#about-us",
   },
   {
+    label: "Blog",
+    href: "/blog",
+  },
+  {
     label: "FAQs",
     href: "#faqs",
   },
@@ -36,6 +40,10 @@ export const footerLinks = [
   {
     label: "FAQs",
     href: "#faqs",
+  },
+  {
+    label: "Blog",
+    href: "/blog",
   },
   {
     label: "Contact us",

@@ -59,6 +59,16 @@ export default function Nav() {
 
   const regularLinks = navItems.filter((item) => !item.isButton);
   const ctaItem = navItems.find((item) => item.isButton);
+  const handleHashNav = (href: string) => {
+    const sectionId = href.replace("#", "");
+
+    if (window.location.pathname === "/") {
+      scrollToSection(sectionId);
+      return;
+    }
+
+    window.location.href = `/${href}`;
+  };
 
   return (
     <>
@@ -90,8 +100,10 @@ export default function Nav() {
                   <Link
                     href={item.href}
                     onClick={(e) => {
-                      e.preventDefault();
-                      scrollToSection(item.href.replace("#", ""));
+                      if (item.href.startsWith("#")) {
+                        e.preventDefault();
+                        handleHashNav(item.href);
+                      }
                     }}
                   >
                     <Typography
@@ -113,7 +125,7 @@ export default function Nav() {
               {ctaItem && (
                 <Button
                   className="rounded-full"
-                  onClick={() => scrollToSection(ctaItem.href.replace("#", ""))}
+                  onClick={() => handleHashNav(ctaItem.href)}
                   variant={"lime"}
                 >
                   {ctaItem.label}
@@ -149,7 +161,7 @@ export default function Nav() {
               onClick={(e) => {
                 e.preventDefault();
                 setIsOpen(false);
-                scrollToSection(ctaItem.href.replace("#", ""));
+                handleHashNav(ctaItem.href);
               }}
               className="w-full bg-[#9FE870] py-3 flex items-center justify-center"
             >
@@ -171,9 +183,11 @@ export default function Nav() {
                 <Link
                   href={item.href}
                   onClick={(e) => {
-                    e.preventDefault();
                     setIsOpen(false);
-                    scrollToSection(item.href.replace("#", ""));
+                    if (item.href.startsWith("#")) {
+                      e.preventDefault();
+                      handleHashNav(item.href);
+                    }
                   }}
                   className="flex items-center justify-center py-3"
                 >
