@@ -1,4 +1,7 @@
 import { Resend } from "resend";
+import { Redis } from "@upstash/redis";
+
+const kv = Redis.fromEnv();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -158,50 +161,50 @@ export async function POST(request: Request) {
     );
   }
 
+  const normalizedEmail = email.toLowerCase().trim();
+
+  const alreadyExists = await kv.get(`waitlist:${normalizedEmail}`);
+  if (alreadyExists) {
+    return Response.json(
+      { success: false, error: "This email is already on the waitlist" },
+      { status: 409 },
+    );
+  }
+
   const formData = new URLSearchParams();
   formData.append("entry.1568036490", firstName);
   formData.append("entry.1002716864", lastName);
   formData.append("entry.819855442", email);
-  if (whatsappUsername) {
-    formData.append("entry.1767032127", whatsappUsername);
-  }
-  if (whatsappNumber) {
-    formData.append("entry.550348207", whatsappNumber);
-  }
+  if (whatsappUsername) formData.append("entry.1767032127", whatsappUsername);
+  if (whatsappNumber) formData.append("entry.550348207", whatsappNumber);
 
   try {
     await fetch(
       "https://docs.google.com/forms/d/e/1FAIpQLScpRaMZA3qjIFxPofvSyAh28NjLmf0rdGpB9L6AS_UEczubMw/formResponse",
-      {
-        method: "POST",
-        body: formData,
-      },
+      { method: "POST", body: formData },
     );
 
-    try {
-      try {
-        await resend.emails.send({
-          from: "GreenCard Finance <hello@greencardfinance.com>",
-          to: email,
-          subject: "You're on the GreenCard Finance waitlist!",
-          html: getEmailHtml(firstName),
-        });
+    await kv.set(`waitlist:${normalizedEmail}`, true);
 
-        // if (error) {
-        //   console.error("Resend returned an error:", error);
-        // } else {
-        //   console.log("Email sent successfully:", data);
-        // }
-      } catch (emailErr) {
-        // console.error("Failed to send confirmation email (threw):", emailErr);
+    try {
+      const { data, error } = await resend.emails.send({
+        from: "GreenCard Finance <hello@greencardfinance.com>",
+        to: email,
+        subject: "You're on the GreenCard Finance waitlist!",
+        html: getEmailHtml(firstName),
+      });
+      if (error) {
+        console.error("Resend returned an error:", error);
+      } else {
+        console.log("Email sent successfully:", data);
       }
     } catch (emailErr) {
-      // console.error("Failed to send confirmation email:", emailErr);
+      console.error("Failed to send confirmation email:", emailErr);
     }
 
     return Response.json({ success: true });
   } catch (err) {
-    // console.error("Failed to submit to Google Forms:", err);
+    console.error("Failed to submit to Google Forms:", err);
     return Response.json(
       { success: false, error: "Failed to submit form" },
       { status: 500 },
