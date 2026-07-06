@@ -17,14 +17,14 @@ function SectionBlog() {
               Blog
             </p>
             <h2 className="mt-3 font-heading text-[42px] leading-[0.95] text-[#1F2933] sm:text-[58px] xl:text-[72px]">
-              Learn before you send
+              Notes before you send
             </h2>
           </div>
           <Link
             href="/blog"
             className="inline-flex w-fit rounded-full bg-[#1F2933] px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
           >
-            View all posts
+            Read the blog
           </Link>
         </div>
 

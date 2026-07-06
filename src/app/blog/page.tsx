@@ -12,7 +12,7 @@ import { blogCategories, blogPosts, featuredBlogPost } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Simple guides from GreenCard Finance for sending money from the UK to Nigeria.",
+    "Notes from GreenCard Finance on sending money from the UK to Nigeria.",
 };
 
 const blogImages = [heropay_mobile, s1_mobile, s2__img_mobile, s4_img];
@@ -33,21 +33,21 @@ export default function BlogPage() {
               GreenCard Blog
             </p>
             <h1 className="mt-4 max-w-4xl font-heading text-[54px] leading-[0.92] tracking-wide text-white sm:text-[74px] xl:text-[96px]">
-              Simple guides for sending money home
+              Notes on sending money home
             </h1>
             <p className="mt-6 max-w-2xl font-source text-lg font-medium leading-8 text-white/80">
-              Helpful notes on UK-to-Nigeria transfers, clear rates, safer
-              payments, and supporting the people who matter.
+              Practical thoughts from the GreenCard team as we build a clearer
+              UK-to-Nigeria transfer experience.
             </p>
           </div>
 
           <div className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur">
             <p className="font-source text-xs font-black uppercase tracking-widest text-[#9FE870]">
-              Never miss a launch note
+              Launch notes
             </p>
             <p className="mt-3 font-source text-base leading-7 text-white/85">
-              Join the waitlist for product updates, practical transfer guides,
-              and launch news.
+              Join the waitlist for product updates, corridor notes, and early
+              access news.
             </p>
             <Link
               href="/#waitlist"

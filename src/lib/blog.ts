@@ -22,133 +22,186 @@ export const blogCategories = [
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "send-money-uk-to-nigeria-confidence",
-    title: "How to send money from the UK to Nigeria with more confidence",
+    slug: "why-we-are-starting-with-uk-to-nigeria",
+    title: "Why we are starting with UK to Nigeria",
     category: "Send Money Home",
     summary:
-      "A simple guide to checking rates, reviewing fees, confirming recipient details, and tracking a transfer from GBP to NGN.",
-    readTime: "4 min read",
-    label: "Featured guide",
+      "GreenCard is starting with one job: help people in the UK send money home to Nigeria without the usual confusion.",
+    readTime: "3 min read",
+    label: "Launch note",
     body: [
       {
-        heading: "Start with the corridor",
+        heading: "One corridor first",
         paragraphs: [
-          "GreenCard Finance is launching with a focused UK-to-Nigeria transfer flow. That means the sender pays in GBP and the recipient receives NGN in Nigeria.",
-          "Keeping the launch scope narrow helps make the experience easier to understand, easier to support, and clearer for every customer using the service.",
+          "We could talk about a lot of future products, but that is not what this launch is about.",
+          "The first version of GreenCard is focused on UK-to-Nigeria transfers. You send in GBP. Your recipient gets Naira in Nigeria.",
         ],
       },
       {
-        heading: "Review the transfer before you send",
+        heading: "Why narrow is better",
         paragraphs: [
-          "Before confirming a transfer, check the recipient details, exchange rate, fees, and estimated NGN payout.",
-          "A few seconds of review can prevent avoidable mistakes and gives you a clearer view of what your recipient should expect.",
+          "A narrow launch lets us pay attention to the parts that actually matter: clear rates, fees you can see, correct recipient details, and useful support when something needs checking.",
+          "It also keeps the product honest. We want the website to match what customers can actually use today.",
         ],
       },
       {
-        heading: "Track the transfer",
+        heading: "What comes next",
         paragraphs: [
-          "After a transfer is created, simple tracking helps you follow the payment from confirmation through to payout.",
-          "If something needs attention, support should be able to help with the transfer details in context.",
+          "Other features may come later, but they should not distract from the first promise.",
+          "For now, the goal is simple: make sending money from the UK to Nigeria feel clearer, safer, and easier to follow.",
         ],
       },
     ],
   },
   {
-    slug: "clear-rates-transparent-fees",
-    title: "What clear rates and transparent fees mean when sending money home",
+    slug: "three-things-to-check-before-sending",
+    title: "Three things to check before sending money home",
+    category: "Send Money Home",
+    summary:
+      "A short checklist for avoiding the small mistakes that can slow down a transfer.",
+    readTime: "2 min read",
+    label: "Checklist",
+    body: [
+      {
+        heading: "Check the recipient name",
+        paragraphs: [
+          "Most transfer problems start with small details. A missing middle name, a typo, or the wrong bank detail can turn a quick payment into a support case.",
+          "Before you confirm, slow down for ten seconds and check the recipient name exactly as it should appear.",
+        ],
+      },
+      {
+        heading: "Check the Naira amount",
+        paragraphs: [
+          "Do not only look at the GBP amount you are sending. Look at the amount expected to arrive in Nigeria.",
+          "That final Naira payout is usually the number your family or friend is planning around.",
+        ],
+      },
+      {
+        heading: "Check the fee",
+        paragraphs: [
+          "A good transfer screen should make the fee visible before you pay.",
+          "If you can see the rate, the fee, and the expected payout in one place, it is easier to decide whether the transfer works for you.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "rates-are-not-the-whole-story",
+    title: "Rates are not the whole story",
     category: "Rates and Fees",
     summary:
-      "Understand the rate, fees, and final payout amount before sending money to Nigeria.",
+      "A strong exchange rate matters, but the final payout and fee visibility matter too.",
     readTime: "3 min read",
-    label: "Money basics",
+    label: "Rates",
     body: [
       {
-        heading: "Look beyond the headline rate",
+        heading: "The headline rate can distract you",
         paragraphs: [
-          "A clear transfer experience should show the exchange rate, any fees, and the amount the recipient is expected to receive.",
-          "That full view matters because the cheapest-looking option is not always the clearest option.",
+          "It is easy to compare services by exchange rate alone. That is useful, but it is not the whole picture.",
+          "A transfer can show a nice-looking rate and still feel unclear if the fee is hidden or the final payout changes too late.",
         ],
       },
       {
-        heading: "Know the payout amount",
+        heading: "Start from the payout",
         paragraphs: [
-          "For a UK-to-Nigeria transfer, the number that matters most to many families is the NGN amount arriving in Nigeria.",
-          "GreenCard is designed to make that payout amount easier to review before you confirm.",
+          "When sending from the UK to Nigeria, the practical question is simple: how much Naira will arrive?",
+          "That is why GreenCard is being shaped around showing the rate, fee, and expected payout before you confirm.",
+        ],
+      },
+      {
+        heading: "Clear beats clever",
+        paragraphs: [
+          "People should not need a spreadsheet to understand a money transfer.",
+          "The cleaner the breakdown, the easier it is to trust what you are sending.",
         ],
       },
     ],
   },
   {
-    slug: "why-identity-verification-matters",
-    title: "Why identity verification matters for money transfers",
+    slug: "why-we-ask-for-id",
+    title: "Why we ask for ID before you send",
     category: "Safety",
     summary:
-      "Why verified accounts help protect senders, recipients, and the transfer experience.",
+      "Identity checks can feel annoying, but they help protect the transfer flow.",
     readTime: "3 min read",
-    label: "Safety guide",
+    label: "Safety",
     body: [
       {
-        heading: "Verification protects the transfer flow",
+        heading: "It is not just a formality",
         paragraphs: [
-          "Identity verification helps confirm that people using the service are who they say they are.",
-          "It also supports safer processing, clearer support, and a more reliable transfer experience.",
+          "When money moves across borders, the sender has to be verified. That protects customers, recipients, and the partners who help process the payment.",
+          "It also makes support easier. If a transfer needs review, accurate account information helps the team understand what happened.",
         ],
       },
       {
-        heading: "Prepare the basics",
+        heading: "What to have ready",
         paragraphs: [
-          "When a service asks for verification, use accurate personal details and a valid identity document.",
-          "Good information at the start can reduce delays later in the transfer journey.",
+          "Use your real name, correct date of birth, current address, and a valid ID document.",
+          "It is better to get this right once than to fix it in the middle of an urgent transfer.",
         ],
       },
     ],
   },
   {
-    slug: "what-happens-after-you-send",
-    title: "What happens after you send money to Nigeria?",
+    slug: "what-happens-after-you-press-send",
+    title: "What happens after you press send?",
     category: "Nigeria Payouts",
     summary:
-      "A plain-English look at payment confirmation, transfer processing, and NGN payout tracking.",
+      "The transfer does not end when you pay in GBP. Here is what customers should be able to follow.",
     readTime: "3 min read",
-    label: "Payout guide",
+    label: "Payout",
     body: [
       {
-        heading: "Payment comes first",
+        heading: "Your payment is confirmed",
         paragraphs: [
-          "A transfer starts when the sender confirms the payment in GBP.",
-          "From there, the transfer can move through checks, processing, and payout steps.",
+          "The first step is confirming that your GBP payment has been received.",
+          "After that, the transfer can move through processing and payout steps before the recipient gets Naira.",
         ],
       },
       {
-        heading: "The recipient receives NGN",
+        heading: "Status matters",
         paragraphs: [
-          "For the launch corridor, the recipient receives Naira in Nigeria.",
-          "Simple tracking helps you understand whether a transfer is still processing, completed, or needs attention.",
+          "A sender should not be left guessing. Clear status updates help you know whether a transfer is processing, completed, or needs attention.",
+          "That is especially important when the money is for rent, school fees, healthcare, or family support.",
+        ],
+      },
+      {
+        heading: "Support should have context",
+        paragraphs: [
+          "If you contact support, you should not have to explain the entire transfer from scratch.",
+          "Good tracking gives the support team the details they need to help faster.",
         ],
       },
     ],
   },
   {
-    slug: "support-family-from-the-uk",
-    title: "Planning family support from the UK",
+    slug: "helping-family-without-guesswork",
+    title: "Helping family without guesswork",
     category: "Family Support",
     summary:
-      "Practical tips for sending money home with fewer last-minute surprises.",
+      "For many people, sending money home is not occasional. It is part of how family life works.",
     readTime: "2 min read",
-    label: "Family guide",
+    label: "Family",
     body: [
       {
-        heading: "Send with purpose",
+        heading: "Know what the money is for",
         paragraphs: [
-          "People send money home for school fees, healthcare, household needs, family events, and everyday support.",
-          "Writing down the purpose and timing can help you plan the amount and avoid rushed decisions.",
+          "School fees, hospital bills, groceries, repairs, rent, a younger sibling's allowance. The reason matters because the timing matters.",
+          "When the purpose is clear, it is easier to decide how much to send and when to send it.",
         ],
       },
       {
-        heading: "Keep recipient details handy",
+        heading: "Keep the regular details close",
         paragraphs: [
-          "Before sending, confirm the recipient name and bank details carefully.",
-          "Small errors can slow down a transfer, especially when support teams need to review what happened.",
+          "If you send to the same person often, keep their correct bank details somewhere safe.",
+          "That small habit can save time when someone needs money quickly.",
+        ],
+      },
+      {
+        heading: "Leave room for the unexpected",
+        paragraphs: [
+          "Family support is rarely perfectly scheduled. Something always comes up.",
+          "The best transfer experience is one that makes the basics clear when you are already dealing with pressure.",
         ],
       },
     ],
