@@ -15,7 +15,7 @@ const structuredData = {
       logo: `${siteUrl}/images/gcf-horizontal-logo.svg`,
       image: `${siteUrl}/images/gcf-social-preview.png`,
       description:
-        "Global payments, transparent FX, and seamless money movement built for African freelancers.",
+        "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
       email: "support@greencardfinance.com",
       telephone: "+447517099268",
       address: {
@@ -41,7 +41,7 @@ const structuredData = {
       name: "GreenCard Finance",
       url: siteUrl,
       description:
-        "Global payments, transparent FX, and seamless money movement built for African freelancers.",
+        "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
       publisher: {
         "@id": organizationId,
       },
@@ -50,14 +50,14 @@ const structuredData = {
     {
       "@type": "FinancialService",
       "@id": financialServiceId,
-      name: "GreenCard Finance global payments",
+      name: "GreenCard Finance Send Money Home",
       url: siteUrl,
       provider: {
         "@id": organizationId,
       },
-      serviceType: "Global payments and currency conversion platform",
+      serviceType: "UK to Nigeria money transfer service",
       description:
-        "A payment platform for African freelancers to receive, convert, and move money globally with customer-facing exchange rates.",
+        "A focused UK-to-Nigeria transfer service for verified UK users sending GBP and recipients receiving Naira in Nigeria.",
       areaServed: [
         {
           "@type": "Country",
@@ -67,17 +67,9 @@ const structuredData = {
           "@type": "Country",
           name: "Nigeria",
         },
-        {
-          "@type": "Country",
-          name: "United States",
-        },
-        {
-          "@type": "Country",
-          name: "Canada",
-        },
       ],
       availableLanguage: ["English"],
-      currenciesAccepted: "GBP, NGN, USD, CAD",
+      currenciesAccepted: "GBP, NGN",
     },
   ],
 };

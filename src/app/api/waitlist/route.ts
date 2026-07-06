@@ -52,7 +52,7 @@ const getEmailHtml = (firstName: string) => `
       </div>
       <div style="height:12px; line-height:12px; font-size:1px;">&nbsp;</div>
       <div style="font-family: Arial, sans-serif; font-size:15px; line-height:1.6; color:#555555;">
-        Thanks for joining the waitlist. We're building a clearer, simpler way to handle foreign online payments and you'll be one of the first to know when we launch.
+        Thanks for joining the waitlist. We're building a clearer, simpler way to send money from the UK to Nigeria and you'll be one of the first to know when we launch.
       </div>
     </td>
   </tr>
@@ -133,7 +133,7 @@ const getEmailHtml = (firstName: string) => `
   <tr>
     <td align="center" style="background-color:#000000; padding:28px 40px;" bgcolor="#000000">
       <div style="font-family: Arial, sans-serif; font-size:12px; color:#999999; margin:0 0 8px;">
-        © 2026 GreenCard Finance. All rights reserved.
+        &copy; 2026 GreenCard Finance. All rights reserved.
       </div>
       <div style="font-family: Arial, sans-serif; font-size:12px; color:#666666;">
         You're receiving this because you joined our waitlist.

@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import {
+  hero_hands,
   heropay_mobile,
   s1_mobile,
+  s1_phone_img,
   s2__img_mobile,
   s4_img,
 } from "@/assets/images";
@@ -16,7 +18,14 @@ type BlogPostPageProps = {
   }>;
 };
 
-const blogImages = [heropay_mobile, s1_mobile, s2__img_mobile, s4_img];
+const blogImages = [
+  heropay_mobile,
+  s1_phone_img,
+  s2__img_mobile,
+  hero_hands,
+  s4_img,
+  s1_mobile,
+];
 
 function getPostImage(slug: string) {
   const postIndex = blogPosts.findIndex((post) => post.slug === slug);
@@ -55,52 +64,54 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   if (!post) notFound();
 
   return (
-    <main className="bg-[#F7F9F8] text-[#1F2933]">
+    <main className="bg-white text-black">
       <article>
-        <section className="bg-[#1F2933] px-6 pb-12 pt-20 text-white sm:px-10 xl:pt-28">
-          <div className="mx-auto max-w-5xl">
+        <section className="px-6 pb-10 pt-16 sm:px-10 xl:pt-24">
+          <div className="mx-auto max-w-[900px]">
             <Link
               href="/blog"
-              className="font-source text-sm font-black uppercase tracking-widest text-[#9FE870]"
+              className="font-source text-sm font-black uppercase tracking-widest text-[#286744]"
             >
               Back to blog
             </Link>
-            <p className="mt-8 font-source text-sm font-bold text-white/70">
-              {post.category} - {post.readTime}
+            <p className="mt-8 font-source text-base font-medium text-[#7A8288]">
+              {post.publishedAt} - {post.category} - {post.readTime}
             </p>
-            <h1 className="mt-4 font-heading text-[52px] leading-[0.95] tracking-wide sm:text-[72px] xl:text-[92px]">
+            <h1 className="mt-5 font-heading text-[54px] leading-[0.9] tracking-wide text-black sm:text-[76px] xl:text-[88px]">
               {post.title}
             </h1>
-            <p className="mt-6 max-w-3xl font-source text-lg font-medium leading-8 text-white/80">
+            <p className="mt-6 max-w-3xl font-source text-lg font-black leading-8 text-black sm:text-xl">
               {post.summary}
             </p>
           </div>
         </section>
 
-        <section className="px-6 py-10 sm:px-10">
-          <div className="mx-auto max-w-5xl overflow-hidden bg-white shadow-[0_18px_55px_rgba(31,41,51,0.12)]">
-            <div className="relative aspect-[16/8] min-h-72 bg-[#DFF3E5]">
-              <Image
-                src={getPostImage(post.slug)}
-                alt=""
-                fill
-                className="object-cover"
-                priority
-              />
+        <section className="px-6 pb-16 sm:px-10 xl:pb-24">
+          <div className="mx-auto max-w-[900px]">
+            <div className="rounded-lg bg-[#F5F5F6] p-6">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-[#DFF7C8]">
+                <Image
+                  src={getPostImage(post.slug)}
+                  alt=""
+                  fill
+                  className="object-contain p-8"
+                  priority
+                />
+              </div>
             </div>
 
-            <div className="px-6 py-10 sm:px-10 xl:px-16 xl:py-14">
-              <div className="space-y-10">
+            <div className="mx-auto max-w-[760px] py-12">
+              <div className="space-y-11">
                 {post.body.map((section) => (
                   <section key={section.heading}>
-                    <h2 className="font-source text-2xl font-black text-[#1F2933] sm:text-3xl">
+                    <h2 className="font-source text-3xl font-black leading-tight text-black sm:text-4xl">
                       {section.heading}
                     </h2>
                     <div className="mt-4 space-y-4">
                       {section.paragraphs.map((paragraph) => (
                         <p
                           key={paragraph}
-                          className="font-source text-base font-medium leading-8 text-[#425466] sm:text-lg"
+                          className="font-source text-lg font-medium leading-8 text-[#424A52]"
                         >
                           {paragraph}
                         </p>
@@ -110,17 +121,17 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 ))}
               </div>
 
-              <div className="mt-12 bg-[#EAF6EF] p-6 sm:p-8">
-                <p className="font-source text-sm font-black uppercase tracking-widest text-[#2E8B57]">
+              <div className="mt-14 rounded-lg bg-[#F5F5F6] p-7 sm:p-9">
+                <p className="font-source text-sm font-black uppercase tracking-widest text-[#286744]">
                   GreenCard Finance
                 </p>
-                <p className="mt-3 max-w-2xl font-source text-base font-medium leading-7 text-[#1F2933]">
+                <p className="mt-4 max-w-2xl font-source text-lg font-medium leading-8 text-black">
                   We are launching Send Money Home for UK-to-Nigeria transfers.
                   Join the waitlist to hear when early access opens.
                 </p>
                 <Link
                   href="/#waitlist"
-                  className="mt-6 inline-flex rounded-full bg-[#1F2933] px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
+                  className="mt-7 inline-flex rounded-lg bg-black px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
                 >
                   Join Waitlist
                 </Link>

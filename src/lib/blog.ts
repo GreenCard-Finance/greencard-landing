@@ -3,6 +3,7 @@ export type BlogPost = {
   title: string;
   category: string;
   summary: string;
+  publishedAt: string;
   readTime: string;
   label: string;
   body: {
@@ -27,6 +28,7 @@ export const blogPosts: BlogPost[] = [
     category: "Send Money Home",
     summary:
       "GreenCard is starting with one job: help people in the UK send money home to Nigeria without the usual confusion.",
+    publishedAt: "June 24, 2026",
     readTime: "3 min read",
     label: "Launch note",
     body: [
@@ -59,6 +61,7 @@ export const blogPosts: BlogPost[] = [
     category: "Send Money Home",
     summary:
       "A short checklist for avoiding the small mistakes that can slow down a transfer.",
+    publishedAt: "June 20, 2026",
     readTime: "2 min read",
     label: "Checklist",
     body: [
@@ -91,6 +94,7 @@ export const blogPosts: BlogPost[] = [
     category: "Rates and Fees",
     summary:
       "A strong exchange rate matters, but the final payout and fee visibility matter too.",
+    publishedAt: "June 17, 2026",
     readTime: "3 min read",
     label: "Rates",
     body: [
@@ -123,6 +127,7 @@ export const blogPosts: BlogPost[] = [
     category: "Safety",
     summary:
       "Identity checks can feel annoying, but they help protect the transfer flow.",
+    publishedAt: "June 12, 2026",
     readTime: "3 min read",
     label: "Safety",
     body: [
@@ -148,6 +153,7 @@ export const blogPosts: BlogPost[] = [
     category: "Nigeria Payouts",
     summary:
       "The transfer does not end when you pay in GBP. Here is what customers should be able to follow.",
+    publishedAt: "June 9, 2026",
     readTime: "3 min read",
     label: "Payout",
     body: [
@@ -180,6 +186,7 @@ export const blogPosts: BlogPost[] = [
     category: "Family Support",
     summary:
       "For many people, sending money home is not occasional. It is part of how family life works.",
+    publishedAt: "June 5, 2026",
     readTime: "2 min read",
     label: "Family",
     body: [

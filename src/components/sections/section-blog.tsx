@@ -1,28 +1,29 @@
 import Image from "next/image";
 import Link from "next/link";
-import { heropay_mobile, s1_mobile, s2__img_mobile } from "@/assets/images";
+import { heropay_mobile, s1_phone_img, s2__img_mobile } from "@/assets/images";
 import { blogPosts } from "@/lib/blog";
 
-const previewImages = [heropay_mobile, s1_mobile, s2__img_mobile];
+const previewImages = [heropay_mobile, s1_phone_img, s2__img_mobile];
+const previewBackgrounds = ["bg-[#FFE8BF]", "bg-[#DFF7C8]", "bg-[#A9EAF3]"];
 
 function SectionBlog() {
   const posts = blogPosts.slice(0, 3);
 
   return (
-    <section className="bg-[#F7F9F8] px-6 py-14 sm:px-10 xl:py-20">
-      <div className="mx-auto max-w-360">
+    <section className="bg-white px-6 py-14 sm:px-10 xl:py-20">
+      <div className="mx-auto max-w-[1070px]">
         <div className="flex flex-col gap-5 xl:flex-row xl:items-end xl:justify-between">
           <div>
             <p className="font-source text-sm font-black uppercase tracking-widest text-[#2E8B57]">
               Blog
             </p>
-            <h2 className="mt-3 font-heading text-[42px] leading-[0.95] text-[#1F2933] sm:text-[58px] xl:text-[72px]">
-              Notes before you send
+            <h2 className="mt-3 font-heading text-[46px] leading-[0.9] text-black sm:text-[64px] xl:text-[74px]">
+              From the GreenCard BLOG
             </h2>
           </div>
           <Link
             href="/blog"
-            className="inline-flex w-fit rounded-full bg-[#1F2933] px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
+            className="inline-flex w-fit rounded-lg bg-black px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
           >
             Read the blog
           </Link>
@@ -33,24 +34,26 @@ function SectionBlog() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group bg-white shadow-[0_12px_35px_rgba(31,41,51,0.08)] transition hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(31,41,51,0.14)]"
+              className="group rounded-lg bg-[#F5F5F6] p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)]"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-[#DFF3E5]">
+              <div
+                className={`relative aspect-[1.2] overflow-hidden rounded-lg ${previewBackgrounds[index]}`}
+              >
                 <Image
                   src={previewImages[index]}
                   alt=""
                   fill
-                  className="object-cover transition duration-500 group-hover:scale-105"
+                  className="object-contain p-7 transition duration-500 group-hover:scale-105"
                 />
               </div>
-              <div className="p-5">
-                <p className="font-source text-xs font-black uppercase tracking-widest text-[#2E8B57]">
-                  {post.category}
+              <div className="pt-6">
+                <p className="font-source text-base font-medium text-[#7A8288]">
+                  {post.publishedAt}
                 </p>
-                <h3 className="mt-3 font-source text-xl font-black leading-tight text-[#1F2933]">
+                <h3 className="mt-5 font-source text-[28px] font-black leading-[0.98] text-black">
                   {post.title}
                 </h3>
-                <p className="mt-3 font-source text-sm font-medium leading-6 text-[#5F6C75]">
+                <p className="mt-4 font-source text-base font-medium leading-7 text-[#5B5F66]">
                   {post.summary}
                 </p>
               </div>

@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
+  hero_hands,
   heropay_mobile,
   s1_mobile,
+  s1_phone_img,
   s2__img_mobile,
   s4_img,
 } from "@/assets/images";
-import { blogCategories, blogPosts, featuredBlogPost } from "@/lib/blog";
+import { blogCategories, blogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -15,123 +17,142 @@ export const metadata: Metadata = {
     "Notes from GreenCard Finance on sending money from the UK to Nigeria.",
 };
 
-const blogImages = [heropay_mobile, s1_mobile, s2__img_mobile, s4_img];
+type BlogPageProps = {
+  searchParams?: Promise<{
+    category?: string;
+  }>;
+};
+
+const blogImages = [
+  heropay_mobile,
+  s1_phone_img,
+  s2__img_mobile,
+  hero_hands,
+  s4_img,
+  s1_mobile,
+];
+
+const imageBackgrounds = [
+  "bg-[#FFE8BF]",
+  "bg-[#DFF7C8]",
+  "bg-[#A9EAF3]",
+  "bg-[#EDE7FF]",
+  "bg-[#DDEFE4]",
+  "bg-[#F6D9D9]",
+];
 
 function getPostImage(index: number) {
   return blogImages[index % blogImages.length];
 }
 
-export default function BlogPage() {
-  const posts = blogPosts.filter((post) => post.slug !== featuredBlogPost.slug);
+function getImageBackground(index: number) {
+  return imageBackgrounds[index % imageBackgrounds.length];
+}
+
+function getCategoryHref(category: string) {
+  return category === "All"
+    ? "/blog"
+    : `/blog?category=${encodeURIComponent(category)}`;
+}
+
+export default async function BlogPage({ searchParams }: BlogPageProps) {
+  const params = searchParams ? await searchParams : {};
+  const requestedCategory = params.category;
+  const activeCategory =
+    requestedCategory && blogCategories.includes(requestedCategory)
+      ? requestedCategory
+      : "All";
+  const posts =
+    activeCategory === "All"
+      ? blogPosts
+      : blogPosts.filter((post) => post.category === activeCategory);
 
   return (
-    <main className="bg-[#F7F9F8] text-[#1F2933]">
-      <section className="relative overflow-hidden bg-[#1F2933] px-6 pb-16 pt-20 text-white sm:px-10 xl:pt-28">
-        <div className="mx-auto grid max-w-360 gap-10 xl:grid-cols-[1.05fr_0.95fr] xl:items-end">
-          <div>
-            <p className="font-source text-sm font-black uppercase tracking-widest text-[#9FE870]">
-              GreenCard Blog
-            </p>
-            <h1 className="mt-4 max-w-4xl font-heading text-[54px] leading-[0.92] tracking-wide text-white sm:text-[74px] xl:text-[96px]">
-              Notes on sending money home
+    <main className="bg-white text-black">
+      <section className="px-6 pb-16 pt-16 sm:px-10 xl:pt-24">
+        <div className="mx-auto max-w-[1070px]">
+          <div className="max-w-[620px]">
+            <h1 className="font-heading text-[58px] leading-[0.88] tracking-wide text-black sm:text-[84px] xl:text-[92px]">
+              The GreenCard BLOG
             </h1>
-            <p className="mt-6 max-w-2xl font-source text-lg font-medium leading-8 text-white/80">
-              Practical thoughts from the GreenCard team as we build a clearer
-              UK-to-Nigeria transfer experience.
+            <p className="mt-7 font-source text-lg font-black leading-8 text-black sm:text-xl">
+              Notes from the team building a clearer UK-to-Nigeria money
+              transfer experience.
             </p>
-          </div>
+            <p className="mt-7 max-w-md font-source text-base font-medium leading-7 text-[#5B5F66]">
+              Never miss a post. Get product updates, corridor notes, and
+              launch news straight to your inbox.
+            </p>
 
-          <div className="rounded-lg border border-white/15 bg-white/10 p-6 shadow-2xl backdrop-blur">
-            <p className="font-source text-xs font-black uppercase tracking-widest text-[#9FE870]">
-              Launch notes
-            </p>
-            <p className="mt-3 font-source text-base leading-7 text-white/85">
-              Join the waitlist for product updates, corridor notes, and early
-              access news.
-            </p>
-            <Link
-              href="/#waitlist"
-              className="mt-6 inline-flex rounded-full bg-[#9FE870] px-6 py-3 font-source text-sm font-black text-[#1F2933] transition hover:bg-white"
+            <form
+              action="/#waitlist"
+              className="mt-6 flex max-w-[500px] flex-col gap-3 sm:flex-row"
             >
-              Join Waitlist
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-[#D8E0DC] bg-white px-6 py-6 sm:px-10">
-        <div className="mx-auto flex max-w-360 gap-3 overflow-x-auto">
-          {blogCategories.map((category) => (
-            <span
-              key={category}
-              className="shrink-0 rounded-full border border-[#D8E0DC] bg-[#F7F9F8] px-4 py-2 font-source text-sm font-bold text-[#27563C]"
-            >
-              {category}
-            </span>
-          ))}
-        </div>
-      </section>
-
-      <section className="px-6 py-14 sm:px-10 xl:py-20">
-        <div className="mx-auto max-w-360">
-          <div className="grid gap-8 overflow-hidden bg-white shadow-[0_18px_55px_rgba(31,41,51,0.12)] xl:grid-cols-[0.95fr_1.05fr]">
-            <div className="relative min-h-80 bg-[#286744]">
-              <Image
-                src={heropay_mobile}
-                alt=""
-                fill
-                className="object-cover object-center"
-                priority
+              <input
+                type="email"
+                name="email"
+                placeholder="Subscribe for Updates"
+                className="h-14 min-w-0 flex-1 rounded-lg border border-[#B8C0BB] px-4 font-source text-base font-medium text-black outline-none transition placeholder:text-[#8E9692] focus:border-black"
               />
-            </div>
-            <div className="p-7 sm:p-10 xl:p-12">
-              <p className="font-source text-xs font-black uppercase tracking-widest text-[#2E8B57]">
-                Featured blog
-              </p>
-              <p className="mt-5 font-source text-sm font-bold text-[#6B7280]">
-                {featuredBlogPost.category} - {featuredBlogPost.readTime}
-              </p>
-              <h2 className="mt-3 max-w-3xl font-heading text-[42px] leading-[0.95] text-[#1F2933] sm:text-[58px] xl:text-[64px]">
-                {featuredBlogPost.title}
-              </h2>
-              <p className="mt-5 max-w-2xl font-source text-base font-medium leading-8 text-[#425466]">
-                {featuredBlogPost.summary}
-              </p>
-              <Link
-                href={`/blog/${featuredBlogPost.slug}`}
-                className="mt-8 inline-flex rounded-full bg-[#1F2933] px-6 py-3 font-source text-sm font-black text-white transition hover:bg-[#286744]"
+              <button
+                type="submit"
+                className="h-14 rounded-lg bg-black px-7 font-source text-base font-black text-white transition hover:bg-[#286744]"
               >
-                Read guide
-              </Link>
+                Subscribe
+              </button>
+            </form>
+          </div>
+
+          <div className="mt-24">
+            <h2 className="font-source text-2xl font-black text-[#4A5560]">
+              News by topic
+            </h2>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {blogCategories.map((category) => (
+                <Link
+                  key={category}
+                  href={getCategoryHref(category)}
+                  className={`shrink-0 rounded-full px-6 py-3 font-source text-base font-black ${
+                    category === activeCategory
+                      ? "bg-black text-white"
+                      : "bg-[#E5E5E5] text-black"
+                  }`}
+                >
+                  {category}
+                </Link>
+              ))}
             </div>
           </div>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {posts.map((post, index) => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group overflow-hidden bg-white shadow-[0_12px_35px_rgba(31,41,51,0.08)] transition hover:-translate-y-1 hover:shadow-[0_20px_45px_rgba(31,41,51,0.14)]"
+                className="group rounded-lg bg-[#F5F5F6] p-6 transition hover:-translate-y-1 hover:shadow-[0_18px_40px_rgba(0,0,0,0.08)]"
               >
-                <div className="relative aspect-[4/3] bg-[#DFF3E5]">
+                <div
+                  className={`relative aspect-[1.2] overflow-hidden rounded-lg ${getImageBackground(index)}`}
+                >
                   <Image
-                    src={getPostImage(index + 1)}
+                    src={getPostImage(index)}
                     alt=""
                     fill
-                    className="object-cover transition duration-500 group-hover:scale-105"
+                    className="object-contain p-7 transition duration-500 group-hover:scale-105"
+                    sizes="(min-width: 1280px) 310px, (min-width: 768px) 45vw, 90vw"
                   />
                 </div>
-                <div className="p-5">
-                  <p className="font-source text-xs font-black uppercase tracking-widest text-[#2E8B57]">
-                    {post.label}
+                <div className="pt-6">
+                  <p className="font-source text-base font-medium text-[#7A8288]">
+                    {post.publishedAt}
                   </p>
-                  <h3 className="mt-3 font-source text-xl font-black leading-tight text-[#1F2933]">
+                  <h3 className="mt-5 font-source text-[28px] font-black leading-[0.98] text-black sm:text-[30px]">
                     {post.title}
                   </h3>
-                  <p className="mt-3 font-source text-sm font-medium leading-6 text-[#5F6C75]">
+                  <p className="mt-4 font-source text-base font-medium leading-7 text-[#5B5F66]">
                     {post.summary}
                   </p>
-                  <p className="mt-5 font-source text-xs font-bold uppercase tracking-widest text-[#8E8E93]">
+                  <p className="mt-5 font-source text-sm font-black text-[#286744]">
                     {post.category} - {post.readTime}
                   </p>
                 </div>

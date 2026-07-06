@@ -195,7 +195,7 @@ function SectionSeven() {
                 align="center"
                 className="xl:leading-9"
               >
-                Join the waitlist for clearer foreign online payments.
+                Join the waitlist for UK-to-Nigeria transfer updates.
               </Typography>
             </MotionWrapper>
 
