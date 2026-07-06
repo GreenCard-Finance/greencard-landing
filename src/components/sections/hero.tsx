@@ -44,7 +44,7 @@ function Hero() {
               color="charcoal"
               align="left"
             >
-              Pay <br className="sm:hidden" /> globally{" "}
+              Send Money <br className="sm:hidden" /> Home{" "}
               <br className="sm:flex" /> with your <br />
               <AnimatedText />
             </Typography>
@@ -98,7 +98,7 @@ function Hero() {
               weight={"bold"}
               tracking="wide"
             >
-              Pay globally <br />
+              Send Money Home <br />
               with your <br />
               <AnimatedText />
             </Typography>
