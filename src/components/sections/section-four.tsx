@@ -6,7 +6,16 @@ import { slideInRight, springUp } from "@/lib/animations";
 
 function SectionFour() {
   return (
-    <section className="w-full bg-[#8E8E93] overflow-hidden pt-10 sm:py-10 xl:py-0 px-6 xl:px-0">
+    <section className="relative w-full bg-[#8E8E93] overflow-hidden pt-10 sm:py-10 xl:py-0 px-6 xl:px-0">
+      <div className="absolute left-0 top-0 z-30 flex items-center shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
+        <div className="bg-[#FFD166] px-5 py-2 text-xs font-black uppercase tracking-widest text-[#1F2933] sm:px-7 sm:py-3 sm:text-sm">
+          Coming Soon
+        </div>
+        <div
+          aria-hidden="true"
+          className="h-0 w-0 border-y-[16px] border-l-[16px] border-y-transparent border-l-[#FFD166] sm:border-y-[22px] sm:border-l-[20px]"
+        />
+      </div>
       <div className="max-w-360 xl:w-[90%] mx-auto ">
         <div className="flex flex-col-reverse md:flex-col xl:flex-row items-center xl:justify-between">
           <MotionWrapper
