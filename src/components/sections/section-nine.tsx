@@ -25,10 +25,9 @@ function SectionNine() {
               weight={"bold"}
               className="tracking-wide"
             >
-              Earn globally. <br />
-              Move money <br />
-              confidently. <br />
-              Live locally.
+              Send home. <br />
+              Stay close. <br />
+              Support what matters.
             </Typography>
           </MotionWrapper>
 
@@ -87,10 +86,9 @@ function SectionNine() {
                 weight={"bold"}
                 className="tracking-wide"
               >
-                Earn globally. <br />
-                Move money <br />
-                confidently. <br />
-                Live locally.
+                Send home. <br />
+                Stay close. <br />
+                Support what matters.
               </Typography>
             </MotionWrapper>
           </div>
