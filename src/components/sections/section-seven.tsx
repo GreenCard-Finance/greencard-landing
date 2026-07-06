@@ -110,8 +110,12 @@ function SectionSeven() {
         }),
       });
 
+      const data = await response.json().catch(() => null);
+
       if (!response.ok) {
-        throw new Error();
+        setError(data?.error || "Failed to join waitlist. Please try again.");
+        setLoading(false);
+        return;
       }
 
       setSubmitted(true);

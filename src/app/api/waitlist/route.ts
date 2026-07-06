@@ -163,11 +163,22 @@ export async function POST(request: Request) {
 
   const normalizedEmail = email.toLowerCase().trim();
 
-  const alreadyExists = await kv.get(`waitlist:${normalizedEmail}`);
-  if (alreadyExists) {
+  try {
+    const alreadyExists = await kv.get(`waitlist:${normalizedEmail}`);
+    if (alreadyExists) {
+      return Response.json(
+        { success: false, error: "This email is already on the waitlist" },
+        { status: 409 },
+      );
+    }
+  } catch (kvErr) {
+    console.error("KV lookup failed:", kvErr);
     return Response.json(
-      { success: false, error: "This email is already on the waitlist" },
-      { status: 409 },
+      {
+        success: false,
+        error: "Something went wrong. Please try again shortly.",
+      },
+      { status: 500 },
     );
   }
 
@@ -184,7 +195,11 @@ export async function POST(request: Request) {
       { method: "POST", body: formData },
     );
 
-    await kv.set(`waitlist:${normalizedEmail}`, true);
+    try {
+      await kv.set(`waitlist:${normalizedEmail}`, true);
+    } catch (kvSetErr) {
+      console.error("Failed to record email in KV:", kvSetErr);
+    }
 
     try {
       const { data, error } = await resend.emails.send({
