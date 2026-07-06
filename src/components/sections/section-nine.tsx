@@ -35,11 +35,11 @@ function SectionNine() {
             <Typography
               as="p"
               font="source"
-              size="body-lg"
+              size="body-xl"
               color="white"
-              weight="regular"
+              weight="black"
               align="left"
-              className="opacity-80 leading-relaxed mt-4"
+              className="mt-4 text-[22px] leading-tight opacity-100 sm:text-[32px] xl:text-[30px]"
             >
               Bringing home closer.
             </Typography>
@@ -92,10 +92,10 @@ function SectionNine() {
               <Typography
                 as="p"
                 font="source"
-                size="body-lg"
+                size="body-xl"
                 color="white"
-                weight="regular"
-                className="opacity-80 leading-relaxed"
+                weight="black"
+                className="text-[22px] leading-tight opacity-100 sm:text-[32px] xl:text-[30px]"
               >
                 Bringing home closer.
               </Typography>
