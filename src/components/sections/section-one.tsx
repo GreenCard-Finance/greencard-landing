@@ -7,6 +7,15 @@ import { Typography } from "../ui/typography";
 function SectionOne() {
   return (
     <section className="relative w-full min-h-150 xl:min-h-170 2xl:min-h-190 overflow-hidden bg-[#286744]">
+      <div className="absolute left-0 top-0 z-30 flex items-center shadow-[0_10px_24px_rgba(0,0,0,0.18)]">
+        <div className="bg-[#FFD166] px-5 py-2 text-xs font-black uppercase tracking-widest text-[#1F2933] sm:px-7 sm:py-3 sm:text-sm">
+          Coming Soon
+        </div>
+        <div
+          aria-hidden="true"
+          className="h-0 w-0 border-y-[16px] border-l-[16px] border-y-transparent border-l-[#FFD166] sm:border-y-[22px] sm:border-l-[20px]"
+        />
+      </div>
       <div className="hidden xl:block absolute left-0 bottom-10 w-[19%] z-10">
         <MotionWrapper variants={slideInLeft} delay={0.3}>
           <Image
