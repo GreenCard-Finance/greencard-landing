@@ -57,6 +57,9 @@ function Hero() {
               className="mt-3 max-w-84"
             >
               Your trusted way to send money home.
+              <br />
+              Send money to Nigeria quickly and reliably, with clear rates,
+              transparent fees, and support when you need it.
             </Typography>
           </MotionWrapper>
           <div className="absolute right-4 top-6 sm:top-15 overflow-hidden">
@@ -109,6 +112,9 @@ function Hero() {
               className="mt-6 max-w-136"
             >
               Your trusted way to send money home.
+              <br />
+              Send money to Nigeria quickly and reliably, with clear rates,
+              transparent fees, and support when you need it.
             </Typography>
           </MotionWrapper>
 
