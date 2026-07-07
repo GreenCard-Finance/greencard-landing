@@ -85,17 +85,17 @@ export const faqData = [
   {
     question: "Is GreenCard Finance a Bank?",
     answer:
-      "No. GreenCard Finance is not a bank. We are launching Send Money Home for UK-to-Nigeria transfers and work with trusted payment and payout partners to process payments securely.",
+      "No. GreenCard Finance is not a bank. We are launching Send Money Home for GBP-funded transfers to recipients in Nigeria receiving NGN, and work with trusted payment and payout partners to process payments securely.",
   },
   {
     question: "What can I use GreenCard for at launch?",
     answer:
-      "At launch, GreenCard is focused on one corridor: verified users in the UK sending money to Nigeria, with recipients receiving NGN.",
+      "At launch, GreenCard is focused on one flow: customers fund transfers in GBP and recipients receive NGN in Nigeria.",
   },
   {
     question: "What currencies are supported?",
     answer:
-      "The launch flow is GBP to NGN. Additional currencies will be considered later and will be clearly marked as coming soon until they are available.",
+      "The launch flow is GBP-to-NGN. Additional currencies will be considered later and will be clearly marked as coming soon until they are available.",
   },
   {
     question: "How does GreenCard show rates and fees?",
@@ -110,7 +110,7 @@ export const faqData = [
   {
     question: "Who is GreenCard for?",
     answer:
-      "GreenCard is for Africans in the UK who want a simple way to send money home to family, friends, and the people who matter in Nigeria.",
+      "GreenCard is for people funding transfers in GBP who want a simple way to send money home to family, friends, and the people who matter in Nigeria.",
   },
   {
     question: "What happens if a transfer fails?",
@@ -120,7 +120,7 @@ export const faqData = [
   {
     question: "Are receiving money, cards, and other currencies available?",
     answer:
-      "Not yet. Receiving money, virtual accounts, cards, and additional currencies are future features. The current launch is UK-to-Nigeria transfers only.",
+      "Not yet. Receiving money, virtual accounts, cards, and additional currencies are future features. The current launch is GBP-to-NGN transfers only.",
   },
 ];
 

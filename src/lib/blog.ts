@@ -23,11 +23,11 @@ export const blogCategories = [
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "why-we-are-starting-with-uk-to-nigeria",
-    title: "Why we are starting with UK to Nigeria",
+    slug: "why-we-are-starting-with-gbp-to-ngn",
+    title: "Why we are starting with GBP-to-NGN",
     category: "Send Money Home",
     summary:
-      "GreenCard is starting with one job: help people in the UK send money home to Nigeria without the usual confusion.",
+      "GreenCard is starting with one job: make GBP-funded transfers to recipients in Nigeria receiving NGN feel clearer.",
     publishedAt: "June 24, 2026",
     readTime: "3 min read",
     label: "Launch note",
@@ -36,7 +36,7 @@ export const blogPosts: BlogPost[] = [
         heading: "One corridor first",
         paragraphs: [
           "We could talk about a lot of future products, but that is not what this launch is about.",
-          "The first version of GreenCard is focused on UK-to-Nigeria transfers. You send in GBP. Your recipient gets Naira in Nigeria.",
+          "The first version of GreenCard is focused on GBP-to-NGN transfers. You fund in GBP. Your recipient gets Naira in Nigeria.",
         ],
       },
       {
@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
         heading: "What comes next",
         paragraphs: [
           "Other features may come later, but they should not distract from the first promise.",
-          "For now, the goal is simple: make sending money from the UK to Nigeria feel clearer, safer, and easier to follow.",
+          "For now, the goal is simple: make GBP-funded transfers to recipients in Nigeria feel clearer, safer, and easier to follow.",
         ],
       },
     ],
@@ -108,7 +108,7 @@ export const blogPosts: BlogPost[] = [
       {
         heading: "Start from the payout",
         paragraphs: [
-          "When sending from the UK to Nigeria, the practical question is simple: how much Naira will arrive?",
+          "For GBP-funded transfers to Nigeria, the practical question is simple: how much Naira will arrive?",
           "That is why GreenCard is being shaped around showing the rate, fee, and expected payout before you confirm.",
         ],
       },

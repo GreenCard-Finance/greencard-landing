@@ -15,7 +15,7 @@ const structuredData = {
       logo: `${siteUrl}/images/gcf-horizontal-logo.svg`,
       image: `${siteUrl}/images/gcf-social-preview.png`,
       description:
-        "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
+        "Send GBP-funded transfers to recipients in Nigeria receiving NGN, with clear rates, transparent fees, and reliable payout.",
       email: "support@greencardfinance.com",
       telephone: "+447517099268",
       address: {
@@ -41,7 +41,7 @@ const structuredData = {
       name: "GreenCard Finance",
       url: siteUrl,
       description:
-        "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
+        "Send GBP-funded transfers to recipients in Nigeria receiving NGN, with clear rates, transparent fees, and reliable payout.",
       publisher: {
         "@id": organizationId,
       },
@@ -55,9 +55,9 @@ const structuredData = {
       provider: {
         "@id": organizationId,
       },
-      serviceType: "UK to Nigeria money transfer service",
+      serviceType: "GBP-to-NGN money transfer service",
       description:
-        "A focused UK-to-Nigeria transfer service for verified UK users sending GBP and recipients receiving Naira in Nigeria.",
+        "A focused GBP-to-NGN transfer service for customers funding transfers in GBP and recipients receiving NGN in Nigeria.",
       areaServed: [
         {
           "@type": "Country",

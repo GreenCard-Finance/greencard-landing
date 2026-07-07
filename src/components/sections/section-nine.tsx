@@ -55,9 +55,10 @@ function SectionNine() {
               align="left"
               className="opacity-80 leading-relaxed"
             >
-              GreenCard Finance makes it easier for Africans in the UK to send
-              money to Nigeria, with clear rates, secure payments, reliable
-              Naira payout, and simple tracking from start to finish.
+              GreenCard Finance makes it easier to fund transfers in GBP for
+              recipients in Nigeria receiving NGN, with clear rates, secure
+              payments, reliable payout, and simple tracking from start to
+              finish.
             </Typography>
           </MotionWrapper>
         </div>
@@ -110,9 +111,10 @@ function SectionNine() {
                 weight="regular"
                 className="opacity-80 leading-relaxed"
               >
-                GreenCard Finance makes it easier for Africans in the UK to send
-                money to Nigeria, with clear rates, secure payments, reliable
-                Naira payout, and simple tracking from start to finish.
+                GreenCard Finance makes it easier to fund transfers in GBP for
+                recipients in Nigeria receiving NGN, with clear rates, secure
+                payments, reliable payout, and simple tracking from start to
+                finish.
               </Typography>
             </MotionWrapper>
 

@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     template: "%s | GreenCard Finance",
   },
   description:
-    "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
+    "Send GBP-funded transfers to recipients in Nigeria receiving NGN, with clear rates, transparent fees, and reliable payout.",
   alternates: {
     canonical: "/",
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     siteName: "GreenCard Finance",
     title: "GreenCard Finance | Send Money Home to Nigeria",
     description:
-      "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
+      "Send GBP-funded transfers to recipients in Nigeria receiving NGN, with clear rates, transparent fees, and reliable payout.",
     images: [
       {
         url: "/images/gcf-social-preview.png",
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "GreenCard Finance | Send Money Home to Nigeria",
     description:
-      "Send money from the UK to Nigeria with clear rates, transparent fees, and reliable Naira payout.",
+      "Send GBP-funded transfers to recipients in Nigeria receiving NGN, with clear rates, transparent fees, and reliable payout.",
     images: ["/images/gcf-social-preview.png"],
   },
   icons: {

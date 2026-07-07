@@ -126,8 +126,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   GreenCard Finance
                 </p>
                 <p className="mt-4 max-w-2xl font-source text-lg font-medium leading-8 text-black">
-                  We are launching Send Money Home for UK-to-Nigeria transfers.
-                  Join the waitlist to hear when early access opens.
+                  We are launching Send Money Home for GBP-funded transfers to
+                  recipients in Nigeria receiving NGN. Join the waitlist to hear
+                  when early access opens.
                 </p>
                 <Link
                   href="/#waitlist"

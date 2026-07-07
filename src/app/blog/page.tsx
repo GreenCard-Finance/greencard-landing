@@ -14,7 +14,7 @@ import { blogCategories, blogPosts } from "@/lib/blog";
 export const metadata: Metadata = {
   title: "Blog",
   description:
-    "Notes from GreenCard Finance on sending money from the UK to Nigeria.",
+    "Notes from GreenCard Finance on GBP-to-NGN money transfers.",
 };
 
 type BlogPageProps = {
@@ -76,7 +76,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
               The GreenCard BLOG
             </h1>
             <p className="mt-7 font-source text-lg font-black leading-8 text-black sm:text-xl">
-              Notes from the team building a clearer UK-to-Nigeria money
+              Notes from the team building a clearer GBP-to-NGN money
               transfer experience.
             </p>
             <p className="mt-7 max-w-md font-source text-base font-medium leading-7 text-[#5B5F66]">

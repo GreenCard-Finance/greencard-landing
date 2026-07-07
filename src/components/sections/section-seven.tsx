@@ -195,7 +195,7 @@ function SectionSeven() {
                 align="center"
                 className="xl:leading-9"
               >
-                Join the waitlist for UK-to-Nigeria transfer updates.
+                Join the waitlist for GBP-to-NGN transfer updates.
               </Typography>
             </MotionWrapper>
 
