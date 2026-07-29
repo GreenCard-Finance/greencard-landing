@@ -1,11 +1,11 @@
-import { paga, afriex, kadavra, didit } from "@/assets/images";
+import { paga, didit } from "@/assets/images";
 import Image from "next/image";
 import { Typography } from "../ui/typography";
 import { springUp } from "@/lib/animations";
 import { MotionWrapper } from "../ui/motion-wrapper";
 
 function SectionEight() {
-  const partners = [paga, afriex, kadavra, didit];
+  const partners = [paga, didit];
 
   return (
     <section className="bg-green-50 py-10 xl:py-20 xl:pl-6">
@@ -81,13 +81,13 @@ function SectionEight() {
 
         <div className="hidden md:block w-px h-20 bg-green-200" />
 
-        <div className="flex-1 flex gap-8 items-center justify-between">
+        <div className="flex-1 flex gap-12 items-center justify-center">
           {partners.map((icon, i) => (
             <MotionWrapper
               variants={springUp}
               delay={i * 0.15}
               key={i}
-              className="w-[25%] opacity-full hover:opacity-100 transition-all duration-300"
+              className="shrink-0 opacity-full hover:opacity-100 transition-all duration-300"
             >
               <Image
                 alt={`Partner ${i + 1}`}
