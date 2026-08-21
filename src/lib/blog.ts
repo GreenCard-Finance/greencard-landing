@@ -339,7 +339,9 @@ export async function getBlogPost(slug: string) {
       { next: { revalidate: 60 } },
     );
 
-    return post ? normaliseSanityPost(post) : undefined;
+    return post
+      ? normaliseSanityPost(post)
+      : blogPosts.find((legacyPost) => legacyPost.slug === slug);
   } catch {
     return blogPosts.find((post) => post.slug === slug);
   }
