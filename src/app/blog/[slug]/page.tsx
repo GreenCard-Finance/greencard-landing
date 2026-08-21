@@ -1,7 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
+import { PortableText } from "@portabletext/react";
 import {
   hero_hands,
   heropay_mobile,
@@ -10,7 +11,8 @@ import {
   s2__img_mobile,
   s4_img,
 } from "@/assets/images";
-import { blogPosts, getBlogPost } from "@/lib/blog";
+import { BlogPostImage } from "@/components/blog/post-image";
+import { blogPosts, getBlogPost, getBlogPosts } from "@/lib/blog";
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -33,8 +35,58 @@ function getPostImage(slug: string) {
   return blogImages[Math.max(postIndex, 0) % blogImages.length];
 }
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({
+const portableTextComponents = {
+  block: {
+    h2: ({ children }: { children?: ReactNode }) => (
+      <h2 className="mt-11 font-source text-3xl font-black leading-tight text-black first:mt-0 sm:text-4xl">
+        {children}
+      </h2>
+    ),
+    h3: ({ children }: { children?: ReactNode }) => (
+      <h3 className="mt-8 font-source text-2xl font-black leading-tight text-black">
+        {children}
+      </h3>
+    ),
+    normal: ({ children }: { children?: ReactNode }) => (
+      <p className="mt-4 font-source text-lg font-medium leading-8 text-[#424A52]">
+        {children}
+      </p>
+    ),
+  },
+  list: {
+    bullet: ({ children }: { children?: ReactNode }) => (
+      <ul className="mt-4 list-disc space-y-2 pl-6 font-source text-lg font-medium leading-8 text-[#424A52]">
+        {children}
+      </ul>
+    ),
+    number: ({ children }: { children?: ReactNode }) => (
+      <ol className="mt-4 list-decimal space-y-2 pl-6 font-source text-lg font-medium leading-8 text-[#424A52]">
+        {children}
+      </ol>
+    ),
+  },
+  marks: {
+    link: ({ children, value }: { children?: ReactNode; value?: { href?: string } }) => {
+      if (!value?.href) return <>{children}</>;
+
+      return (
+        <a
+          className="font-bold text-[#286744] underline underline-offset-4"
+          href={value.href}
+          rel="noreferrer"
+          target={value.href.startsWith("http") ? "_blank" : undefined}
+        >
+          {children}
+        </a>
+      );
+    },
+  },
+};
+
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+
+  return posts.map((post) => ({
     slug: post.slug,
   }));
 }
@@ -43,7 +95,7 @@ export async function generateMetadata({
   params,
 }: BlogPostPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return {
@@ -59,7 +111,7 @@ export async function generateMetadata({
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getBlogPost(slug);
 
   if (!post) notFound();
 
@@ -90,36 +142,20 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           <div className="mx-auto max-w-[900px]">
             <div className="rounded-lg bg-[#F5F5F6] p-6">
               <div className="relative aspect-[16/9] overflow-hidden rounded-lg bg-[#DFF7C8]">
-                <Image
-                  src={getPostImage(post.slug)}
-                  alt=""
-                  fill
-                  className="object-contain p-8"
+                <BlogPostImage
+                  coverImage={post.coverImage}
+                  fallback={getPostImage(post.slug)}
+                  alt={post.title}
                   priority
                 />
               </div>
             </div>
 
             <div className="mx-auto max-w-[760px] py-12">
-              <div className="space-y-11">
-                {post.body.map((section) => (
-                  <section key={section.heading}>
-                    <h2 className="font-source text-3xl font-black leading-tight text-black sm:text-4xl">
-                      {section.heading}
-                    </h2>
-                    <div className="mt-4 space-y-4">
-                      {section.paragraphs.map((paragraph) => (
-                        <p
-                          key={paragraph}
-                          className="font-source text-lg font-medium leading-8 text-[#424A52]"
-                        >
-                          {paragraph}
-                        </p>
-                      ))}
-                    </div>
-                  </section>
-                ))}
-              </div>
+              <PortableText
+                value={post.body}
+                components={portableTextComponents}
+              />
 
               <div className="mt-14 rounded-lg bg-[#F5F5F6] p-7 sm:p-9">
                 <p className="font-source text-sm font-black uppercase tracking-widest text-[#286744]">

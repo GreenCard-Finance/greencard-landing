@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -9,7 +8,8 @@ import {
   s2__img_mobile,
   s4_img,
 } from "@/assets/images";
-import { blogCategories, blogPosts } from "@/lib/blog";
+import { BlogPostImage } from "@/components/blog/post-image";
+import { blogCategories, getBlogPosts } from "@/lib/blog";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -62,10 +62,11 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     requestedCategory && blogCategories.includes(requestedCategory)
       ? requestedCategory
       : "All";
+  const allPosts = await getBlogPosts();
   const posts =
     activeCategory === "All"
-      ? blogPosts
-      : blogPosts.filter((post) => post.category === activeCategory);
+      ? allPosts
+      : allPosts.filter((post) => post.category === activeCategory);
 
   return (
     <main className="bg-white text-black">
@@ -134,11 +135,10 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
                 <div
                   className={`relative aspect-[1.2] overflow-hidden rounded-lg ${getImageBackground(index)}`}
                 >
-                  <Image
-                    src={getPostImage(index)}
-                    alt=""
-                    fill
-                    className="object-contain p-7 transition duration-500 group-hover:scale-105"
+                  <BlogPostImage
+                    coverImage={post.coverImage}
+                    fallback={getPostImage(index)}
+                    alt={post.title}
                     sizes="(min-width: 1280px) 310px, (min-width: 768px) 45vw, 90vw"
                   />
                 </div>

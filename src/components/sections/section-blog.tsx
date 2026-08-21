@@ -1,13 +1,13 @@
-import Image from "next/image";
 import Link from "next/link";
 import { heropay_mobile, s1_phone_img, s2__img_mobile } from "@/assets/images";
-import { blogPosts } from "@/lib/blog";
+import { BlogPostImage } from "@/components/blog/post-image";
+import { getBlogPosts } from "@/lib/blog";
 
 const previewImages = [heropay_mobile, s1_phone_img, s2__img_mobile];
 const previewBackgrounds = ["bg-[#FFE8BF]", "bg-[#DFF7C8]", "bg-[#A9EAF3]"];
 
-function SectionBlog() {
-  const posts = blogPosts.slice(0, 3);
+async function SectionBlog() {
+  const posts = (await getBlogPosts()).slice(0, 3);
 
   return (
     <section className="bg-white px-6 py-14 sm:px-10 xl:py-20">
@@ -39,11 +39,10 @@ function SectionBlog() {
               <div
                 className={`relative aspect-[1.2] overflow-hidden rounded-lg ${previewBackgrounds[index]}`}
               >
-                <Image
-                  src={previewImages[index]}
-                  alt=""
-                  fill
-                  className="object-contain p-7 transition duration-500 group-hover:scale-105"
+                <BlogPostImage
+                  coverImage={post.coverImage}
+                  fallback={previewImages[index]}
+                  alt={post.title}
                 />
               </div>
               <div className="pt-6">

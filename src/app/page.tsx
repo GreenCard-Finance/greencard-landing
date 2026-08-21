@@ -10,7 +10,7 @@ import SectionEight from "@/components/sections/section-eight";
 import SectionNine from "@/components/sections/section-nine";
 import SectionBlog from "@/components/sections/section-blog";
 
-function Home() {
+async function Home() {
   return (
     <>
       <Hero />

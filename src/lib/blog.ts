@@ -1,15 +1,28 @@
+import type { PortableTextBlock } from "@portabletext/react";
+import type { SanityImageSource } from "@sanity/image-url";
+import { sanityClient } from "@/sanity/client";
+import { BLOG_POST_BY_SLUG_QUERY, BLOG_POSTS_QUERY } from "@/sanity/queries";
+
 export type BlogPost = {
   slug: string;
   title: string;
   category: string;
   summary: string;
   publishedAt: string;
+  publishedAtRaw: string;
   readTime: string;
   label: string;
-  body: {
-    heading: string;
-    paragraphs: string[];
-  }[];
+  body: PortableTextBlock[];
+  coverImage?: SanityImageSource;
+};
+
+type LegacyPostSection = {
+  heading: string;
+  paragraphs: string[];
+};
+
+type LegacyBlogPost = Omit<BlogPost, "body" | "publishedAtRaw" | "coverImage"> & {
+  body: LegacyPostSection[];
 };
 
 export const blogCategories = [
@@ -21,7 +34,7 @@ export const blogCategories = [
   "Family Support",
 ];
 
-export const blogPosts: BlogPost[] = [
+const legacyBlogPosts: LegacyBlogPost[] = [
   {
     slug: "why-we-are-starting-with-gbp-to-ngn",
     title: "Why we are starting with GBP-to-NGN",
@@ -215,8 +228,119 @@ export const blogPosts: BlogPost[] = [
   },
 ];
 
+function toPortableText(sections: LegacyPostSection[], slug: string) {
+  return sections.flatMap((section, sectionIndex) => [
+    {
+      _key: `${slug}-heading-${sectionIndex}`,
+      _type: "block" as const,
+      children: [
+        {
+          _key: `${slug}-heading-span-${sectionIndex}`,
+          _type: "span" as const,
+          marks: [],
+          text: section.heading,
+        },
+      ],
+      markDefs: [],
+      style: "h2",
+    },
+    ...section.paragraphs.map((paragraph, paragraphIndex) => ({
+      _key: `${slug}-paragraph-${sectionIndex}-${paragraphIndex}`,
+      _type: "block" as const,
+      children: [
+        {
+          _key: `${slug}-paragraph-span-${sectionIndex}-${paragraphIndex}`,
+          _type: "span" as const,
+          marks: [],
+          text: paragraph,
+        },
+      ],
+      markDefs: [],
+      style: "normal",
+    })),
+  ]);
+}
+
+function toIsoDate(date: string) {
+  return new Date(`${date} UTC`).toISOString();
+}
+
+export const blogPosts: BlogPost[] = legacyBlogPosts.map((post) => ({
+  ...post,
+  publishedAtRaw: toIsoDate(post.publishedAt),
+  body: toPortableText(post.body, post.slug),
+}));
+
+type SanityPostResult = {
+  slug?: string;
+  title?: string;
+  category?: string;
+  summary?: string;
+  publishedAt?: string;
+  readTime?: string;
+  label?: string;
+  coverImage?: SanityImageSource;
+  body?: PortableTextBlock[];
+};
+
+function formatPublishedAt(date: string) {
+  return new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(date));
+}
+
+function normaliseSanityPost(post: SanityPostResult): BlogPost | null {
+  if (!post.slug || !post.title || !post.publishedAt) return null;
+
+  return {
+    slug: post.slug,
+    title: post.title,
+    category: post.category ?? "Send Money Home",
+    summary: post.summary ?? "",
+    publishedAt: formatPublishedAt(post.publishedAt),
+    publishedAtRaw: post.publishedAt,
+    readTime: post.readTime ?? "3 min read",
+    label: post.label ?? "GreenCard Finance",
+    coverImage: post.coverImage,
+    body: post.body ?? [],
+  };
+}
+
 export const featuredBlogPost = blogPosts[0];
 
-export function getBlogPost(slug: string) {
-  return blogPosts.find((post) => post.slug === slug);
+export async function getBlogPosts() {
+  if (!sanityClient) return blogPosts;
+
+  try {
+    const posts = await sanityClient.fetch<SanityPostResult[]>(
+      BLOG_POSTS_QUERY,
+      {},
+      { next: { revalidate: 60 } },
+    );
+    const normalisedPosts = posts
+      .map(normaliseSanityPost)
+      .filter((post): post is BlogPost => post !== null);
+
+    return normalisedPosts.length > 0 ? normalisedPosts : blogPosts;
+  } catch {
+    return blogPosts;
+  }
+}
+
+export async function getBlogPost(slug: string) {
+  if (!sanityClient) return blogPosts.find((post) => post.slug === slug);
+
+  try {
+    const post = await sanityClient.fetch<SanityPostResult | null>(
+      BLOG_POST_BY_SLUG_QUERY,
+      { slug },
+      { next: { revalidate: 60 } },
+    );
+
+    return post ? normaliseSanityPost(post) : undefined;
+  } catch {
+    return blogPosts.find((post) => post.slug === slug);
+  }
 }
